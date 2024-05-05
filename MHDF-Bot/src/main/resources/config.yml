@@ -1,0 +1,44 @@
+#数据库配置
+DatabaseSettings:
+  #数据库地址
+  Host: "127.0.0.1:3306"
+  #数据库
+  Database: "MHDF-Bot"
+  #数据库账户
+  Username: "root"
+  #数据库密码
+  Password: "root"
+
+#登录系统数据库配置
+LoginSystemDatabaseSettings:
+  #数据库地址
+  Host: "127.0.0.1:3306"
+  #数据库
+  Database: "mhdflogin"
+  #数据库账户
+  Username: "root"
+  #数据库密码
+  Password: "root"
+
+#允许使用管理命令的QQ
+AllowUseAdminCommandList:
+  - "2624246773"
+  - "292200693"
+
+#允许使用QQ机器人的群聊
+AllowUseBotList:
+  - "476308572"
+  - "958871704"
+
+#回复消息@
+ReplayAt: true
+
+#WebSocket服务器断开
+WebSocketServerPort: 5886
+
+#绑定设置
+BindSettings:
+  #单个QQ最多可以绑定的用户数量
+  MaxBind: 1
+  #绑定QQ最低QQ等级要求
+  MinQQLevel: 10

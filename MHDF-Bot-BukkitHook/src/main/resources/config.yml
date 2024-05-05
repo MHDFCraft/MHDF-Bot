@@ -1,0 +1,43 @@
+########################################################################################################
+#PAPI变量:
+#%MHDFBot_isBind%             是否绑定
+#%MHDFBot_getQQ%              获取绑定的QQ
+#%MHDFBot_getChatTimes%       获取积累聊天数
+#%MHDFBot_getDayChatTimes%    获取今日聊天数
+########################################################################################################
+
+#数据库配置
+DatabaseSettings:
+  #数据库地址
+  Host: "127.0.0.1:3306"
+  #数据库
+  Database: "MHDF-Bot"
+  #数据库账户
+  Username: "root"
+  #数据库密码
+  Password: "root"
+
+#登录系统数据库配置
+LoginSystemDatabaseSettings:
+  #数据库地址
+  Host: "127.0.0.1:3306"
+  #数据库
+  Database: "mhdflogin"
+  #数据库账户
+  Username: "root"
+  #数据库密码
+  Password: "root"
+
+#提示用户绑定账户
+SendMessage: true
+
+#音效设置
+Sound:
+  SendMessage: "ENTITY_EXPERIENCE_ORB_PICKUP|25|0.7"
+
+#语言文件设置
+Messages:
+  ReloadDone: "&a重载完成!"
+  SendMesasge: "&c请绑定QQ账户!|&a请在QQ群&b476308572&a中发送&b#绑定 <游戏ID>|10|70|20"
+  Bind: "&a已绑定"
+  NotBind: "&c未绑定"

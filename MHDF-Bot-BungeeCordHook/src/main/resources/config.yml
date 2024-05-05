@@ -1,0 +1,38 @@
+#数据库配置
+DatabaseSettings:
+  #数据库地址
+  Host: "127.0.0.1:3306"
+  #数据库
+  Database: "MHDF-Bot"
+  #数据库账户
+  Username: "root"
+  #数据库密码
+  Password: "root"
+
+#登录系统数据库配置
+LoginSystemDatabaseSettings:
+  #数据库地址
+  Host: "127.0.0.1:3306"
+  #数据库
+  Database: "mhdflogin"
+  #数据库账户
+  Username: "root"
+  #数据库密码
+  Password: "root"
+
+#允许聊天
+AllowChat: true
+
+#允许加入的服务器列表
+AllowJoinServerList:
+  - "登录大厅"
+  - "主城"
+
+#允许使用的命令
+AllowUseCommandList:
+  - "/l"
+  - "/reg"
+
+Messages:
+  AntiChat: "&c你没有绑定QQ,无法聊天!"
+  AntiUseCommand: "&c你还没有绑定QQ,不能使用这个命令!"

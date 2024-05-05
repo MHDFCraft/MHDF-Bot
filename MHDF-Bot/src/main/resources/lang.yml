@@ -1,0 +1,37 @@
+Messages:
+  Bind:
+    BindDone: |-
+      成功绑定{Player}!
+    AlwaysBind: |-
+      {Player}已经被{QQ}绑定了!
+    MaxBind: |-
+      你已经绑定了{Size}个账户了,无法再绑定更多账户了!
+    MinQQLevel: |-
+      你的QQ等级小于{Size}级,无法绑定账户!
+  UnBind:
+    UnBindDone: |-
+      成功解除绑定{Player}!
+    DontBind: |-
+      你并没有绑定{Player}这个账户!
+  ChangePassword:
+    ChangeDone: |-
+      你成功修改了{Player}的密码为{Password}!
+    ChangeInfo: |-
+      身份验证完成,请将密码发送到<<机器人私信>>!
+    DontBind: |-
+      你并没有绑定{Player}这个账户!
+    DontRegister: |-
+      {Player}并没有在服务器中注册了账户!
+  Marry:
+    IsMr: |-
+      你今天的群老婆是{AtMrs}!
+    IsMrs: |-
+      你今天被娶了,是{AtMr}!
+  Reload:
+    ReloadDone: |-
+      配置文件重载完成!
+    NoPermission: |-
+      你没有权限怎么做!
+  Say:
+    SayWait: |-
+      语音生成中,请稍后!

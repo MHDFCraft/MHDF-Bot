@@ -1,0 +1,10 @@
+/MHDF-Bot-BungeeCordHook/target/
+/MHDF-Bot-BukkitHook/target/
+/MHDF-Bot-API/target/
+/MHDF-Bot/target/
+
+*.iml
+/application.yml
+/cache.yml
+/config.yml
+/lang.yml
