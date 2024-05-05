@@ -42,3 +42,15 @@ BindSettings:
   MaxBind: 1
   #绑定QQ最低QQ等级要求
   MinQQLevel: 10
+
+#群聊屏蔽词设置
+BlackWordSettings:
+  #开关
+  Enable: true
+  #启动sensitive-word库检测屏蔽词（https://github.com/houbb/sensitive-word）
+  EnableSensitiveWordAPI: true
+  #禁言(单位：分钟 设置 -1关闭)
+  Mute: 10
+  #屏蔽词
+  BlackWordList:
+    - "傻逼"

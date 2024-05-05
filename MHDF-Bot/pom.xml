@@ -104,6 +104,11 @@
             <version>2.0.21.graal</version>
         </dependency>
         <dependency>
+            <groupId>com.github.houbb</groupId>
+            <artifactId>sensitive-word</artifactId>
+            <version>0.16.1</version>
+        </dependency>
+        <dependency>
             <groupId>cn.chengzhiya</groupId>
             <artifactId>MHDF-Bot-API</artifactId>
             <version>1.0.0</version>

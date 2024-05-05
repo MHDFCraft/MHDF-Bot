@@ -13,6 +13,9 @@
         <module name="MHDF-Bot-API" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Cheng-Bot" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

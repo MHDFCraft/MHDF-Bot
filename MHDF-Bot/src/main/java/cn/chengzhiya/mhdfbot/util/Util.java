@@ -1,6 +1,9 @@
 package cn.chengzhiya.mhdfbot.util;
 
 import cn.chengzhiya.mhdfbot.entity.YamlConfiguration;
+import com.github.houbb.sensitive.word.bs.SensitiveWordBs;
+import com.github.houbb.sensitive.word.support.ignore.SensitiveWordCharIgnores;
+import com.github.houbb.sensitive.word.support.resultcondition.WordResultConditions;
 import com.mikuac.shiro.core.Bot;
 import com.mikuac.shiro.dto.action.response.GroupMemberInfoResp;
 import lombok.Getter;
@@ -16,10 +19,26 @@ import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public final class Util {
     @Getter
     public static final HashMap<Long, String> ChangePasswordHashMap = new HashMap<>();
+    public static final SensitiveWordBs wordBs = SensitiveWordBs.newInstance()
+            .ignoreCase(true)
+            .ignoreWidth(true)
+            .ignoreNumStyle(true)
+            .ignoreChineseStyle(true)
+            .ignoreEnglishStyle(true)
+            .ignoreRepeat(true)
+            .enableNumCheck(false)
+            .enableEmailCheck(false)
+            .enableUrlCheck(false)
+            .enableWordCheck(true)
+            .numCheckLen(999)
+            .charIgnore(SensitiveWordCharIgnores.specialChars())
+            .wordResultCondition(WordResultConditions.alwaysTrue())
+            .init();
     public static YamlConfiguration Lang;
     @Getter
     public static YamlConfiguration Config;
@@ -119,6 +138,25 @@ public final class Util {
             memberList.add(member.getUserId());
         }
         return memberList;
+    }
+
+    public static boolean ifContainsBlackWord(String Message) {
+        if (Util.getConfig().getBoolean("BlackWordSettings.Enable")) {
+            if (Message.startsWith("[CQ:image") && Message.contains("url=https://multimedia.nt.qq.com.cn/download")) {
+                return false;
+            }
+            if (Util.getConfig().getBoolean("BlackWordSettings.EnableSensitiveWordAPI")) {
+                if (wordBs.contains(Message)) {
+                    return true;
+                }
+            }
+            for (String BlackWords : Util.getConfig().getStringList("BlackWordSettings.BlackWordList")) {
+                if (Message.toLowerCase(Locale.ROOT).contains(BlackWords.toLowerCase(Locale.ROOT))) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
 

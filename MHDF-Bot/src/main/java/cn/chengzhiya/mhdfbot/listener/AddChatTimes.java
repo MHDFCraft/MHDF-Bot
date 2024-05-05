@@ -13,7 +13,7 @@ import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.addChatTimes;
 @Component
 public final class AddChatTimes {
     @GroupMessageHandler
-    public void onAnyMessage(Bot bot, GroupMessageEvent event) {
+    public void onGroupMessage(Bot bot, GroupMessageEvent event) {
         if (Util.getConfig().getStringList("AllowUseBotList").contains(event.getGroupId().toString())) {
             addChatTimes(event.getUserId(), 1);
         }
