@@ -4,6 +4,7 @@ import cn.chengzhiya.mhdfbot.util.Util;
 import cn.chengzhiya.mhdfbotapi.entity.Marry;
 import cn.chengzhiya.mhdfbotapi.entity.PlayerData;
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.mikuac.shiro.annotation.GroupMessageHandler;
 import com.mikuac.shiro.annotation.common.Shiro;
 import com.mikuac.shiro.common.utils.MsgUtils;
@@ -15,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
+import static cn.chengzhiya.mhdfbot.server.webSocket.send;
 import static cn.chengzhiya.mhdfbot.util.Util.*;
 import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.*;
 
@@ -52,6 +54,17 @@ public final class GroupMessage {
                                 if (playerData == null) {
                                     bot.setGroupCard(event.getGroupId(), event.getUserId(), args[1]);
                                     bind(new PlayerData(args[1], event.getUserId()));
+                                    {
+                                        JSONObject data = new JSONObject();
+                                        data.put("action", "bind");
+
+                                        JSONObject params = new JSONObject();
+                                        params.put("playerName", args[1]);
+
+                                        data.put("params", params);
+
+                                        send(data.toJSONString());
+                                    }
                                     Message.text(i18n("Messages.Bind.BindDone").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
                                 } else {
                                     Message.text(i18n("Messages.Bind.AlwaysBind").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(playerData.getQQ())));
@@ -67,6 +80,17 @@ public final class GroupMessage {
                         playerData = getPlayerData(args[1]);
                         if (playerData != null && Objects.equals(playerData.getQQ(), event.getUserId())) {
                             unbind(playerData);
+                            {
+                                JSONObject data = new JSONObject();
+                                data.put("action", "unBind");
+
+                                JSONObject params = new JSONObject();
+                                params.put("playerName", args[1]);
+
+                                data.put("params", params);
+
+                                send(data.toJSONString());
+                            }
                             Message.text(i18n("Messages.UnBind.UnBindDone").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
                         } else {
                             Message.text(i18n("Messages.UnBind.DontBind").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));

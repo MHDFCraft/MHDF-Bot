@@ -9,17 +9,6 @@ DatabaseSettings:
   #数据库密码
   Password: "root"
 
-#登录系统数据库配置
-LoginSystemDatabaseSettings:
-  #数据库地址
-  Host: "127.0.0.1:3306"
-  #数据库
-  Database: "mhdflogin"
-  #数据库账户
-  Username: "root"
-  #数据库密码
-  Password: "root"
-
 #允许使用管理命令的QQ
 AllowUseAdminCommandList:
   - "2624246773"
