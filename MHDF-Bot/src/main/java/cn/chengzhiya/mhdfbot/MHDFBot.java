@@ -4,6 +4,7 @@ import cn.chengzhiya.mhdfbot.entity.YamlConfiguration;
 import cn.chengzhiya.mhdfbotapi.entity.DatabaseConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import static cn.chengzhiya.mhdfbot.util.Util.*;
 import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.*;
 
 @SpringBootApplication
+@EnableScheduling
 public class MHDFBot {
 
     private static void saveDefaultConfigFiles() {
