@@ -44,8 +44,10 @@ public final class DatabaseUtil {
             }
 
             {
-                loginSystemDataSource = getDataSource(loginDatabase);
-                loginSystemStatement = loginSystemDataSource.getConnection().createStatement();
+                if (loginDatabase != null) {
+                    loginSystemDataSource = getDataSource(loginDatabase);
+                    loginSystemStatement = loginSystemDataSource.getConnection().createStatement();
+                }
             }
 
             {

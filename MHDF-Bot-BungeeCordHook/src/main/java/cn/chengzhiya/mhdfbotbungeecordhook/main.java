@@ -31,12 +31,12 @@ public final class main extends Plugin {
                         Util.getConfig().getString("DatabaseSettings.Username"),
                         Util.getConfig().getString("DatabaseSettings.Password")
                 ),
-                new DatabaseConfig(
+                Util.getConfig().getBoolean("LoginSystemDatabaseSettings.isMHDFLogin") ? new DatabaseConfig(
                         Util.getConfig().getString("LoginSystemDatabaseSettings.Host"),
                         Util.getConfig().getString("LoginSystemDatabaseSettings.Database"),
                         Util.getConfig().getString("LoginSystemDatabaseSettings.Username"),
                         Util.getConfig().getString("LoginSystemDatabaseSettings.Password")
-                )
+                ) : null
         );
 
         getProxy().getPluginManager().registerListener(this, new Chat());
@@ -53,7 +53,7 @@ public final class main extends Plugin {
         main = null;
 
         log.info("=======梦回东方-Q群机器人-BC连接器=======");
-        log.info("&e插件已卸载!");
+        log.info("插件已卸载!");
         log.info("=======梦回东方-Q群机器人-BC连接器=======");
     }
 }

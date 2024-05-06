@@ -8,8 +8,7 @@ import com.mikuac.shiro.core.Bot;
 import com.mikuac.shiro.dto.event.message.PrivateMessageEvent;
 import org.springframework.stereotype.Component;
 
-import static cn.chengzhiya.mhdfbot.util.Util.i18n;
-import static cn.chengzhiya.mhdfbot.util.Util.sha256;
+import static cn.chengzhiya.mhdfbot.util.Util.*;
 import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.changePassword;
 
 @Shiro
@@ -17,13 +16,15 @@ import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.changePassword;
 public final class PrivateMessage {
     @PrivateMessageHandler
     public void onPrivateMessage(Bot bot, PrivateMessageEvent event) {
-        if (Util.getChangePasswordHashMap().get(event.getUserId()) != null) {
-            changePassword(Util.getChangePasswordHashMap().get(event.getUserId()), sha256(event.getMessage()));
-            MsgUtils Message = MsgUtils
-                    .builder()
-                    .reply(event.getMessageId())
-                    .text(i18n("Messages.ChangePassword.ChangeDone").replaceAll("\\{Player}", Util.getChangePasswordHashMap().get(event.getUserId())).replaceAll("\\{QQ}", String.valueOf(event.getUserId())).replaceAll("\\{Password}", event.getMessage()));
-            bot.sendPrivateMsg(event.getUserId(), Message.build(), false);
+        if (getConfig().getBoolean("LoginSystemDatabaseSettings.isMHDFLogin")) {
+            if (Util.getChangePasswordHashMap().get(event.getUserId()) != null) {
+                changePassword(Util.getChangePasswordHashMap().get(event.getUserId()), sha256(event.getMessage()));
+                MsgUtils Message = MsgUtils
+                        .builder()
+                        .reply(event.getMessageId())
+                        .text(i18n("Messages.ChangePassword.ChangeDone").replaceAll("\\{Player}", Util.getChangePasswordHashMap().get(event.getUserId())).replaceAll("\\{QQ}", String.valueOf(event.getUserId())).replaceAll("\\{Password}", event.getMessage()));
+                bot.sendPrivateMsg(event.getUserId(), Message.build(), false);
+            }
         }
     }
 }

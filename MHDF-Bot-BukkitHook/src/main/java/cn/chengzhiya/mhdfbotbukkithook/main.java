@@ -48,12 +48,12 @@ public final class main extends JavaPlugin {
                         getConfig().getString("DatabaseSettings.Username"),
                         getConfig().getString("DatabaseSettings.Password")
                 ),
-                new DatabaseConfig(
+                getConfig().getBoolean("LoginSystemDatabaseSettings.isMHDFLogin") ? new DatabaseConfig(
                         getConfig().getString("LoginSystemDatabaseSettings.Host"),
                         getConfig().getString("LoginSystemDatabaseSettings.Database"),
                         getConfig().getString("LoginSystemDatabaseSettings.Username"),
                         getConfig().getString("LoginSystemDatabaseSettings.Password")
-                )
+                ) : null
         );
 
         try {

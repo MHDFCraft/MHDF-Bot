@@ -11,6 +11,8 @@ DatabaseSettings:
 
 #登录系统数据库配置
 LoginSystemDatabaseSettings:
+  #MHDF登录插件
+  isMHDFLogin: true
   #数据库地址
   Host: "127.0.0.1:3306"
   #数据库

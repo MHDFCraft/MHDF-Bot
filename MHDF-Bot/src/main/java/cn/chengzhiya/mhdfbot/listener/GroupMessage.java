@@ -39,13 +39,13 @@ public final class GroupMessage {
                 PlayerData playerData;
                 switch (args[0]) {
                     case "#菜单":
-                        Message.img("http://127.0.0.1:5678/getImage/Menu");
+                        Message.img(getConfig().getString("ChengBotSettings.APIUrl") + getConfig().getString("ChengBotSettings.Menu"));
                         break;
                     case "#运行状态":
-                        Message.img("http://127.0.0.1:5678/getImage/SystemInfo");
+                        Message.img(getConfig().getString("ChengBotSettings.APIUrl") + getConfig().getString("ChengBotSettings.SystemInfo"));
                         break;
                     case "#服务器状态":
-                        Message.img("http://127.0.0.1:5678/getImage/ServerInfo?Server=W3sibmFtZSI6IuaipuWbnuS4nOaWuSIsImlwIjoibWhkZi5sb3ZlIn1d");
+                        Message.img(getConfig().getString("ChengBotSettings.APIUrl") + getConfig().getString("ChengBotSettings.ServerInfo"));
                         break;
                     case "#绑定":
                         playerData = getPlayerData(args[1]);
@@ -97,34 +97,42 @@ public final class GroupMessage {
                         }
                         break;
                     case "#重置密码":
-                        playerData = getPlayerData(args[1]);
-                        if (playerData != null && Objects.equals(playerData.getQQ(), event.getUserId())) {
-                            if (ifPlayerDataExist(args[1])) {
-                                Util.getChangePasswordHashMap().put(event.getUserId(), args[1]);
-                                Message.text(i18n("Messages.ChangePassword.ChangeInfo").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
+                        if (getConfig().getBoolean("LoginSystemDatabaseSettings.isMHDFLogin")) {
+                            playerData = getPlayerData(args[1]);
+                            if (playerData != null && Objects.equals(playerData.getQQ(), event.getUserId())) {
+                                if (ifPlayerDataExist(args[1])) {
+                                    Util.getChangePasswordHashMap().put(event.getUserId(), args[1]);
+                                    Message.text(i18n("Messages.ChangePassword.ChangeInfo").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
+                                } else {
+                                    Message.text(i18n("Messages.ChangePassword.ChangeInfo").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
+                                }
                             } else {
-                                Message.text(i18n("Messages.ChangePassword.ChangeInfo").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
+                                Message.text(i18n("Messages.ChangePassword.DontBind").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
                             }
                         } else {
-                            Message.text(i18n("Messages.ChangePassword.DontBind").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
+                            return;
                         }
                         break;
                     case "#群老婆":
-                        if (!ifMarryDataExist(event.getUserId())) {
-                            List<Long> allowMarryList = getMemberList(bot, event.getGroupId());
-                            allowMarryList.removeAll(getMarryList());
+                        if (getConfig().getBoolean("MarryEnable")) {
+                            if (!ifMarryDataExist(event.getUserId())) {
+                                List<Long> allowMarryList = getMemberList(bot, event.getGroupId());
+                                allowMarryList.removeAll(getMarryList());
 
-                            Random random = new Random();
-                            Long MrsQQ = allowMarryList.get(random.nextInt(allowMarryList.size()));
+                                Random random = new Random();
+                                Long MrsQQ = allowMarryList.get(random.nextInt(allowMarryList.size()));
 
-                            marry(new Marry(event.getUserId(), MrsQQ));
-                            Message.text(i18n("Messages.Marry.IsMr").replaceAll("\\{AtMrs}", MsgUtils.builder().at(MrsQQ).build()));
-                        } else {
-                            if (isMr(event.getUserId())) {
-                                Message.text(i18n("Messages.Marry.IsMr").replaceAll("\\{AtMrs}", MsgUtils.builder().at(Objects.requireNonNull(getMarryData(event.getUserId())).getMrsQQ()).build()));
+                                marry(new Marry(event.getUserId(), MrsQQ));
+                                Message.text(i18n("Messages.Marry.IsMr").replaceAll("\\{AtMrs}", MsgUtils.builder().at(MrsQQ).build()));
                             } else {
-                                Message.text(i18n("Messages.Marry.IsMrs").replaceAll("\\{AtMr}", MsgUtils.builder().at(Objects.requireNonNull(getMarryData(event.getUserId())).getMrQQ()).build()));
+                                if (isMr(event.getUserId())) {
+                                    Message.text(i18n("Messages.Marry.IsMr").replaceAll("\\{AtMrs}", MsgUtils.builder().at(Objects.requireNonNull(getMarryData(event.getUserId())).getMrsQQ()).build()));
+                                } else {
+                                    Message.text(i18n("Messages.Marry.IsMrs").replaceAll("\\{AtMr}", MsgUtils.builder().at(Objects.requireNonNull(getMarryData(event.getUserId())).getMrQQ()).build()));
+                                }
                             }
+                        } else {
+                            return;
                         }
                         break;
                     case "#说":
