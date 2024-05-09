@@ -93,7 +93,7 @@ public final class DatabaseUtil {
     }
 
     public static boolean ifPlayerDataExist(String playerName) {
-        try (Connection connection = loginSystemDataSource.getConnection()) {
+        try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement("select * from `mhdf-bot`.mhdfbot_bindqq where PlayerName=?;")) {
                 ps.setString(1, playerName);
                 try (ResultSet rs = ps.executeQuery()) {
@@ -106,7 +106,7 @@ public final class DatabaseUtil {
     }
 
     public static boolean ifPlayerDataExist(Long QQ) {
-        try (Connection connection = loginSystemDataSource.getConnection()) {
+        try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement("select * from `mhdf-bot`.mhdfbot_bindqq where QQ=?;")) {
                 ps.setLong(1, QQ);
                 try (ResultSet rs = ps.executeQuery()) {
