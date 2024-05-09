@@ -1,5 +1,6 @@
 package cn.chengzhiya.mhdfbotbukkithook.client;
 
+import cn.chengzhiya.mhdfbotapi.entity.PlayerData;
 import cn.chengzhiya.mhdfbotbukkithook.main;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
@@ -8,12 +9,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
-import java.util.Objects;
 
-import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.getPlayerData;
+import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.getPlayerDataList;
 import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.ifPlayerDataExist;
 import static cn.chengzhiya.mhdfbotbukkithook.util.Util.runAction;
-import static cn.chengzhiya.mhdfpluginapi.Util.ChatColor;
 
 @ClientEndpoint
 public final class webSocket {
@@ -46,17 +45,11 @@ public final class webSocket {
                 Bukkit.getScheduler().runTaskAsynchronously(main.main, () -> {
                     Long QQ = message.getJSONObject("params").getLong("QQ");
                     if (ifPlayerDataExist(QQ)) {
-                        if (getPlayerData(QQ) != null) {
-                            if (Bukkit.getPlayer(Objects.requireNonNull(getPlayerData(QQ)).getPlayerName()) != null) {
-                                Player player = Bukkit.getPlayer(Objects.requireNonNull(getPlayerData(QQ)).getPlayerName());
+                        for (PlayerData playerData : getPlayerDataList(QQ)) {
+                            if (Bukkit.getPlayer(playerData.getPlayerName()) != null) {
+                                Player player = Bukkit.getPlayer(playerData.getPlayerName());
 
-                                String[] Title = Objects.requireNonNull(main.main.getConfig().getString("Messages.AtQQ")).split("\\|");
-                                String[] Sound = Objects.requireNonNull(main.main.getConfig().getString("Sound.AtQQ")).split("\\|");
-
-                                Bukkit.getScheduler().runTask(main.main, () -> {
-                                    player.sendTitle(ChatColor(Title[0]), ChatColor(Title[1]), Integer.parseInt(Title[2]), Integer.parseInt(Title[3]), Integer.parseInt(Title[4]));
-                                    player.playSound(player, org.bukkit.Sound.valueOf(Sound[0]), Float.parseFloat(Sound[1]), Float.parseFloat(Sound[2]));
-                                });
+                                runAction(player, main.main.getConfig().getStringList("Actions.AtQQ"));
                             }
                         }
                     }

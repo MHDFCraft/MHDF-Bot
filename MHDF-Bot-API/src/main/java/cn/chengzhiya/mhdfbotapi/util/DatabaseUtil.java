@@ -17,7 +17,9 @@ public final class DatabaseUtil {
     @Getter
     public static final HashMap<String, PlayerData> playerDataHashMap = new HashMap<>();
     @Getter
-    public static final HashMap<Long, String> playerQQHashMap = new HashMap<>();
+    public static final HashMap<String, Long> playerQQHashMap = new HashMap<>();
+    @Getter
+    public static final HashMap<Long, List<String>> qqBindListHashMap = new HashMap<>();
     public static Statement statement;
     public static HikariDataSource dataSource;
     public static Statement loginSystemStatement;
@@ -124,7 +126,7 @@ public final class DatabaseUtil {
                     try (ResultSet rs = ps.executeQuery()) {
                         if (rs.next()) {
                             PlayerData playerData = new PlayerData(playerName, rs.getLong("QQ"), rs.getLong("ChatTimes"), rs.getInt("DayChatTimes"));
-                            getPlayerQQHashMap().put(rs.getLong("QQ"), playerName);
+                            getPlayerQQHashMap().put(playerName, rs.getLong("QQ"));
                             getPlayerDataHashMap().put(playerName, playerData);
                             return playerData;
                         }
@@ -139,29 +141,6 @@ public final class DatabaseUtil {
         return null;
     }
 
-    public static PlayerData getPlayerData(Long QQ) {
-        if (getPlayerQQHashMap().get(QQ) == null) {
-            try (Connection connection = dataSource.getConnection()) {
-                try (PreparedStatement ps = connection.prepareStatement("select * from `mhdf-bot`.mhdfbot_bindqq where QQ=?;")) {
-                    ps.setLong(1, QQ);
-                    try (ResultSet rs = ps.executeQuery()) {
-                        if (rs.next()) {
-                            PlayerData playerData = new PlayerData(rs.getString("PlayerName"), QQ, rs.getLong("ChatTimes"), rs.getInt("DayChatTimes"));
-                            getPlayerQQHashMap().put(QQ, rs.getString("PlayerName"));
-                            getPlayerDataHashMap().put(rs.getString("PlayerName"), playerData);
-                            return playerData;
-                        }
-                    }
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            return getPlayerDataHashMap().get(getPlayerQQHashMap().get(QQ));
-        }
-        return null;
-    }
-
     public static void updatePlayerData(String playerName) {
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement("select * from `mhdf-bot`.mhdfbot_bindqq where PlayerName=?;")) {
@@ -169,7 +148,7 @@ public final class DatabaseUtil {
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
                         getPlayerDataHashMap().put(playerName, new PlayerData(playerName, rs.getLong("QQ"), rs.getLong("ChatTimes"), rs.getInt("DayChatTimes")));
-                        getPlayerQQHashMap().put(rs.getLong("QQ"), playerName);
+                        getPlayerQQHashMap().put(playerName, rs.getLong("QQ"));
                     }
                 }
             }
@@ -179,8 +158,13 @@ public final class DatabaseUtil {
     }
 
     public static void bind(PlayerData playerData) {
-        getPlayerQQHashMap().put(playerData.getQQ(), playerData.getPlayerName());
+        getPlayerQQHashMap().put(playerData.getPlayerName(), playerData.getQQ());
         getPlayerDataHashMap().put(playerData.getPlayerName(), playerData);
+
+        List<String> bindList = new ArrayList<>(getQqBindListHashMap().get(playerData.getQQ()));
+        bindList.add(playerData.getPlayerName());
+
+        getQqBindListHashMap().put(playerData.getQQ(), bindList);
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement("insert into `mhdf-bot`.mhdfbot_bindqq (PlayerName, QQ) values (?,?);")) {
                 ps.setString(1, playerData.getPlayerName());
@@ -194,8 +178,16 @@ public final class DatabaseUtil {
     }
 
     public static void unbind(PlayerData playerData) {
-        getPlayerQQHashMap().put(playerData.getQQ(), null);
+        getPlayerQQHashMap().put(playerData.getPlayerName(), null);
         getPlayerDataHashMap().put(playerData.getPlayerName(), null);
+
+        List<String> bindList = new ArrayList<>();
+        if (getQqBindListHashMap().get(playerData.getQQ()) != null) {
+            bindList.addAll(getQqBindListHashMap().get(playerData.getQQ()));
+        }
+        bindList.remove(playerData.getPlayerName());
+
+        getQqBindListHashMap().put(playerData.getQQ(), bindList);
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement("delete from `mhdf-bot`.mhdfbot_bindqq where PlayerName=? AND QQ=?;")) {
                 ps.setString(1, playerData.getPlayerName());
@@ -210,17 +202,27 @@ public final class DatabaseUtil {
 
     public static List<PlayerData> getPlayerDataList(Long QQ) {
         List<PlayerData> playerDataList = new ArrayList<>();
-        try (Connection connection = dataSource.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement("select * from `mhdf-bot`.mhdfbot_bindqq where QQ=?;")) {
-                ps.setLong(1, QQ);
-                try (ResultSet rs = ps.executeQuery()) {
-                    while (rs.next()) {
-                        playerDataList.add(new PlayerData(rs.getString("PlayerName"), QQ));
+        if (getQqBindListHashMap().get(QQ) == null) {
+            List<String> bindList = new ArrayList<>();
+            try (Connection connection = dataSource.getConnection()) {
+                try (PreparedStatement ps = connection.prepareStatement("select * from `mhdf-bot`.mhdfbot_bindqq where QQ=?;")) {
+                    ps.setLong(1, QQ);
+                    try (ResultSet rs = ps.executeQuery()) {
+                        while (rs.next()) {
+                            String playerName = rs.getString("PlayerName");
+                            bindList.add(playerName);
+                            playerDataList.add(new PlayerData(playerName, QQ));
+                        }
                     }
                 }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            getQqBindListHashMap().put(QQ, bindList);
+        } else {
+            for (String playerName : getQqBindListHashMap().get(QQ)) {
+                playerDataList.add(new PlayerData(playerName, QQ));
+            }
         }
         return playerDataList;
     }

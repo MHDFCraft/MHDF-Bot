@@ -4,6 +4,7 @@ import cn.chengzhiya.mhdfbotapi.entity.DatabaseConfig;
 import cn.chengzhiya.mhdfbotbukkithook.client.webSocket;
 import cn.chengzhiya.mhdfbotbukkithook.command.reload;
 import cn.chengzhiya.mhdfbotbukkithook.task.SendMessage;
+import cn.chengzhiya.mhdfbotbukkithook.task.UpdateData;
 import jakarta.websocket.ContainerProvider;
 import jakarta.websocket.DeploymentException;
 import jakarta.websocket.WebSocketContainer;
@@ -29,6 +30,7 @@ public final class main extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        ColorLog("&f============&6梦回东方-Q群机器人-Bukkit连接器&f============");
         main = this;
         descriptionFile = getDescription();
 
@@ -59,14 +61,15 @@ public final class main extends JavaPlugin {
         try {
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
             container.connectToServer(new webSocket(), new URI(Objects.requireNonNull(getConfig().getString("BotWebSocketServerHost"))));
+            ColorLog("&e已连接至websocket服务端(" + getConfig().getString("BotWebSocketServerHost") + ")!");
         } catch (DeploymentException | IOException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
 
         Objects.requireNonNull(getCommand("mhdfbotreload")).setExecutor(new reload());
         new SendMessage().runTaskTimerAsynchronously(this, 0L, 20L);
+        new UpdateData().runTaskTimerAsynchronously(this, 0L, 20L);
 
-        ColorLog("&f============&6梦回东方-Q群机器人-Bukkit连接器&f============");
         ColorLog("&e插件启动完成!");
         ColorLog("&f============&6梦回东方-Q群机器人-Bukkit连接器&f============");
     }

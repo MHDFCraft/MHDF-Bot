@@ -49,9 +49,6 @@ AllowUseBotList:
 #回复消息@
 ReplayAt: true
 
-#WebSocket服务器断开
-WebSocketServerPort: 5886
-
 #绑定设置
 BindSettings:
   #单个QQ最多可以绑定的用户数量
@@ -64,7 +61,7 @@ BlackWordSettings:
   #开关
   Enable: true
   #启动sensitive-word库检测屏蔽词（https://github.com/houbb/sensitive-word）
-  EnableSensitiveWordAPI: true
+  EnableSensitiveWordAPI: false
   #禁言(单位：分钟 设置 -1关闭)
   Mute: 10
   #屏蔽词

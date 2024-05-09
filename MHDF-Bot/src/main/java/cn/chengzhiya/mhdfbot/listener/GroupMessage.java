@@ -78,7 +78,7 @@ public final class GroupMessage {
                         break;
                     case "#解除绑定":
                         playerData = getPlayerData(args[1]);
-                        if (playerData != null && Objects.equals(playerData.getQQ(), event.getUserId())) {
+                        if (ifPlayerDataExist(args[1]) && playerData != null) {
                             unbind(playerData);
                             {
                                 JSONObject data = new JSONObject();
