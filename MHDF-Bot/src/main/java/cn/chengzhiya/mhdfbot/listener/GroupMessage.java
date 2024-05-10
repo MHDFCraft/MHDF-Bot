@@ -9,6 +9,7 @@ import com.mikuac.shiro.annotation.GroupMessageHandler;
 import com.mikuac.shiro.annotation.common.Shiro;
 import com.mikuac.shiro.common.utils.MsgUtils;
 import com.mikuac.shiro.core.Bot;
+import com.mikuac.shiro.dto.action.response.GroupMemberInfoResp;
 import com.mikuac.shiro.dto.event.message.GroupMessageEvent;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -151,6 +152,43 @@ public final class GroupMessage {
                         ResponseEntity<String> response = restTemplate.exchange("https://bv2.firefly.matce.cn/run/predict", HttpMethod.POST, entity, String.class);
 
                         bot.sendGroupMsg(event.getGroupId(), MsgUtils.builder().voice("https://bv2.firefly.matce.cn/file=" + Objects.requireNonNull(JSON.parseObject(response.getBody())).getJSONArray("data").getJSONObject(1).getString("name")).build(), false);
+                        return;
+                    case "#移除小号":
+                        if (Util.getConfig().getStringList("AllowUseAdminCommandList").contains(event.getUserId().toString())) {
+                            List<Long> kickList = new ArrayList<>();
+
+                            Message.text(i18n("Messages.Kick.KickStart"));
+                            bot.sendGroupMsg(event.getGroupId(), Message.build(), false);
+
+                            List<GroupMemberInfoResp> memberInfoRespList = bot.getGroupMemberList(event.getGroupId()).getData();
+                            int conut = 0;
+
+                            for (GroupMemberInfoResp memberInfo : memberInfoRespList) {
+                                int tryTimes = 0;
+                                Integer QQLevel = bot.getStrangerInfo(memberInfo.getUserId(), false).getData().getLevel();
+                                while ((QQLevel == null || QQLevel == 0) && tryTimes < getConfig().getInt("KickSettings.GetQQLevelMaxTryTimes")) {
+                                    tryTimes++;
+                                    QQLevel = bot.getStrangerInfo(memberInfo.getUserId(), true).getData().getLevel();
+                                }
+                                if (QQLevel != null && QQLevel != 0) {
+                                    if (QQLevel < Integer.parseInt(args[1])) {
+                                        bot.setGroupKick(event.getGroupId(), memberInfo.getUserId(), false);
+                                        kickList.add(memberInfo.getUserId());
+                                    }
+                                }
+                                conut++;
+                            }
+
+                            Message = MsgUtils
+                                    .builder()
+                                    .reply(event.getMessageId());
+                            if (Util.getConfig().getBoolean("ReplayAt")) {
+                                Message.at(event.getUserId());
+                            }
+                            Message.text("\n");
+                            Message.text(i18n("Messages.Kick.KickDone").replaceAll("\\{KickList}", kickList.toString()));
+                            bot.sendGroupMsg(event.getGroupId(), Message.build(), false);
+                        }
                         return;
                     default:
                         return;

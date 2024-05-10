@@ -49,6 +49,11 @@ AllowUseBotList:
 #回复消息@
 ReplayAt: true
 
+#批量踢出设置
+KickSettings:
+  #获取QQ等级最大重试次数
+  GetQQLevelMaxTryTimes: 5
+
 #绑定设置
 BindSettings:
   #单个QQ最多可以绑定的用户数量

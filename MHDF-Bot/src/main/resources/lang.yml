@@ -35,3 +35,9 @@ Messages:
   Say:
     SayWait: |-
       语音生成中,请稍后!
+  Kick:
+    KickStart: |-
+      开始扫描,请耐心等待!
+    KickDone: |-
+      踢出完成,踢出人员:
+      {KickList}
