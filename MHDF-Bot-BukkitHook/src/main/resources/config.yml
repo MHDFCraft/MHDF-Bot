@@ -36,14 +36,6 @@ BotWebSocketServerHost: "ws://127.0.0.1:5888/MHDFBot"
 #提示用户绑定账户
 SendMessage: true
 
-#未绑定仅能使用允许使用的命令
-NotBindOnlyUseAllowCommand: true
-
-#允许使用的命令
-AllowUseCommandList:
-  - "/l"
-  - "/reg"
-
 #绑定完成操作
 Actions:
   #绑定完成
@@ -66,11 +58,9 @@ Actions:
   AtQQ:
     - "[playsound]|ENTITY_EXPERIENCE_ORB_PICKUP|25|0.7"
     - "[title]|&a你在&bQQ群&a中被AT了!|&e请前往&bQQ群&e查看|10|70|20"
-  AntiUseCommand:
-    - "[message]&f붃 &c请前往官方QQ群476308572输入#绑定 你的角色ID后再进行操作!"
 
 #语言文件设置
 Messages:
   ReloadDone: "&f북 &a重载完成!"
-  Bind: "&a已绑定"
-  NotBind: "&c未绑定"
+  Bind: "已绑定"
+  NotBind: "未绑定"

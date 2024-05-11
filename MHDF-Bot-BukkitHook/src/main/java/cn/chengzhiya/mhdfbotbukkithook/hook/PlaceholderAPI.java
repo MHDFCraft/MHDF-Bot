@@ -34,16 +34,16 @@ public final class PlaceholderAPI extends PlaceholderExpansion {
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
         if (params.equalsIgnoreCase("isbind")) {
-            return ifPlayerDataExist(player.getName()) ? ChatColor(main.main.getConfig().getString("Bind")) : ChatColor(main.main.getConfig().getString("NotBind"));
+            return ifPlayerDataExist(player.getName()) ? ChatColor(main.main.getConfig().getString("Messages.Bind")) : ChatColor(main.main.getConfig().getString("Messages.NotBind"));
         }
         if (params.equalsIgnoreCase("getqq")) {
-            return String.valueOf(Objects.requireNonNull(getPlayerData(player.getName())).getQQ());
+            return ifPlayerDataExist(player.getName()) ? String.valueOf(Objects.requireNonNull(getPlayerData(player.getName())).getQQ()) : ChatColor(main.main.getConfig().getString("Messages.NotBind"));
         }
         if (params.equalsIgnoreCase("getchattimes")) {
-            return String.valueOf(Objects.requireNonNull(getPlayerData(player.getName())).getChatTimes());
+            return ifPlayerDataExist(player.getName()) ? String.valueOf(Objects.requireNonNull(getPlayerData(player.getName())).getChatTimes()) : ChatColor(main.main.getConfig().getString("Messages.NotBind"));
         }
         if (params.equalsIgnoreCase("getdaychattimes")) {
-            return String.valueOf(Objects.requireNonNull(getPlayerData(player.getName())).getDayChatTimes());
+            return ifPlayerDataExist(player.getName()) ? String.valueOf(Objects.requireNonNull(getPlayerData(player.getName())).getDayChatTimes()) : ChatColor(main.main.getConfig().getString("Messages.NotBind"));
         }
         return null;
     }

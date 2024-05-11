@@ -39,18 +39,29 @@ public final class GroupMessage {
                 String[] args = event.getMessage().split(" ");
                 PlayerData playerData;
                 switch (args[0]) {
-                    case "#菜单":
+                    case "#菜单": {
                         Message.img(getConfig().getString("ChengBotSettings.APIUrl") + getConfig().getString("ChengBotSettings.Menu"));
                         break;
-                    case "#运行状态":
+                    }
+                    case "#运行状态": {
                         Message.img(getConfig().getString("ChengBotSettings.APIUrl") + getConfig().getString("ChengBotSettings.SystemInfo"));
                         break;
-                    case "#服务器状态":
+                    }
+                    case "#服务器状态": {
                         Message.img(getConfig().getString("ChengBotSettings.APIUrl") + getConfig().getString("ChengBotSettings.ServerInfo"));
                         break;
-                    case "#绑定":
+                    }
+                    case "#绑定": {
                         playerData = getPlayerData(args[1]);
-                        if (bot.getStrangerInfo(event.getUserId(), true).getData().getLevel() >= Util.getConfig().getInt("BindSettings.MinQQLevel")) {
+
+                        Integer QQLevel = bot.getStrangerInfo(event.getUserId(), true).getData().getLevel();
+                        int tryTimes = 0;
+                        while ((QQLevel == null || QQLevel == 0) && tryTimes < getConfig().getInt("KickSettings.GetQQLevelMaxTryTimes")) {
+                            tryTimes++;
+                            QQLevel = bot.getStrangerInfo(event.getUserId(), true).getData().getLevel();
+                        }
+
+                        if (QQLevel != null && QQLevel >= Util.getConfig().getInt("BindSettings.MinQQLevel")) {
                             if (args[1].matches(getConfig().getString("BindSettings.BindNameRegex"))) {
                                 if (args[1].length() >= getConfig().getInt("BindSettings.BindNameMinLength")) {
                                     if (args[1].length() < getConfig().getInt("BindSettings.BindNameMaxLength")) {
@@ -89,7 +100,8 @@ public final class GroupMessage {
                             Message.text(i18n("Messages.Bind.MinQQLevel").replaceAll("\\{Size}", String.valueOf(Util.getConfig().getInt("BindSettings.MinQQLevel"))));
                         }
                         break;
-                    case "#解除绑定":
+                    }
+                    case "#解除绑定": {
                         playerData = getPlayerData(args[1]);
                         if (ifPlayerDataExist(args[1]) && playerData != null) {
                             unbind(playerData);
@@ -109,7 +121,8 @@ public final class GroupMessage {
                             Message.text(i18n("Messages.UnBind.DontBind").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
                         }
                         break;
-                    case "#重置密码":
+                    }
+                    case "#重置密码": {
                         if (getConfig().getBoolean("LoginSystemDatabaseSettings.isMHDFLogin")) {
                             playerData = getPlayerData(args[1]);
                             if (playerData != null && Objects.equals(playerData.getQQ(), event.getUserId())) {
@@ -126,7 +139,8 @@ public final class GroupMessage {
                             return;
                         }
                         break;
-                    case "#群老婆":
+                    }
+                    case "#群老婆": {
                         if (getConfig().getBoolean("MarryEnable")) {
                             if (!ifMarryDataExist(event.getUserId())) {
                                 List<Long> allowMarryList = getMemberList(bot, event.getGroupId());
@@ -148,7 +162,8 @@ public final class GroupMessage {
                             return;
                         }
                         break;
-                    case "#说":
+                    }
+                    case "#说": {
                         Message.text(i18n("Messages.Say.SayWait"));
                         bot.sendGroupMsg(event.getGroupId(), Message.build(), false);
 
@@ -165,7 +180,8 @@ public final class GroupMessage {
 
                         bot.sendGroupMsg(event.getGroupId(), MsgUtils.builder().voice("https://bv2.firefly.matce.cn/file=" + Objects.requireNonNull(JSON.parseObject(response.getBody())).getJSONArray("data").getJSONObject(1).getString("name")).build(), false);
                         return;
-                    case "#移除小号":
+                    }
+                    case "#移除小号": {
                         if (Util.getConfig().getStringList("AllowUseAdminCommandList").contains(event.getUserId().toString())) {
                             List<Long> kickList = new ArrayList<>();
 
@@ -200,6 +216,7 @@ public final class GroupMessage {
                             bot.sendGroupMsg(event.getGroupId(), Message.build(), false);
                         }
                         return;
+                    }
                     default:
                         return;
                 }
