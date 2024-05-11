@@ -4,12 +4,14 @@ import cn.chengzhiya.mhdfbotapi.entity.DatabaseConfig;
 import cn.chengzhiya.mhdfbotbukkithook.client.webSocket;
 import cn.chengzhiya.mhdfbotbukkithook.command.reload;
 import cn.chengzhiya.mhdfbotbukkithook.hook.PlaceholderAPI;
+import cn.chengzhiya.mhdfbotbukkithook.listener.PlayerCommandPreprocess;
 import cn.chengzhiya.mhdfbotbukkithook.task.SendMessage;
 import cn.chengzhiya.mhdfbotbukkithook.task.UpdateData;
 import jakarta.websocket.ContainerProvider;
 import jakarta.websocket.DeploymentException;
 import jakarta.websocket.WebSocketContainer;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -68,6 +70,9 @@ public final class main extends JavaPlugin {
         }
 
         Objects.requireNonNull(getCommand("mhdfbotreload")).setExecutor(new reload());
+
+        Bukkit.getPluginManager().registerEvents(new PlayerCommandPreprocess(), this);
+
         new SendMessage().runTaskTimerAsynchronously(this, 0L, 20L);
         new UpdateData().runTaskTimerAsynchronously(this, 0L, 20L);
 

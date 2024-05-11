@@ -52,8 +52,8 @@ public final class GroupMessage {
                         playerData = getPlayerData(args[1]);
                         if (bot.getStrangerInfo(event.getUserId(), true).getData().getLevel() >= Util.getConfig().getInt("BindSettings.MinQQLevel")) {
                             if (args[1].matches(getConfig().getString("BindSettings.BindNameRegex"))) {
-                                if (args[1].length() < getConfig().getInt("BindSettings.BindNameMinLength")) {
-                                    if (args[1].length() > getConfig().getInt("BindSettings.BindNameMaxLength")) {
+                                if (args[1].length() >= getConfig().getInt("BindSettings.BindNameMinLength")) {
+                                    if (args[1].length() < getConfig().getInt("BindSettings.BindNameMaxLength")) {
                                         if (getPlayerDataList(event.getUserId()).size() < Util.getConfig().getInt("BindSettings.MaxBind")) {
                                             if (playerData == null) {
                                                 bot.setGroupCard(event.getGroupId(), event.getUserId(), args[1]);
