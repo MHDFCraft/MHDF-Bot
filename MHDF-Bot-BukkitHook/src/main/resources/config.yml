@@ -51,7 +51,7 @@ Actions:
   #============================================
   BindDone:
     - "[playsound]|BLOCK_ANVIL_PLACE|25|1.3"
-    - "[message]|&a绑定成功!,开始你的游戏吧!"
+    - "[message]|&f북 &a绑定成功!,开始你的游戏吧!"
   NotBind: [ ]
   #    - "[playsound]|ENTITY_EXPERIENCE_ORB_PICKUP|25|0.7"
   #- "[title]|&c请绑定QQ账户!|&a请在QQ群&b476308572&a中发送&b#绑定 <游戏ID>|0|25|20"
@@ -61,6 +61,6 @@ Actions:
 
 #语言文件设置
 Messages:
-  ReloadDone: "&a重载完成!"
+  ReloadDone: "&f북 &a重载完成!"
   Bind: "&a已绑定"
   NotBind: "&c未绑定"

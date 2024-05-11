@@ -3,6 +3,7 @@ package cn.chengzhiya.mhdfbotbukkithook;
 import cn.chengzhiya.mhdfbotapi.entity.DatabaseConfig;
 import cn.chengzhiya.mhdfbotbukkithook.client.webSocket;
 import cn.chengzhiya.mhdfbotbukkithook.command.reload;
+import cn.chengzhiya.mhdfbotbukkithook.hook.PlaceholderAPI;
 import cn.chengzhiya.mhdfbotbukkithook.task.SendMessage;
 import cn.chengzhiya.mhdfbotbukkithook.task.UpdateData;
 import jakarta.websocket.ContainerProvider;
@@ -70,6 +71,8 @@ public final class main extends JavaPlugin {
         new SendMessage().runTaskTimerAsynchronously(this, 0L, 20L);
         new UpdateData().runTaskTimerAsynchronously(this, 0L, 20L);
 
+        new PlaceholderAPI().register();
+
         ColorLog("&e插件启动完成!");
         ColorLog("&f============&6梦回东方-Q群机器人-Bukkit连接器&f============");
     }
@@ -79,9 +82,9 @@ public final class main extends JavaPlugin {
         // Plugin shutdown logic
         main = null;
 
-        close();
-
         try {
+            close();
+
             statement.close();
             dataSource.close();
 
@@ -89,6 +92,8 @@ public final class main extends JavaPlugin {
             loginSystemDataSource.close();
         } catch (Exception ignored) {
         }
+
+        new PlaceholderAPI().unregister();
 
         ColorLog("&f============&6梦回东方-Q群机器人-Bukkit连接器&f============");
         ColorLog("&e插件已卸载!");

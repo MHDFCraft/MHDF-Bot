@@ -26,8 +26,7 @@ public final class webSocket {
         if (session != null && session.isOpen()) {
             try {
                 session.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (IOException ignored) {
             }
         }
     }
@@ -70,8 +69,7 @@ public final class webSocket {
     }
 
     @OnError
-    public void onError(Throwable e) throws IOException {
-        session.close();
+    public void onError(Throwable e) {
         throw new RuntimeException(e);
     }
 }

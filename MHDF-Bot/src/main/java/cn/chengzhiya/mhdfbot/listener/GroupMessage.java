@@ -51,27 +51,39 @@ public final class GroupMessage {
                     case "#绑定":
                         playerData = getPlayerData(args[1]);
                         if (bot.getStrangerInfo(event.getUserId(), true).getData().getLevel() >= Util.getConfig().getInt("BindSettings.MinQQLevel")) {
-                            if (getPlayerDataList(event.getUserId()).size() < Util.getConfig().getInt("BindSettings.MaxBind")) {
-                                if (playerData == null) {
-                                    bot.setGroupCard(event.getGroupId(), event.getUserId(), args[1]);
-                                    bind(new PlayerData(args[1], event.getUserId()));
-                                    {
-                                        JSONObject data = new JSONObject();
-                                        data.put("action", "bind");
+                            if (args[1].matches(getConfig().getString("BindSettings.BindNameRegex"))) {
+                                if (args[1].length() < getConfig().getInt("BindSettings.BindNameMinLength")) {
+                                    if (args[1].length() > getConfig().getInt("BindSettings.BindNameMaxLength")) {
+                                        if (getPlayerDataList(event.getUserId()).size() < Util.getConfig().getInt("BindSettings.MaxBind")) {
+                                            if (playerData == null) {
+                                                bot.setGroupCard(event.getGroupId(), event.getUserId(), args[1]);
+                                                bind(new PlayerData(args[1], event.getUserId()));
+                                                {
+                                                    JSONObject data = new JSONObject();
+                                                    data.put("action", "bind");
 
-                                        JSONObject params = new JSONObject();
-                                        params.put("playerName", args[1]);
+                                                    JSONObject params = new JSONObject();
+                                                    params.put("playerName", args[1]);
 
-                                        data.put("params", params);
+                                                    data.put("params", params);
 
-                                        send(data.toJSONString());
+                                                    send(data.toJSONString());
+                                                }
+                                                Message.text(i18n("Messages.Bind.BindDone").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
+                                            } else {
+                                                Message.text(i18n("Messages.Bind.AlwaysBind").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(playerData.getQQ())));
+                                            }
+                                        } else {
+                                            Message.text(i18n("Messages.Bind.MaxBind").replaceAll("\\{Size}", String.valueOf(Util.getConfig().getInt("BindSettings.MaxBind"))));
+                                        }
+                                    } else {
+                                        Message.text(i18n("Messages.Bind.BindNameMaxLength").replaceAll("\\{Length}", String.valueOf(Util.getConfig().getInt("BindSettings.BindNameMaxLength"))));
                                     }
-                                    Message.text(i18n("Messages.Bind.BindDone").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
                                 } else {
-                                    Message.text(i18n("Messages.Bind.AlwaysBind").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(playerData.getQQ())));
+                                    Message.text(i18n("Messages.Bind.BindNameMinLength").replaceAll("\\{Length}", String.valueOf(Util.getConfig().getInt("BindSettings.BindNameMinLength"))));
                                 }
                             } else {
-                                Message.text(i18n("Messages.Bind.MaxBind").replaceAll("\\{Size}", String.valueOf(Util.getConfig().getInt("BindSettings.MaxBind"))));
+                                Message.text(i18n("Messages.Bind.BindNameRegex"));
                             }
                         } else {
                             Message.text(i18n("Messages.Bind.MinQQLevel").replaceAll("\\{Size}", String.valueOf(Util.getConfig().getInt("BindSettings.MinQQLevel"))));
@@ -161,7 +173,6 @@ public final class GroupMessage {
                             bot.sendGroupMsg(event.getGroupId(), Message.build(), false);
 
                             List<GroupMemberInfoResp> memberInfoRespList = bot.getGroupMemberList(event.getGroupId()).getData();
-                            int conut = 0;
 
                             for (GroupMemberInfoResp memberInfo : memberInfoRespList) {
                                 int tryTimes = 0;
@@ -176,7 +187,6 @@ public final class GroupMessage {
                                         kickList.add(memberInfo.getUserId());
                                     }
                                 }
-                                conut++;
                             }
 
                             Message = MsgUtils

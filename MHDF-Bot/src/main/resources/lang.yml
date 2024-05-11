@@ -8,6 +8,13 @@ Messages:
       你已经绑定了{Size}个账户了,无法再绑定更多账户了!
     MinQQLevel: |-
       你的QQ等级小于{Size}级,无法绑定账户!
+    BindNameRegex: |-
+      你想绑定的游戏ID名称无效!
+    BindNameMinLength: |-
+      游戏ID必须最少得有{Length}个字!
+    BindNameMaxLength: |-
+      游戏ID必须最多只能有{Length}个字!
+
   UnBind:
     UnBindDone: |-
       成功解除绑定{Player}!

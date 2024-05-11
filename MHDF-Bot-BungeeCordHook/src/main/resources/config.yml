@@ -36,5 +36,5 @@ AllowUseCommandList:
   - "/reg"
 
 Messages:
-  AntiChat: "&c你没有绑定QQ,无法聊天!"
-  AntiUseCommand: "&c你还没有绑定QQ,不能使用这个命令!"
+  AntiChat: "&f붃 &c你没有绑定QQ,无法聊天!"
+  AntiUseCommand: "&f붃 &c请前往官方QQ群476308572输入#绑定 你的角色ID后再进行操作!"
