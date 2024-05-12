@@ -23,17 +23,19 @@ public final class At {
             Matcher matcher = pattern.matcher(event.getMessage());
 
             while (matcher.find()) {
-                Long atQQ = Long.parseLong(matcher.group(1));
+                if (!matcher.group(1).equals("all")) {
+                    Long atQQ = Long.parseLong(matcher.group(1));
 
-                JSONObject data = new JSONObject();
-                data.put("action", "atQQ");
+                    JSONObject data = new JSONObject();
+                    data.put("action", "atQQ");
 
-                JSONObject params = new JSONObject();
-                params.put("QQ", atQQ);
+                    JSONObject params = new JSONObject();
+                    params.put("QQ", atQQ);
 
-                data.put("params", params);
+                    data.put("params", params);
 
-                send(data.toJSONString());
+                    send(data.toJSONString());
+                }
             }
         }
     }

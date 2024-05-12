@@ -4,6 +4,7 @@ import cn.chengzhiya.mhdfbotapi.entity.DatabaseConfig;
 import cn.chengzhiya.mhdfbotbukkithook.client.webSocket;
 import cn.chengzhiya.mhdfbotbukkithook.command.reload;
 import cn.chengzhiya.mhdfbotbukkithook.hook.PlaceholderAPI;
+import cn.chengzhiya.mhdfbotbukkithook.task.HeartBeat;
 import cn.chengzhiya.mhdfbotbukkithook.task.SendMessage;
 import cn.chengzhiya.mhdfbotbukkithook.task.UpdateData;
 import jakarta.websocket.ContainerProvider;
@@ -71,6 +72,7 @@ public final class main extends JavaPlugin {
 
         new SendMessage().runTaskTimerAsynchronously(this, 0L, 20L);
         new UpdateData().runTaskTimerAsynchronously(this, 0L, 20L);
+        new HeartBeat().runTaskTimerAsynchronously(this, 0L, 20L);
 
         new PlaceholderAPI().register();
 
