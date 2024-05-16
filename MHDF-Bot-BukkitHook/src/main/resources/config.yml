@@ -4,6 +4,7 @@
 #%MHDFBot_getQQ%              获取绑定的QQ
 #%MHDFBot_getChatTimes%       获取积累聊天数
 #%MHDFBot_getDayChatTimes%    获取今日聊天数
+#%MHDFBot_getVerifyCode%      获取验证码
 ########################################################################################################
 
 #数据库配置
@@ -30,6 +31,11 @@ LoginSystemDatabaseSettings:
   #数据库密码
   Password: "root"
 
+#对接插件
+Hooks:
+  #插件名字
+  LiteBans: true
+
 #机器人WS服务器地址
 BotWebSocketServerHost: "ws://127.0.0.1:5888/MHDFBot"
 
@@ -54,7 +60,8 @@ Actions:
     - "[message]|&f북 &a绑定成功!,开始你的游戏吧!"
   NotBind: [ ]
   #  - "[playsound]|ENTITY_EXPERIENCE_ORB_PICKUP|25|0.7"
-  #  - "[title]|&c请绑定QQ账户!|&a请在QQ群&b476308572&a中发送&b#绑定 <游戏ID>|0|25|20"
+  #  - "[title]|&c请绑定QQ账户!|&a请在QQ群&b476308572&a中发送&b#绑定 <游戏ID>|0|25|20" #关闭验证码
+  #  - "[title]|&c请绑定QQ账户!|&a请在QQ群&b476308572&a中发送&b#绑定 <游戏ID> %MHDFBot_getVerifyCode%|0|25|20" #开启验证码
   AtQQ:
     - "[playsound]|ENTITY_EXPERIENCE_ORB_PICKUP|25|0.7"
     - "[title]|&a你在&bQQ群&a中被AT了!|&e请前往&bQQ群&e查看|10|70|20"

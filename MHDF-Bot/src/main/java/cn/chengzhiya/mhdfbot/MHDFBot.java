@@ -2,6 +2,7 @@ package cn.chengzhiya.mhdfbot;
 
 import cn.chengzhiya.mhdfbot.entity.YamlConfiguration;
 import cn.chengzhiya.mhdfbotapi.entity.DatabaseConfig;
+import com.mikuac.shiro.core.Bot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -15,6 +16,7 @@ import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.*;
 @SpringBootApplication
 @EnableScheduling
 public class MHDFBot {
+    public static Bot bot;
 
     private static void saveDefaultConfigFiles() {
         saveResource("./", "application.yml", "application.yml", false);

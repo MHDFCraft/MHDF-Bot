@@ -33,9 +33,6 @@ ChengBotSettings:
   #服务器信息URI
   ServerInfo: "/getImage/ServerInfo?Server=W3sibmFtZSI6IuaipuWbnuS4nOaWuSIsImlwIjoibWhkZi5sb3ZlIn1d"
 
-#群老婆系统开关
-MarryEnable: true
-
 #允许使用管理命令的QQ
 AllowUseAdminCommandList:
   - "2624246773"
@@ -44,7 +41,10 @@ AllowUseAdminCommandList:
 #允许使用QQ机器人的群聊
 AllowUseBotList:
   - "476308572"
-  - "958871704"
+  - "273185916"
+
+#群老婆系统开关
+MarryEnable: true
 
 #回复消息@
 ReplayAt: true
@@ -56,6 +56,10 @@ KickSettings:
 
 #绑定设置
 BindSettings:
+  #验证玩家开关
+  Verify: false
+  #允许解除绑定
+  AllowUnBind: true
   #单个QQ最多可以绑定的用户数量
   MaxBind: 1
   #绑定QQ最低QQ等级要求
@@ -66,6 +70,21 @@ BindSettings:
   BindNameMinLength: 3
   #绑定ID最大长度
   BindNameMaxLength: 16
+
+#自动聊天
+AutoChat:
+  #开关
+  Enable: false
+  #关键词列表
+  WordList:
+    #自定义名称
+    圈地教程:
+      #关键词
+      Words:
+        - "怎么圈地"
+        - "圈地教程"
+      Replay: |-
+        首先使用小木锄,先这样在那样,最后再哪样就可以了
 
 #群聊屏蔽词设置
 BlackWordSettings:

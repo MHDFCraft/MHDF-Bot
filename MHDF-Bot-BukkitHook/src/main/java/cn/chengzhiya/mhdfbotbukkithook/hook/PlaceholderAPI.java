@@ -1,6 +1,7 @@
 package cn.chengzhiya.mhdfbotbukkithook.hook;
 
 import cn.chengzhiya.mhdfbotbukkithook.main;
+import cn.chengzhiya.mhdfbotbukkithook.util.Util;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
@@ -14,6 +15,14 @@ import static cn.chengzhiya.mhdfpluginapi.Util.ChatColor;
 public final class PlaceholderAPI extends PlaceholderExpansion {
 
     public PlaceholderAPI() {
+    }
+
+    public static void registerPlaceholders() {
+        new PlaceholderAPI().register();
+    }
+
+    public static void unregisterPlaceholders() {
+        new PlaceholderAPI().unregister();
     }
 
     @Override
@@ -44,6 +53,9 @@ public final class PlaceholderAPI extends PlaceholderExpansion {
         }
         if (params.equalsIgnoreCase("getdaychattimes")) {
             return ifPlayerDataExist(player.getName()) ? String.valueOf(Objects.requireNonNull(getPlayerData(player.getName())).getDayChatTimes()) : ChatColor(main.main.getConfig().getString("Messages.NotBind"));
+        }
+        if (params.equalsIgnoreCase("getVerifyCode")) {
+            return Util.getVerifyCodeHashMap().get(player.getName()) != null ? String.valueOf(Util.getVerifyCodeHashMap().get(player.getName())) : "";
         }
         return null;
     }

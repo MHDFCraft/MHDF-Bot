@@ -1,6 +1,6 @@
 package cn.chengzhiya.mhdfbotbukkithook.task;
 
-import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import static cn.chengzhiya.mhdfbotbukkithook.client.webSocket.send;

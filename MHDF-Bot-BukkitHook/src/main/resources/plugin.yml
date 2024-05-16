@@ -2,6 +2,8 @@ name: MHDF-Bot-BukkitHook
 version: '${project.version}'
 main: cn.chengzhiya.mhdfbotbukkithook.main
 api-version: '1.20'
+depend: [ PlaceholderAPI ]
+softdepend: [ LiteBans ]
 commands:
   mhdfbotreload:
     description: 重载配置

@@ -14,10 +14,12 @@ import static cn.chengzhiya.mhdfbot.util.Util.ifContainsBlackWord;
 public final class BlackWord {
     @GroupMessageHandler
     public void onGroupMessage(Bot bot, GroupMessageEvent event) {
-        if (ifContainsBlackWord(event.getMessage())) {
-            bot.deleteMsg(event.getMessageId());
-            if (Util.getConfig().getInt("BlackWordSettings.Mute") != -1) {
-                bot.setGroupBan(event.getGroupId(), event.getUserId(), 60 * Util.getConfig().getInt("BlackWordSettings.Mute"));
+        if (Util.getConfig().getStringList("AllowUseBotList").contains(event.getGroupId().toString())) {
+            if (ifContainsBlackWord(event.getMessage())) {
+                bot.deleteMsg(event.getMessageId());
+                if (Util.getConfig().getInt("BlackWordSettings.Mute") != -1) {
+                    bot.setGroupBan(event.getGroupId(), event.getUserId(), 60 * Util.getConfig().getInt("BlackWordSettings.Mute"));
+                }
             }
         }
     }

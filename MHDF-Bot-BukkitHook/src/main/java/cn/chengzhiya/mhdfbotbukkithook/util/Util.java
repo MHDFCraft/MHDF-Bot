@@ -1,6 +1,8 @@
 package cn.chengzhiya.mhdfbotbukkithook.util;
 
 import cn.chengzhiya.mhdfbotbukkithook.main;
+import com.alibaba.fastjson.JSONObject;
+import lombok.Getter;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -9,12 +11,27 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
 import java.util.List;
 
+import static cn.chengzhiya.mhdfbotbukkithook.client.webSocket.send;
 import static cn.chengzhiya.mhdfpluginapi.Util.ChatColor;
 import static cn.chengzhiya.mhdfpluginapi.Util.ColorLog;
 
 public final class Util {
+    @Getter
+    public static final HashMap<String, Integer> VerifyCodeHashMap = new HashMap<>();
+    public static boolean enableVerify = false;
+
+    public static void getEnableVerify() {
+        {
+            JSONObject data = new JSONObject();
+            data.put("action", "getEnableVerify");
+
+            send(data.toJSONString());
+        }
+    }
+
     public static String PAPIChatColor(OfflinePlayer Player, String Message) {
         return ChatColor(PlaceholderAPI.setPlaceholders(Player, Message));
     }

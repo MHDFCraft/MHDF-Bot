@@ -14,7 +14,8 @@ Messages:
       游戏ID必须最少得有{Length}个字!
     BindNameMaxLength: |-
       游戏ID必须最多只能有{Length}个字!
-
+    VerifyCodeError: |-
+      验证码错误,无法验证身份!
   UnBind:
     UnBindDone: |-
       成功解除绑定{Player}!
@@ -48,3 +49,18 @@ Messages:
     KickDone: |-
       踢出完成,踢出人员:
       {KickList}
+  BanSystem:
+    Ban: |-
+      有一名玩家被封禁了,快前来围观!
+      ◎ 游戏账户 >>> {Player}
+      ◎ 绑定QQ >>> {BindQQ}
+      ◎ 封禁原因 >>> {Reason}
+      ◎ 封禁开始时间 >>> {StartDate}
+      ◎ 封禁结束时间 >>> {EndDate}
+    Mute: |-
+      有一名玩家被禁言了,快前来围观!
+      ◎ 游戏账户 >>> {Player}
+      ◎ 绑定QQ >>> {BindQQ}
+      ◎ 禁言原因 >>> {Reason}
+      ◎ 禁言开始时间 >>> {StartDate}
+      ◎ 禁言结束时间 >>> {EndDate}

@@ -16,14 +16,13 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public final class Util {
     @Getter
     public static final HashMap<Long, String> ChangePasswordHashMap = new HashMap<>();
+    @Getter
+    public static final HashMap<String, Integer> VerifyCodeHashMap = new HashMap<>();
     public static final SensitiveWordBs wordBs = SensitiveWordBs.newInstance()
             .ignoreCase(true)
             .ignoreWidth(true)
@@ -157,6 +156,26 @@ public final class Util {
             }
         }
         return false;
+    }
+
+    public static int getVerifyCode(String playerName) {
+        if (getVerifyCodeHashMap().get(playerName) == null) {
+            Random random = new Random();
+            getVerifyCodeHashMap().put(playerName, random.nextInt(999999));
+        }
+        return getVerifyCodeHashMap().get(playerName);
+    }
+
+    public static void removeVerifyCode(String playerName) {
+        if (getVerifyCodeHashMap().get(playerName) != null) {
+            getVerifyCodeHashMap().remove(playerName);
+        }
+    }
+
+    public static void sendMessageToAllowUseBotGroups(Bot bot, String Message) {
+        for (String groupID : Util.getConfig().getStringList("AllowUseBotList")) {
+            bot.sendGroupMsg(Long.parseLong(groupID), Message, false);
+        }
     }
 }
 

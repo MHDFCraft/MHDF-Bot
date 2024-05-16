@@ -62,16 +62,18 @@ public final class YamlConfiguration {
     }
 
     public YamlConfiguration getConfigurationSection(String path) {
-        if (!path.isEmpty()) {
-            Object value = this.data.get(path);
-            if (value instanceof Map) {
-                YamlConfiguration section = new YamlConfiguration();
-                section.setData((Map<String, Object>) value);
-                return section;
+        try {
+            String[] keys = path.split("\\.");
+            Map<String, Object> current = this.data;
+            for (String key : keys) {
+                current = (Map<String, Object>) current.get(key);
             }
-            return null;
+            YamlConfiguration section = new YamlConfiguration();
+            section.setData(current);
+            return section;
+        } catch (Exception ignored) {
         }
-        return this;
+        return null;
     }
 
     public Set<String> getKeys() {
@@ -96,7 +98,7 @@ public final class YamlConfiguration {
     }
 
     public Long getLong(String path) {
-        return (Long) this.get(path);
+        return Long.parseLong((String) Objects.requireNonNull(this.get(path)));
     }
 
     public List<?> getList(String path) {
