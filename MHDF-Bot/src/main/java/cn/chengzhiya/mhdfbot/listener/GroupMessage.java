@@ -82,7 +82,8 @@ public final class GroupMessage {
                                             Message.text(i18n("Messages.Bind.VerifyCodeError"));
                                             break;
                                         }
-                                        if (getPlayerDataList(event.getUserId()).size() < Util.getConfig().getInt("BindSettings.MaxBind")) {
+                                        if (getPlayerDataList(event.getUserId()).size() < Util.getConfig().getInt("BindSettings.MaxBind") ||
+                                                Util.getConfig().getStringList("BindSettings.BypassMaxBindList").contains(event.getUserId().toString())) {
                                             if (playerData == null) {
                                                 if (Util.getConfig().getBoolean("BindSettings.Verify")) {
                                                     removeVerifyCode(args[1]);
@@ -124,7 +125,10 @@ public final class GroupMessage {
                     case "#解除绑定": {
                         if (getConfig().getBoolean("BindSettings.AllowUnBind")) {
                             playerData = getPlayerData(args[1]);
-                            if (ifPlayerDataExist(args[1]) && playerData != null) {
+                            if (ifPlayerDataExist(args[1]) && playerData != null &&
+                                    (Objects.equals(playerData.getQQ(), event.getUserId()) ||
+                                            Util.getConfig().getStringList("AllowUseAdminCommandList").contains(event.getUserId().toString()))
+                            ) {
                                 unbind(playerData);
                                 {
                                     JSONObject data = new JSONObject();

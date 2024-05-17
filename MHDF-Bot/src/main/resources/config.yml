@@ -70,11 +70,15 @@ BindSettings:
   BindNameMinLength: 3
   #绑定ID最大长度
   BindNameMaxLength: 16
+  #绕过绑定上线的QQ
+  BypassMaxBindList:
+    - "2624246773"
+    - "292200693"
 
 #自动聊天
 AutoChat:
   #开关
-  Enable: false
+  Enable: true
   #关键词列表
   WordList:
     #自定义名称
@@ -84,7 +88,19 @@ AutoChat:
         - "怎么圈地"
         - "圈地教程"
       Replay: |-
-        首先使用小木锄,先这样在那样,最后再哪样就可以了
+        首先使用小木锄,先这样在那样,最后再那样就可以了!
+    憋回去:
+      #关键词
+      Words:
+        - "爽"
+      Replay: |-
+        主人不可以随便爽哦,请憋回去!
+    补偿:
+      #关键词
+      Words:
+        - "补偿"
+      Replay: |-
+        什么是补偿啊,梦东娘不知道啊!
 
 #群聊屏蔽词设置
 BlackWordSettings:
@@ -97,3 +113,6 @@ BlackWordSettings:
   #屏蔽词
   BlackWordList:
     - "傻逼"
+    - "习近平"
+    - "毒品"
+    - "东亚病夫"
