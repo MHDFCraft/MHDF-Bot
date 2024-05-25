@@ -6,27 +6,45 @@ import cn.chengzhiya.mhdfbotbukkithook.util.Util;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import jakarta.websocket.*;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.io.IOException;
+
 import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.getPlayerDataList;
 import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.ifPlayerDataExist;
-import static cn.chengzhiya.mhdfbotbukkithook.util.Util.enableVerify;
-import static cn.chengzhiya.mhdfbotbukkithook.util.Util.runAction;
+import static cn.chengzhiya.mhdfbotbukkithook.util.Util.*;
+import static cn.chengzhiya.mhdfpluginapi.Util.ColorLog;
 
 @ClientEndpoint
 public final class webSocket {
+    @Getter
     public static Session session;
 
     public static void send(String message) {
-        if (session.isOpen()) {
-            session.getAsyncRemote().sendText(message);
+        if (session != null) {
+            if (session.isOpen()) {
+                session.getAsyncRemote().sendText(message);
+            } else {
+                session = null;
+            }
         }
     }
 
     @OnOpen
     public void onOpen(Session session) {
         webSocket.session = session;
+        ColorLog("&e已连接至websocket服务端(" + main.main.getConfig().getString("BotWebSocketServerHost") + ")!");
+    }
+
+    @OnClose
+    public void onClose() {
+        session = null;
+        ColorLog("&cwebocket服务端异常 正在尝试重新连接!");
+        if (Bukkit.getPluginManager().getPlugin("MHDF-Bot-BukkitHook")!= null) {
+            connectWebsocketServer();
+        }
     }
 
     @OnMessage
@@ -73,6 +91,12 @@ public final class webSocket {
 
     @OnError
     public void onError(Throwable e) {
+        try {
+            session.close();
+        } catch (IOException ignored) {}
+
+        session = null;
+
         throw new RuntimeException(e);
     }
 }

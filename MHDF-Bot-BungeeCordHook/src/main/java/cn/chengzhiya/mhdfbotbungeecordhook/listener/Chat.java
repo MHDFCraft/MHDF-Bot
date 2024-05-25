@@ -16,7 +16,7 @@ public final class Chat implements Listener {
         if (!event.isCancelled()) {
             ProxiedPlayer player = (ProxiedPlayer) event.getSender();
             if (!ifPlayerDataExist(player.getName())) {
-                if (event.isProxyCommand()) {
+                if (event.isCommand()) {
                     event.setCancelled(!(Util.getConfig().getStringList("AllowUseCommandList").contains(event.getMessage().split(" ")[0])));
                     if (event.isCancelled()) {
                         player.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', Util.getConfig().getString("Messages.AntiUseCommand"))));

@@ -51,11 +51,13 @@ public final class webSocket {
     @OnOpen
     public void onOpen(Session session) {
         sessions.add(session);
+        log.info("客户端{}({})连接至websocket服务端!", session.getId(), session.getRequestURI().toString());
     }
 
     @OnClose
     public void onClose(Session session) {
         sessions.remove(session);
+        log.info("客户端{}({})断开websocket服务端!", session.getId(), session.getRequestURI().toString());
     }
 
     @OnMessage
@@ -131,6 +133,7 @@ public final class webSocket {
 
     @OnError
     public void onError(Session session, Throwable e) {
+        log.info("客户端{}({})断开websocket服务端!", session.getId(), session.getRequestURI().toString());
         e.printStackTrace();
         sessions.remove(session);
     }

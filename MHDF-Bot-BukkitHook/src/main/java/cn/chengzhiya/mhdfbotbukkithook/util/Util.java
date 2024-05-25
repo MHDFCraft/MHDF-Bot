@@ -1,7 +1,12 @@
 package cn.chengzhiya.mhdfbotbukkithook.util;
 
+import cn.chengzhiya.mhdfbotbukkithook.client.webSocket;
 import cn.chengzhiya.mhdfbotbukkithook.main;
 import com.alibaba.fastjson.JSONObject;
+import jakarta.websocket.ClientEndpointConfig;
+import jakarta.websocket.ContainerProvider;
+import jakarta.websocket.DeploymentException;
+import jakarta.websocket.WebSocketContainer;
 import lombok.Getter;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.ChatMessageType;
@@ -11,8 +16,10 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.List;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.*;
 
 import static cn.chengzhiya.mhdfbotbukkithook.client.webSocket.send;
 import static cn.chengzhiya.mhdfpluginapi.Util.ChatColor;
@@ -21,6 +28,7 @@ import static cn.chengzhiya.mhdfpluginapi.Util.ColorLog;
 public final class Util {
     @Getter
     public static final HashMap<String, Integer> VerifyCodeHashMap = new HashMap<>();
+    public static WebSocketContainer container = ContainerProvider.getWebSocketContainer();
     public static boolean enableVerify = false;
 
     public static void getEnableVerify() {
@@ -72,6 +80,17 @@ public final class Util {
                     continue;
             }
             ColorLog("&c[MHDF-PluginAPI]不存在" + Action[0] + "这个操作");
+        }
+    }
+
+    public static void connectWebsocketServer() {
+        try {
+            container.connectToServer(new webSocket(),new URI(Objects.requireNonNull(main.main.getConfig().getString("BotWebSocketServerHost"))));
+        } catch (DeploymentException | IOException | URISyntaxException e) {
+            ColorLog("&c无法正常连接至websocket服务端,无法加载绑定以及AT消息和更新验证码数据");
+            if (Bukkit.getPluginManager().getPlugin("MHDF-Bot-BukkitHook")!= null) {
+                connectWebsocketServer();
+            }
         }
     }
 }
