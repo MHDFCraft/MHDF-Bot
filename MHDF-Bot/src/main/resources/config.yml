@@ -49,6 +49,17 @@ MarryEnable: true
 #回复消息@
 ReplayAt: true
 
+#聊天系统设置
+ChatSettings:
+  #开关
+  Enable: true
+  #获取QQ昵称最大重试次数
+  GetQQNameMaxTryTimes: 5
+  #QQ昵称映射
+  QQToName:
+    QQ2624246773: "筱宇"
+    QQ292200693: "橙汁"
+
 #批量踢出设置
 KickSettings:
   #获取QQ等级最大重试次数

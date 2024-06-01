@@ -250,27 +250,51 @@ public final class GroupMessage {
                         return;
                     }
                     case "#聊天": {
-                        if (args.length > 1) {
-                            if (access_token == null) {
-                                getAccessToken();
-                            }
-
-                            StringBuilder userMessage = new StringBuilder();
-                            for (String arg : args) {
-                                userMessage.append(arg);
-                                if (!arg.equals(args[args.length - 1])) {
-                                    userMessage.append(" ");
+                        if (getConfig().getBoolean("ChatSettings.Enable")) {
+                            if (args.length > 1) {
+                                if (access_token == null) {
+                                    getAccessToken();
                                 }
-                            }
 
-                            String aiMessage = sendMessage(userMessage.toString());;
-                            bot.sendGroupMsg(event.getGroupId(), aiMessage, false);
+                                StringBuilder userMessage = new StringBuilder();
+                                for (String arg : args) {
+                                    userMessage.append(arg);
+                                    if (!arg.equals(args[args.length - 1])) {
+                                        userMessage.append(" ");
+                                    }
+                                }
+
+                                String userName = getConfig().getString("ChatSettings.QQToName.QQ" + event.getUserId());
+                                if (userName == null) {
+                                    ActionData<GroupMemberInfoResp> info = bot.getGroupMemberInfo(event.getGroupId(), event.getUserId(), true);
+                                    if (info != null) {
+                                        userName = info.getData().getNickname();
+                                    }
+                                    int tryTimes = 0;
+                                    while ((info == null || userName == null) && tryTimes < getConfig().getInt("ChatSettings.GetQQNameMaxTryTimes")) {
+                                        tryTimes++;
+                                        info = bot.getGroupMemberInfo(event.getGroupId(), event.getUserId(), true);
+                                        userName = info.getData().getNickname();
+                                    }
+                                }
+
+                                if (Objects.requireNonNull(userName).contains("橙汁") && event.getUserId() != 292200693L) {
+                                    userName = "冒充橙汁的人";
+                                }
+
+                                if ((Objects.requireNonNull(userName).contains("筱宇") || Objects.requireNonNull(userName).contains("宇将军")) && event.getUserId() != 2624246773L) {
+                                    userName = "冒充筱宇的人";
+                                }
+
+                                String aiMessage = sendMessage(userName + ":" + userMessage.toString().replaceAll("#聊天 ",""));
+                                bot.sendGroupMsg(event.getGroupId(), aiMessage, false);
+                            }
                         }
                         return;
                     }
                     case "#移除AI上下文记忆": {
                         if (Util.getConfig().getStringList("AllowUseAdminCommandList").contains(event.getUserId().toString())) {
-                            conversation_id =null;
+                            conversation_id = null;
                             Message.text(i18n("Messages.ClearAI.ClearDone"));
                             bot.sendGroupMsg(event.getGroupId(), Message.build(), false);
                         }
@@ -309,8 +333,15 @@ public final class GroupMessage {
         map.put("prompt", Message);
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
         ResponseEntity<String> response = restTemplate.exchange("https://chatglm.cn/chatglm/assistant-api/v1/stream", HttpMethod.POST, entity, String.class);
-        String[] data = Objects.requireNonNull(response.getBody()).split("data:");
-        String jsonData = data[data.length - 1].replaceAll("\n","");
-        return Objects.requireNonNull(JSON.parseObject(jsonData)).getJSONObject("message").getJSONObject("content").getString("text");
+        if (response.getStatusCode() == HttpStatus.OK) {
+            String[] data = Objects.requireNonNull(response.getBody()).split("data:");
+            JSONObject jsonData = Objects.requireNonNull(JSON.parseObject(data[data.length - 1].replaceAll("\n", "")));
+            if (conversation_id == null) {
+                conversation_id = jsonData.getString("conversation_id");
+            }
+            return jsonData.getJSONObject("message").getJSONObject("content").getString("text");
+        }else {
+            return Objects.requireNonNull(JSON.parseObject(response.getBody())).getString("message");
+        }
     }
 }
