@@ -40,6 +40,11 @@ Messages:
       配置文件重载完成!
     NoPermission: |-
       你没有权限怎么做!
+  ClearAI:
+    ClearDone: |-
+      重置完成,梦东娘已经什么都不记得了!
+    NoPermission: |-
+      你没有权限怎么做!
   Say:
     SayWait: |-
       语音生成中,请稍后!
