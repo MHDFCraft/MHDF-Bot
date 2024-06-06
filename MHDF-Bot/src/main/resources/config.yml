@@ -53,6 +53,12 @@ ReplayAt: true
 ChatSettings:
   #开关
   Enable: true
+  #ChayGLM APIKey
+  APIKey: ""
+  #ChayGLM APIKey
+  APISecret: ""
+  #ChayGLM 智能体ID
+  AssistantID: ""
   #获取QQ昵称最大重试次数
   GetQQNameMaxTryTimes: 5
   #QQ昵称映射

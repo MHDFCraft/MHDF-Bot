@@ -26,10 +26,7 @@ import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.*;
 @Shiro
 @Component
 public final class GroupMessage {
-    public static String api_key = "281b650549d5939d";
-    public static String api_secret = "a6528b98b34e453986a9b55067d04322";
     public static String access_token = null;
-    public static String assistant_id = "6659d79ac2fb387f8bf0e300";
     public static String conversation_id = null;
 
     @GroupMessageHandler
@@ -314,8 +311,8 @@ public final class GroupMessage {
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
         Map<String, Object> map = new HashMap<>();
-        map.put("api_key", api_key);
-        map.put("api_secret", api_secret);
+        map.put("api_key", getConfig().getString("ChatSettings.APIKey"));
+        map.put("api_secret", getConfig().getString("ChatSettings.APISecret"));
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
         ResponseEntity<String> response = restTemplate.exchange("https://chatglm.cn/chatglm/assistant-api/v1/get_token", HttpMethod.POST, entity, String.class);
         access_token = Objects.requireNonNull(JSON.parseObject(response.getBody())).getJSONObject("result").getString("access_token");
@@ -328,7 +325,7 @@ public final class GroupMessage {
         headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
         headers.setBearerAuth(access_token);
         Map<String, Object> map = new HashMap<>();
-        map.put("assistant_id", assistant_id);
+        map.put("assistant_id", getConfig().getString("ChatSettings.AssistantID"));
         map.put("conversation_id", conversation_id);
         map.put("prompt", Message);
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
