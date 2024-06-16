@@ -35,6 +35,10 @@ Messages:
       你今天的群老婆是{AtMrs}!
     IsMrs: |-
       你今天被娶了,是{AtMr}!
+    ChangeWifeMax: |-
+      不是,你是渣男吧,一天换怎么多老婆!
+    NotHaveWife: |-
+      你还没有娶老婆呢!
   Reload:
     ReloadDone: |-
       配置文件重载完成!

@@ -43,11 +43,17 @@ AllowUseBotList:
   - "476308572"
   - "273185916"
 
-#群老婆系统开关
-MarryEnable: true
-
 #回复消息@
 ReplayAt: true
+
+#群老婆系统开关
+MarrySettings:
+  #开关
+  Enable: true
+  #换老婆开关
+  ChangeWife: true
+  #最大更换次数
+  MaxChangeTimes: 3
 
 #聊天系统设置
 ChatSettings:

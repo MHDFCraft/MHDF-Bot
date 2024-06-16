@@ -170,7 +170,7 @@ public final class GroupMessage {
                         break;
                     }
                     case "#群老婆": {
-                        if (getConfig().getBoolean("MarryEnable")) {
+                        if (getConfig().getBoolean("MarrySettings.Enable")) {
                             if (!ifMarryDataExist(event.getUserId())) {
                                 List<Long> allowMarryList = getMemberList(bot, event.getGroupId());
                                 allowMarryList.removeAll(getMarryList());
@@ -186,6 +186,29 @@ public final class GroupMessage {
                                 } else {
                                     Message.text(i18n("Messages.Marry.IsMrs").replaceAll("\\{AtMr}", MsgUtils.builder().at(Objects.requireNonNull(getMarryData(event.getUserId())).getMrQQ()).build()));
                                 }
+                            }
+                        } else {
+                            return;
+                        }
+                        break;
+                    }
+                    case "#换老婆": {
+                        if (getConfig().getBoolean("MarrySettings.Enable") && getConfig().getBoolean("MarrySettings.ChangeWife")) {
+                            if (ifMarryDataExist(event.getUserId())) {
+                                if (getChangeWifeTimes(event.getUserId()) < getConfig().getInt("MarrySettings.MaxChangeTimes")) {
+                                    List<Long> allowMarryList = getMemberList(bot, event.getGroupId());
+                                    allowMarryList.removeAll(getMarryList());
+
+                                    Random random = new Random();
+                                    Long MrsQQ = allowMarryList.get(random.nextInt(allowMarryList.size()));
+
+                                    changeWife(new Marry(event.getUserId(), MrsQQ));
+                                    Message.text(i18n("Messages.Marry.IsMr").replaceAll("\\{AtMrs}", MsgUtils.builder().at(MrsQQ).build()));
+                                } else {
+                                    Message.text(i18n("Messages.Marry.ChangeWifeMax"));
+                                }
+                            } else {
+                                Message.text(i18n("Messages.Marry.NotHaveWife"));
                             }
                         } else {
                             return;
@@ -283,7 +306,7 @@ public final class GroupMessage {
                                     userName = "冒充筱宇的人";
                                 }
 
-                                String aiMessage = sendMessage(userName + ":" + userMessage.toString().replaceAll("#聊天 ",""));
+                                String aiMessage = sendMessage(userName + ":" + userMessage.toString().replaceAll("#聊天 ", ""));
                                 bot.sendGroupMsg(event.getGroupId(), aiMessage, false);
                             }
                         }
@@ -337,7 +360,7 @@ public final class GroupMessage {
                 conversation_id = jsonData.getString("conversation_id");
             }
             return jsonData.getJSONObject("message").getJSONObject("content").getString("text");
-        }else {
+        } else {
             return Objects.requireNonNull(JSON.parseObject(response.getBody())).getString("message");
         }
     }

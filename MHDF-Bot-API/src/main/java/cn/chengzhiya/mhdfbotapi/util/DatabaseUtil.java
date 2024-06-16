@@ -78,6 +78,7 @@ public final class DatabaseUtil {
                                     "(" +
                                     "    MrQQ BIGINT DEFAULT 0 NOT NULL COMMENT '老公QQ'," +
                                     "    MrsQQ BIGINT DEFAULT 0 NOT NULL COMMENT '老婆QQ'," +
+                                    "    ChangeTimes INT DEFAULT 0 NOT NULL COMMENT '更换老婆次数'," +
                                     "    PRIMARY KEY (MrQQ)," +
                                     "    INDEX `MrsQQ` (`MrsQQ`)" +
                                     ")" +
@@ -296,6 +297,35 @@ public final class DatabaseUtil {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void changeWife(Marry marry) {
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement("update `mhdf-bot`.mhdfbot_marry set MrsQQ=?,ChangeTimes=ChangeTimes+1 where MrQQ=?")) {
+                ps.setLong(1, marry.getMrsQQ());
+                ps.setLong(2, marry.getMrQQ());
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int getChangeWifeTimes(Long QQ) {
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement("select * from `mhdf-bot`.mhdfbot_marry where MrQQ=? or MrsQQ=?;")) {
+                ps.setLong(1, QQ);
+                ps.setLong(2, QQ);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        return rs.getInt("ChangeTimes");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
     }
 
     public static Marry getMarryData(Long QQ) {
