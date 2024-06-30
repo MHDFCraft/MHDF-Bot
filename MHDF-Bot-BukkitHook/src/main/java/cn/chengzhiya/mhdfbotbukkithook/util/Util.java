@@ -3,7 +3,6 @@ package cn.chengzhiya.mhdfbotbukkithook.util;
 import cn.chengzhiya.mhdfbotbukkithook.client.webSocket;
 import cn.chengzhiya.mhdfbotbukkithook.main;
 import com.alibaba.fastjson.JSONObject;
-import jakarta.websocket.ClientEndpointConfig;
 import jakarta.websocket.ContainerProvider;
 import jakarta.websocket.DeploymentException;
 import jakarta.websocket.WebSocketContainer;
@@ -89,7 +88,7 @@ public final class Util {
         } catch (DeploymentException | IOException | URISyntaxException e) {
             ColorLog("&c无法正常连接至websocket服务端,无法加载绑定以及AT消息和更新验证码数据");
             if (Bukkit.getPluginManager().getPlugin("MHDF-Bot-BukkitHook")!= null) {
-                connectWebsocketServer();
+                Bukkit.getScheduler().runTaskAsynchronously(main.main, Util::connectWebsocketServer);
             }
         }
     }
