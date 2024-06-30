@@ -18,7 +18,9 @@ import org.bukkit.entity.Player;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
 import static cn.chengzhiya.mhdfbotbukkithook.client.webSocket.send;
 import static cn.chengzhiya.mhdfpluginapi.Util.ChatColor;
@@ -84,10 +86,10 @@ public final class Util {
 
     public static void connectWebsocketServer() {
         try {
-            container.connectToServer(new webSocket(),new URI(Objects.requireNonNull(main.main.getConfig().getString("BotWebSocketServerHost"))));
+            container.connectToServer(new webSocket(), new URI(Objects.requireNonNull(main.main.getConfig().getString("BotWebSocketServerHost"))));
         } catch (DeploymentException | IOException | URISyntaxException e) {
             ColorLog("&c无法正常连接至websocket服务端,无法加载绑定以及AT消息和更新验证码数据");
-            if (Bukkit.getPluginManager().getPlugin("MHDF-Bot-BukkitHook")!= null) {
+            if (Bukkit.getPluginManager().getPlugin("MHDF-Bot-BukkitHook") != null) {
                 Bukkit.getScheduler().runTaskAsynchronously(main.main, Util::connectWebsocketServer);
             }
         }

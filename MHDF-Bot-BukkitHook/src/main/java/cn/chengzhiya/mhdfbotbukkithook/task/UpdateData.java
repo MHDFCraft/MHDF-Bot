@@ -8,14 +8,14 @@ import org.bukkit.scheduler.BukkitRunnable;
 import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.ifPlayerDataExist;
 import static cn.chengzhiya.mhdfbotapi.util.DatabaseUtil.updatePlayerData;
 import static cn.chengzhiya.mhdfbotbukkithook.client.webSocket.send;
-import static cn.chengzhiya.mhdfbotbukkithook.util.Util.*;
+import static cn.chengzhiya.mhdfbotbukkithook.util.Util.enableVerify;
 
 public final class UpdateData extends BukkitRunnable {
     public void run() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (ifPlayerDataExist(player.getName())) {
                 updatePlayerData(player.getName());
-            }else {
+            } else {
                 if (enableVerify) {
                     JSONObject data = new JSONObject();
                     data.put("action", "getVerifyCode");

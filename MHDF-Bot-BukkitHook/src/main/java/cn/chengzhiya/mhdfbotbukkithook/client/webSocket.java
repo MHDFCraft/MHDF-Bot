@@ -42,7 +42,7 @@ public final class webSocket {
     public void onClose() {
         session = null;
         ColorLog("&cwebocket服务端异常 正在尝试重新连接!");
-        if (Bukkit.getPluginManager().getPlugin("MHDF-Bot-BukkitHook")!= null) {
+        if (Bukkit.getPluginManager().getPlugin("MHDF-Bot-BukkitHook") != null) {
             connectWebsocketServer();
         }
     }
@@ -93,7 +93,8 @@ public final class webSocket {
     public void onError(Throwable e) {
         try {
             session.close();
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
 
         session = null;
 

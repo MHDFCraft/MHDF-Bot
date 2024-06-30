@@ -2,7 +2,10 @@ package cn.chengzhiya.mhdfbotbukkithook;
 
 import cn.chengzhiya.mhdfbotapi.entity.DatabaseConfig;
 import cn.chengzhiya.mhdfbotbukkithook.command.reload;
-import cn.chengzhiya.mhdfbotbukkithook.task.*;
+import cn.chengzhiya.mhdfbotbukkithook.task.HeartBeat;
+import cn.chengzhiya.mhdfbotbukkithook.task.SendMessage;
+import cn.chengzhiya.mhdfbotbukkithook.task.UpdateData;
+import cn.chengzhiya.mhdfbotbukkithook.task.WebSocketQueue;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginDescriptionFile;
