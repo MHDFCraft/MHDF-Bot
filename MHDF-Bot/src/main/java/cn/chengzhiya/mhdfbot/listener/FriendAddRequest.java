@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public final class FriendAddRequest {
     @FriendAddRequestHandler
-    public void oFriendAddRequest(Bot bot, FriendAddRequestEvent event) {
+    public void onFriendAddRequest(Bot bot, FriendAddRequestEvent event) {
         bot.setFriendAddRequest(event.getFlag(), true, "");
     }
 }

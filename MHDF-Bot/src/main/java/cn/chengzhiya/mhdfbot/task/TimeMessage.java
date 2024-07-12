@@ -35,6 +35,7 @@ public final class TimeMessage {
                     int delay = Util.getConfig().getInt("AutoChat.WordList." + autoChatKeys + ".Delay");
                     int time = messageTimeHashMap.get(autoChatKeys) != null ? messageTimeHashMap.get(autoChatKeys) : 0;
                     if (delay <= time) {
+                        messageTimeHashMap.remove(autoChatKeys);
                         String message = getMessage(Util.getConfig().getStringList("AutoChat.WordList." + autoChatKeys + ".Message"));
                         for (String group : Util.getConfig().getStringList("AutoChat.WordList." + autoChatKeys + ".Group")) {
                             bot.sendGroupMsg(Long.parseLong(group), message, false);
