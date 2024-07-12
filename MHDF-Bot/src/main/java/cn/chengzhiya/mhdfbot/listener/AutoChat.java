@@ -17,17 +17,19 @@ public final class AutoChat {
     public void onGroupMessage(Bot bot, GroupMessageEvent event) {
         if (Util.getConfig().getStringList("AllowUseBotList").contains(event.getGroupId().toString())) {
             for (String autoChatKeys : Objects.requireNonNull(Util.getConfig().getConfigurationSection("AutoChat.WordList")).getKeys()) {
-                for (String autoChatWords : Util.getConfig().getStringList("AutoChat.WordList." + autoChatKeys + ".Words")) {
-                    if (event.getMessage().contains(autoChatWords)) {
-                        MsgUtils Message = MsgUtils
-                                .builder()
-                                .reply(event.getMessageId());
-                        if (Util.getConfig().getBoolean("ReplayAt")) {
-                            Message.at(event.getUserId());
+                if (Util.getConfig().getString("AutoChat.WordList." + autoChatKeys + ".Type").equals("检测关键词")) {
+                    for (String autoChatWords : Util.getConfig().getStringList("AutoChat.WordList." + autoChatKeys + ".Words")) {
+                        if (event.getMessage().contains(autoChatWords)) {
+                            MsgUtils Message = MsgUtils
+                                    .builder()
+                                    .reply(event.getMessageId());
+                            if (Util.getConfig().getBoolean("ReplayAt")) {
+                                Message.at(event.getUserId());
+                            }
+                            Message.text("\n");
+                            Message.text(Util.getConfig().getString("AutoChat.WordList." + autoChatKeys + ".Replay"));
+                            bot.sendGroupMsg(event.getGroupId(), Message.build(), false);
                         }
-                        Message.text("\n");
-                        Message.text(Util.getConfig().getString("AutoChat.WordList." + autoChatKeys + ".Replay"));
-                        bot.sendGroupMsg(event.getGroupId(), Message.build(), false);
                     }
                 }
             }

@@ -102,10 +102,12 @@ BindSettings:
 AutoChat:
   #开关
   Enable: true
-  #关键词列表
+  #聊天列表
   WordList:
     #自定义名称
     圈地教程:
+      #对话类型
+      Type: "检测关键词"
       #关键词
       Words:
         - "怎么圈地"
@@ -113,17 +115,50 @@ AutoChat:
       Replay: |-
         首先使用小木锄,先这样在那样,最后再那样就可以了!
     憋回去:
+      #对话类型
+      Type: "检测关键词"
       #关键词
       Words:
         - "爽"
       Replay: |-
         主人不可以随便爽哦,请憋回去!
     补偿:
+      #对话类型
+      Type: "检测关键词"
       #关键词
       Words:
         - "补偿"
       Replay: |-
         什么是补偿啊,梦东娘不知道啊!
+    凌晨消息:
+      #对话类型
+      Type: "定点发送"
+      #群号
+      Group:
+        - "476308572"
+      #时间
+      Time: "12:0:0"
+      #消息
+      Message:
+        - "[Message]|凌晨了,该睡觉了!"
+    定时消息:
+      #对话类型
+      Type: "定时发送"
+      #群号
+      Group:
+        - "476308572"
+      #多少秒发送一次
+      Delay: 600
+      #消息
+      Message:
+        - "[Message]|晚上我爱你,梦东娘在这里等你哦!"
+    进群消息:
+      #对话类型
+      Type: "加入群聊"
+      #消息
+      Message:
+        - "[Message]|欢迎加入梦回东方,我在这里等你哦!"
+        - "[Image]|D:/[25566]登录/plugins/MHDF-Login/Web/assets/image/background.png"
 
 #群聊屏蔽词设置
 BlackWordSettings:
