@@ -79,6 +79,8 @@ KickSettings:
 
 #绑定设置
 BindSettings:
+  #开关
+  Enable: true
   #验证玩家开关
   Verify: false
   #允许解除绑定

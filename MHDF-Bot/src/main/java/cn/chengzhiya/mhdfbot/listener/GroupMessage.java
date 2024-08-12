@@ -57,96 +57,102 @@ public final class GroupMessage {
                         break;
                     }
                     case "#绑定": {
-                        playerData = getPlayerData(args[1]);
+                        if (getConfig().getBoolean("BindSettings.Enable")) {
+                            playerData = getPlayerData(args[1]);
 
-                        ActionData<StrangerInfoResp> info = bot.getStrangerInfo(event.getUserId(), true);
-                        Integer QQLevel = null;
+                            ActionData<StrangerInfoResp> info = bot.getStrangerInfo(event.getUserId(), true);
+                            Integer QQLevel = null;
 
-                        if (info != null) {
-                            QQLevel = info.getData().getLevel();
-                        }
-                        int tryTimes = 0;
-                        while ((info == null || QQLevel == null || QQLevel == 0) && tryTimes < getConfig().getInt("KickSettings.GetQQLevelMaxTryTimes")) {
-                            tryTimes++;
-                            info = bot.getStrangerInfo(event.getUserId(), true);
-                            QQLevel = info.getData().getLevel();
-                        }
+                            if (info != null) {
+                                QQLevel = info.getData().getLevel();
+                            }
+                            int tryTimes = 0;
+                            while ((info == null || QQLevel == null || QQLevel == 0) && tryTimes < getConfig().getInt("KickSettings.GetQQLevelMaxTryTimes")) {
+                                tryTimes++;
+                                info = bot.getStrangerInfo(event.getUserId(), true);
+                                QQLevel = info.getData().getLevel();
+                            }
 
-                        if (QQLevel != null && QQLevel >= Util.getConfig().getInt("BindSettings.MinQQLevel")) {
-                            if (args[1].matches(getConfig().getString("BindSettings.BindNameRegex"))) {
-                                if (args[1].length() >= getConfig().getInt("BindSettings.BindNameMinLength")) {
-                                    if (args[1].length() < getConfig().getInt("BindSettings.BindNameMaxLength")) {
-                                        int inputVerifyCode = Integer.MIN_VALUE;
-                                        try {
-                                            inputVerifyCode = Integer.parseInt(args[2]);
-                                        } catch (Exception ignored) {
-                                        }
-                                        if (Util.getConfig().getBoolean("BindSettings.Verify") && getVerifyCode(args[1]) != inputVerifyCode) {
-                                            Message.text(i18n("Messages.Bind.VerifyCodeError"));
-                                            break;
-                                        }
-                                        if (getPlayerDataList(event.getUserId()).size() < Util.getConfig().getInt("BindSettings.MaxBind") ||
-                                                Util.getConfig().getStringList("BindSettings.BypassMaxBindList").contains(event.getUserId().toString())) {
-                                            if (playerData == null) {
-                                                if (Util.getConfig().getBoolean("BindSettings.Verify")) {
-                                                    removeVerifyCode(args[1]);
+                            if (QQLevel != null && QQLevel >= Util.getConfig().getInt("BindSettings.MinQQLevel")) {
+                                if (args[1].matches(getConfig().getString("BindSettings.BindNameRegex"))) {
+                                    if (args[1].length() >= getConfig().getInt("BindSettings.BindNameMinLength")) {
+                                        if (args[1].length() < getConfig().getInt("BindSettings.BindNameMaxLength")) {
+                                            int inputVerifyCode = Integer.MIN_VALUE;
+                                            try {
+                                                inputVerifyCode = Integer.parseInt(args[2]);
+                                            } catch (Exception ignored) {
+                                            }
+                                            if (Util.getConfig().getBoolean("BindSettings.Verify") && getVerifyCode(args[1]) != inputVerifyCode) {
+                                                Message.text(i18n("Messages.Bind.VerifyCodeError"));
+                                                break;
+                                            }
+                                            if (getPlayerDataList(event.getUserId()).size() < Util.getConfig().getInt("BindSettings.MaxBind") ||
+                                                    Util.getConfig().getStringList("BindSettings.BypassMaxBindList").contains(event.getUserId().toString())) {
+                                                if (playerData == null) {
+                                                    if (Util.getConfig().getBoolean("BindSettings.Verify")) {
+                                                        removeVerifyCode(args[1]);
+                                                    }
+                                                    bot.setGroupCard(event.getGroupId(), event.getUserId(), args[1]);
+                                                    bind(new PlayerData(args[1], event.getUserId()));
+                                                    {
+                                                        JSONObject data = new JSONObject();
+                                                        data.put("action", "bind");
+
+                                                        JSONObject params = new JSONObject();
+                                                        params.put("playerName", args[1]);
+
+                                                        data.put("params", params);
+
+                                                        send(data.toJSONString());
+                                                    }
+                                                    Message.text(i18n("Messages.Bind.BindDone").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
+                                                } else {
+                                                    Message.text(i18n("Messages.Bind.AlwaysBind").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(playerData.getQQ())));
                                                 }
-                                                bot.setGroupCard(event.getGroupId(), event.getUserId(), args[1]);
-                                                bind(new PlayerData(args[1], event.getUserId()));
-                                                {
-                                                    JSONObject data = new JSONObject();
-                                                    data.put("action", "bind");
-
-                                                    JSONObject params = new JSONObject();
-                                                    params.put("playerName", args[1]);
-
-                                                    data.put("params", params);
-
-                                                    send(data.toJSONString());
-                                                }
-                                                Message.text(i18n("Messages.Bind.BindDone").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
                                             } else {
-                                                Message.text(i18n("Messages.Bind.AlwaysBind").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(playerData.getQQ())));
+                                                Message.text(i18n("Messages.Bind.MaxBind").replaceAll("\\{Size}", String.valueOf(Util.getConfig().getInt("BindSettings.MaxBind"))));
                                             }
                                         } else {
-                                            Message.text(i18n("Messages.Bind.MaxBind").replaceAll("\\{Size}", String.valueOf(Util.getConfig().getInt("BindSettings.MaxBind"))));
+                                            Message.text(i18n("Messages.Bind.BindNameMaxLength").replaceAll("\\{Length}", String.valueOf(Util.getConfig().getInt("BindSettings.BindNameMaxLength"))));
                                         }
                                     } else {
-                                        Message.text(i18n("Messages.Bind.BindNameMaxLength").replaceAll("\\{Length}", String.valueOf(Util.getConfig().getInt("BindSettings.BindNameMaxLength"))));
+                                        Message.text(i18n("Messages.Bind.BindNameMinLength").replaceAll("\\{Length}", String.valueOf(Util.getConfig().getInt("BindSettings.BindNameMinLength"))));
                                     }
                                 } else {
-                                    Message.text(i18n("Messages.Bind.BindNameMinLength").replaceAll("\\{Length}", String.valueOf(Util.getConfig().getInt("BindSettings.BindNameMinLength"))));
+                                    Message.text(i18n("Messages.Bind.BindNameRegex"));
                                 }
                             } else {
-                                Message.text(i18n("Messages.Bind.BindNameRegex"));
+                                Message.text(i18n("Messages.Bind.MinQQLevel").replaceAll("\\{Size}", String.valueOf(Util.getConfig().getInt("BindSettings.MinQQLevel"))));
                             }
-                        } else {
-                            Message.text(i18n("Messages.Bind.MinQQLevel").replaceAll("\\{Size}", String.valueOf(Util.getConfig().getInt("BindSettings.MinQQLevel"))));
+                        }else {
+                            return;
                         }
                         break;
                     }
                     case "#解除绑定": {
-                        if (getConfig().getBoolean("BindSettings.AllowUnBind")) {
-                            playerData = getPlayerData(args[1]);
-                            if (ifPlayerDataExist(args[1]) && playerData != null &&
-                                    (Objects.equals(playerData.getQQ(), event.getUserId()) ||
-                                            Util.getConfig().getStringList("AllowUseAdminCommandList").contains(event.getUserId().toString()))
-                            ) {
-                                unbind(playerData);
-                                {
-                                    JSONObject data = new JSONObject();
-                                    data.put("action", "unBind");
+                        if (getConfig().getBoolean("BindSettings.Enable")) {
+                            if (getConfig().getBoolean("BindSettings.AllowUnBind")) {
+                                playerData = getPlayerData(args[1]);
+                                if (ifPlayerDataExist(args[1]) && playerData != null &&
+                                        (Objects.equals(playerData.getQQ(), event.getUserId()) ||
+                                                Util.getConfig().getStringList("AllowUseAdminCommandList").contains(event.getUserId().toString()))
+                                ) {
+                                    unbind(playerData);
+                                    {
+                                        JSONObject data = new JSONObject();
+                                        data.put("action", "unBind");
 
-                                    JSONObject params = new JSONObject();
-                                    params.put("playerName", args[1]);
+                                        JSONObject params = new JSONObject();
+                                        params.put("playerName", args[1]);
 
-                                    data.put("params", params);
+                                        data.put("params", params);
 
-                                    send(data.toJSONString());
+                                        send(data.toJSONString());
+                                    }
+                                    Message.text(i18n("Messages.UnBind.UnBindDone").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
+                                } else {
+                                    Message.text(i18n("Messages.UnBind.DontBind").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
                                 }
-                                Message.text(i18n("Messages.UnBind.UnBindDone").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
-                            } else {
-                                Message.text(i18n("Messages.UnBind.DontBind").replaceAll("\\{Player}", args[1]).replaceAll("\\{QQ}", String.valueOf(event.getUserId())));
                             }
                         }
                         break;
