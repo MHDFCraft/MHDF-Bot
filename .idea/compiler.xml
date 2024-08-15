@@ -7,19 +7,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MHDF-Bot-BungeeCordHook" />
-        <module name="MHDF-Bot" />
+        <module name="MHDF-Bot-PluginExample" />
         <module name="MHDF-Bot-BukkitHook" />
-        <module name="MHDF-Bot-API" />
+        <module name="MHDF-Bot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Cheng-Bot" target="1.5" />
+      <module name="MHDF-Bot (1)" target="1.5" />
+      <module name="MHDF-Bot (2)" target="17" />
+      <module name="MHDF-Bot-API" target="17" />
+      <module name="MHDF-Bot-BungeeCordHook" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="MHDF-Bot" options="-parameters" />
+      <module name="MHDF-Bot" options="" />
+      <module name="MHDF-Bot (2)" options="-parameters" />
     </option>
   </component>
 </project>

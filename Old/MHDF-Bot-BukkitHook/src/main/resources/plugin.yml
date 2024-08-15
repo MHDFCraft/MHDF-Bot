@@ -1,0 +1,14 @@
+name: MHDF-Bot-BukkitHook
+version: '${project.version}'
+main: cn.ChengZhiYa.mhdfbotbukkithook.main
+api-version: '1.20'
+depend: [ PlaceholderAPI ]
+softdepend: [ LiteBans ]
+commands:
+  mhdfbotreload:
+    description: 重载配置
+    permission: MHDFBot.op
+permissions:
+  MHDFBot.op:
+    description: op默认权限
+    default: op

@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="OnOpen" />
+      <item index="1" class="java.lang.String" itemvalue="cn.ChengZhiYa.MHDFBot.api.interfaces.EventHandler" />
+      <item index="2" class="java.lang.String" itemvalue="jakarta.websocket.OnClose" />
+      <item index="3" class="java.lang.String" itemvalue="jakarta.websocket.OnError" />
+      <item index="4" class="java.lang.String" itemvalue="jakarta.websocket.OnMessage" />
+      <item index="5" class="java.lang.String" itemvalue="jakarta.websocket.OnOpen" />
+    </list>
+    <writeAnnotations>
+      <writeAnnotation name="lombok.Getter" />
+    </writeAnnotations>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/MHDF-Bot-BukkitHook/pom.xml" />
+        <option value="$PROJECT_DIR$/Old/MHDF-Bot-BukkitHook/pom.xml" />
+        <option value="$PROJECT_DIR$/Old/MHDF-Bot/pom.xml" />
+        <option value="$PROJECT_DIR$/Old/MHDF-Bot-API/pom.xml" />
       </list>
     </option>
   </component>
