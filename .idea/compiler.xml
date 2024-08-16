@@ -8,8 +8,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MHDF-Bot-PluginExample" />
-        <module name="MHDF-Bot-BukkitHook" />
         <module name="MHDF-Bot" />
+        <module name="MHDF-Bot-BukkitHook" />
+        <module name="MHDF-Bot-BungeeCoreHook" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

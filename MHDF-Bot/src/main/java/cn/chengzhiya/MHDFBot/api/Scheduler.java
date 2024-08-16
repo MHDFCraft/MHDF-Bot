@@ -12,11 +12,33 @@ public final class Scheduler {
     }
 
     public void runTask(Runnable task) {
-        executorService.submit(task);
+        task.run();
+        executorService.shutdown();
     }
 
     public void runTaskLater(Runnable task, long delay) {
+        try {
+            Thread.sleep(delay*1000);
+            task.run();
+            executorService.shutdown();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void runTaskAsynchronously(Runnable task) {
+        executorService.submit(task);
+        executorService.shutdown();
+    }
+
+    public void runTaskAsynchronouslyLater(Runnable task, long delay) {
         executorService.schedule(task, delay, TimeUnit.SECONDS);
+        executorService.shutdown();
+    }
+
+    public void runTaskAsynchronouslyTimer(Runnable task, long delay, long period) {
+        executorService.scheduleAtFixedRate(task, delay, period, TimeUnit.SECONDS);
+        executorService.shutdown();
     }
 
     public void shutdown() {

@@ -10,7 +10,6 @@ import jakarta.websocket.server.ServerEndpoint;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
-import org.apache.tomcat.websocket.server.WsContextListener;
 import org.apache.tomcat.websocket.server.WsSci;
 
 import java.io.File;
@@ -49,7 +48,7 @@ public final class WebSocket {
         }
     }
 
-    public static void send(String action,JSONObject data) {
+    public static void send(String action, JSONObject data) {
         for (Session session : sessions) {
             try {
                 JSONObject message = new JSONObject();
@@ -63,7 +62,7 @@ public final class WebSocket {
         }
     }
 
-    public static void send(Session session, String action,JSONObject data) {
+    public static void send(Session session, String action, JSONObject data) {
         try {
             JSONObject message = new JSONObject();
             message.put("action", action);
@@ -91,6 +90,6 @@ public final class WebSocket {
     @OnMessage
     public void onMessage(Session session, String message) {
         JSONObject data = JSONObject.parseObject(message);
-        ListenerUtil.callEvent(new WebSocketEvent(ServerType.getSubType(data.getString("server_type")),data.getJSONObject("data")));
+        ListenerUtil.callEvent(new WebSocketEvent(ServerType.getSubType(data.getString("server_type")), data.getJSONObject("data")));
     }
 }

@@ -1,6 +1,5 @@
 package cn.ChengZhiYa.MHDFBot.listener;
 
-import cn.ChengZhiYa.MHDFBot.listener.main.GroupMessage;
 import cn.ChengZhiYa.MHDFBot.listener.main.Lifecycle;
 import cn.ChengZhiYa.MHDFBot.listener.main.PrivateMessage;
 import cn.ChengZhiYa.MHDFBot.listener.main.WebSocket;

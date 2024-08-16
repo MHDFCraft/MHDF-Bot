@@ -11,7 +11,9 @@ public final class main extends MHDFBotPlugin {
         instance = this;
 
         colorLog("&a第一个插件!");
-        registerCommand("输出参数","helloworld <参数>",new HelloWorld(),"helloworld");
+        System.out.println(getDataFolder().getPath());
+        saveDefaultConfig();
+        registerCommand("输出参数", "helloworld <参数>", new HelloWorld(), "helloworld");
     }
 
     @Override

@@ -1,0 +1,6 @@
+cn\ChengZhiYa\MHDFBotBungeeCordHook\listener\WebSocket.class
+cn\ChengZhiYa\MHDFBotBungeeCordHook\util\ConfigUtil.class
+cn\ChengZhiYa\MHDFBotBungeeCordHook\util\FileUtil.class
+cn\ChengZhiYa\MHDFBotBungeeCordHook\client\WebSocket.class
+cn\ChengZhiYa\MHDFBotBungeeCordHook\main.class
+cn\ChengZhiYa\MHDFBotBungeeCordHook\event\WebSocketEvent.class

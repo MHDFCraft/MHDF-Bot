@@ -15,14 +15,14 @@ public final class WebSocketEvent extends Event {
         this.data = data;
     }
 
-    @Override
     @NotNull
-    public HandlerList getHandlers() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
+    @Override
     @NotNull
-    public static HandlerList getHandlerList() {
+    public HandlerList getHandlers() {
         return handlers;
     }
 }

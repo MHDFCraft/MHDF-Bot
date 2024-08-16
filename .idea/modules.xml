@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MHDF-Bot-BukkitHook/MHDF-Bot-BukkitHook.iml" filepath="$PROJECT_DIR$/MHDF-Bot-BukkitHook/MHDF-Bot-BukkitHook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MHDF-Bot-BungeeCordHook/MHDF-Bot-BungeeCoreHook.iml" filepath="$PROJECT_DIR$/MHDF-Bot-BungeeCordHook/MHDF-Bot-BungeeCoreHook.iml" />
     </modules>
   </component>
 </project>

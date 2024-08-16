@@ -42,6 +42,7 @@ public final class PluginUtil {
                             Class<?> clazz = classLoader.loadClass(pluginInfo.getMain());
                             MHDFBotPlugin mhdfBotPlugin = (MHDFBotPlugin) clazz.getDeclaredConstructor().newInstance();
                             mhdfBotPlugin.setPluginInfo(pluginInfo);
+                            mhdfBotPlugin.setPluginJar(jarFile);
                             mhdfBotPlugin.onEnable();
                             getPluginHashMap().put(pluginInfo, PluginStatus.Load_Done);
                         } catch (Exception e) {

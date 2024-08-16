@@ -14,6 +14,7 @@
     <modules>
         <module>MHDF-Bot</module>
         <module>MHDF-Bot-BukkitHook</module>
+        <module>MHDF-Bot-BungeeCordHook</module>
         <module>MHDF-Bot-PluginExample</module>
     </modules>
 </project>

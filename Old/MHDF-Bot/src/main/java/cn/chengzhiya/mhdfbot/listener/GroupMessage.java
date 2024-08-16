@@ -123,7 +123,7 @@ public final class GroupMessage {
                             } else {
                                 Message.text(i18n("Messages.Bind.MinQQLevel").replaceAll("\\{Size}", String.valueOf(Util.getConfig().getInt("BindSettings.MinQQLevel"))));
                             }
-                        }else {
+                        } else {
                             return;
                         }
                         break;

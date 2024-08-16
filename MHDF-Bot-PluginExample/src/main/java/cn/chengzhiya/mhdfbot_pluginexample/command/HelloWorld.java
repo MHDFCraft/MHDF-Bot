@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public final class HelloWorld implements CommandExecutor {
     @Override
-    public void run(String command,String[] args) {
+    public void run(String command, String[] args) {
         main.instance.colorLog(Arrays.toString(args));
     }
 }

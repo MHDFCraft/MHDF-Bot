@@ -24,7 +24,7 @@ public final class main extends JavaPlugin {
 
         connectWebSocketServer();
 
-        Bukkit.getPluginManager().registerEvents(new WebSocket(),this);
+        Bukkit.getPluginManager().registerEvents(new WebSocket(), this);
 
         colorLog("&f============&6梦之机器人-子服连接器&f============");
         colorLog("&e插件启动完成!");

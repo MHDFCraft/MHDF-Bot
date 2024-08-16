@@ -10,7 +10,7 @@ public final class WebSocketEvent extends MinecraftEvent {
     ServerType serverType;
     JSONObject data;
 
-    public WebSocketEvent(ServerType serverType,JSONObject eventData) {
+    public WebSocketEvent(ServerType serverType, JSONObject eventData) {
         this.serverType = serverType;
         this.data = eventData;
     }

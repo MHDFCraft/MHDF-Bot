@@ -28,7 +28,7 @@ public final class WebSocket {
         } catch (DeploymentException | IOException | URISyntaxException e) {
             colorLog("&c无法正常连接至websocket服务端!");
             e.printStackTrace();
-            Bukkit.getScheduler().runTaskLaterAsynchronously(main.instance,WebSocket::connectWebSocketServer, 5L);
+            Bukkit.getScheduler().runTaskLaterAsynchronously(main.instance, WebSocket::connectWebSocketServer, 5L);
         }
     }
 
@@ -37,7 +37,7 @@ public final class WebSocket {
             if (WebSocket.session != null) {
                 if (WebSocket.session.isOpen()) {
                     JSONObject message = new JSONObject();
-                    message.put("data", data);
+                    message.put("server_type", "bukkit");
                     message.put("data", data);
                     WebSocket.session.getAsyncRemote().sendText(message.toJSONString());
                 } else {

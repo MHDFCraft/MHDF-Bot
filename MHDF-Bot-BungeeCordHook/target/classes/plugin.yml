@@ -1,0 +1,5 @@
+name: MHDF-Bot-BungeeCordHook
+version: '1.0.0'
+main: cn.ChengZhiYa.MHDFBotBungeeCordHook.main
+api-version: '1.20'
+load: STARTUP

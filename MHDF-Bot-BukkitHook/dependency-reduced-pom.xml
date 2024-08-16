@@ -12,6 +12,7 @@
         <directory>src/main/resources</directory>
       </resource>
     </resources>
+    <finalName>[梦之机器人-子服连接器]${project.artifactId}-${project.version}</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
