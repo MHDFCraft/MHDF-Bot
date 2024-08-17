@@ -1,9 +1,9 @@
 package cn.ChengZhiYa.MHDFBot.api;
 
-import cn.ChengZhiYa.MHDFBot.api.manager.CommandExecutor;
 import cn.ChengZhiYa.MHDFBot.api.manager.Listener;
 import cn.ChengZhiYa.MHDFBot.api.manager.Plugin;
 import cn.ChengZhiYa.MHDFBot.entity.YamlConfiguration;
+import cn.ChengZhiYa.MHDFBot.entity.plugin.Command;
 import cn.ChengZhiYa.MHDFBot.entity.plugin.PluginInfo;
 import cn.ChengZhiYa.MHDFBot.util.LogUtil;
 import lombok.Data;
@@ -31,20 +31,12 @@ public abstract class MHDFBotPlugin implements Plugin {
         LogUtil.colorLog(message);
     }
 
-    public void registerCommand(CommandExecutor commandExecute, String... commands) {
-        MHDFBot.registerCommand(getPluginInfo(), commandExecute, commands);
-    }
-
-    public void registerCommand(String description, CommandExecutor commandExecute, String... commands) {
-        MHDFBot.registerCommand(getPluginInfo(), description, commandExecute, commands);
-    }
-
-    public void registerCommand(String description, String usage, CommandExecutor commandExecute, String... commands) {
-        MHDFBot.registerCommand(getPluginInfo(), description, usage, commandExecute, commands);
+    public Command getCommand(String command) {
+        return MHDFBot.getCommand(command).setPluginInfo(this.pluginInfo);
     }
 
     public void registerListener(Listener listener) {
-        MHDFBot.registerListener(listener);
+        MHDFBot.registerListener(getPluginInfo(), listener);
     }
 
     public File getDataFolder() {
@@ -55,7 +47,7 @@ public abstract class MHDFBotPlugin implements Plugin {
         if (!getDataFolder().exists()) {
             getDataFolder().mkdir();
         }
-        saveResource(getDataFolder().getPath(),"config.yml","config.yml",false);
+        saveResource(getDataFolder().getPath(), "config.yml", "config.yml", false);
     }
 
     public void reloadConfig() {
@@ -75,7 +67,8 @@ public abstract class MHDFBotPlugin implements Plugin {
             if (jarEntry != null) {
                 return getPluginJar().getInputStream(jarEntry);
             }
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
         return null;
     }
 

@@ -18,7 +18,7 @@ public final class Scheduler {
 
     public void runTaskLater(Runnable task, long delay) {
         try {
-            Thread.sleep(delay*1000);
+            Thread.sleep(delay * 1000);
             task.run();
             executorService.shutdown();
         } catch (InterruptedException e) {

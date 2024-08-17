@@ -1,5 +1,7 @@
 package cn.ChengZhiYa.MHDFBot.api.builder;
 
+import cn.ChengZhiYa.MHDFBot.api.util.MessageUtil;
+
 public final class MediaBuilder {
     private String file;
     private Boolean cache;
@@ -44,7 +46,7 @@ public final class MediaBuilder {
 
     public String build() {
         StringBuilder builder = new StringBuilder();
-        builder.append("file=").append(this.file);
+        builder.append("file=").append(MessageUtil.escape(this.file));
         if (this.cache != null) {
             builder.append(",cache=").append(this.cache);
         }

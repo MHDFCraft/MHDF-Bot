@@ -8,7 +8,7 @@ import static cn.ChengZhiYa.MHDFBot.util.LogUtil.colorLog;
 
 public final class Plugins implements CommandExecutor {
     @Override
-    public void run(String command, String[] args) {
+    public void onCommand(String command, String[] args) {
         StringBuilder pluginsMessage = new StringBuilder("插件(" + PluginUtil.getPluginHashMap().size() + "): ");
         for (PluginInfo pluginInfo : PluginUtil.getPluginHashMap().keySet()) {
             switch (PluginUtil.getPluginHashMap().get(pluginInfo)) {

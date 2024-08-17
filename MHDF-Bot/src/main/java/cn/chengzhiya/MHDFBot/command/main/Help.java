@@ -10,7 +10,7 @@ import static cn.ChengZhiYa.MHDFBot.util.LogUtil.colorLog;
 
 public final class Help implements CommandExecutor {
     @Override
-    public void run(String label, String[] args) {
+    public void onCommand(String label, String[] args) {
         StringBuilder helpMessage = new StringBuilder("&e==============&6命令帮助&e==============&r").append("\n");
         for (String commandString : CommandUtil.getCommandHashMap().keySet()) {
             Command command = CommandUtil.getCommandHashMap().get(commandString);
@@ -20,9 +20,9 @@ public final class Help implements CommandExecutor {
                 helpMessage.append(" 用法:").append(command.getUsage());
             }
             if (command.getDescription() != null) {
-                helpMessage.append(" 简介:").append(command.getDescription());
+                helpMessage.append("#FF888C 简介:").append(command.getDescription());
             }
-            helpMessage.append(" 来自:").append(pluginInfo.getName()).append("(").append(pluginInfo.getVersion()).append(")").append("\n");
+            helpMessage.append("#FFBD88 来自:").append(pluginInfo.getName()).append("(").append(pluginInfo.getVersion()).append(")").append("\n");
         }
         helpMessage.append("&e==============&6命令帮助&e==============");
         colorLog(helpMessage.toString());

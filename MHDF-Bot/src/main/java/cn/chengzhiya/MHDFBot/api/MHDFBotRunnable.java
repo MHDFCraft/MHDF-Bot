@@ -12,7 +12,7 @@ public abstract class MHDFBotRunnable implements Runnable {
     }
 
     public void runTaskLater(long delay) {
-        MHDFBot.getScheduler().runTaskLater(this::run,delay);
+        MHDFBot.getScheduler().runTaskLater(this::run, delay);
     }
 
     public void runTaskAsynchronously() {
@@ -20,10 +20,10 @@ public abstract class MHDFBotRunnable implements Runnable {
     }
 
     public void runTaskAsynchronouslyLater(long delay) {
-        MHDFBot.getScheduler().runTaskAsynchronouslyLater(this::run,delay);
+        MHDFBot.getScheduler().runTaskAsynchronouslyLater(this::run, delay);
     }
 
     public void runTaskAsynchronouslyTimer(long delay, long period) {
-        MHDFBot.getScheduler().runTaskAsynchronouslyTimer(this::run,delay,period);
+        MHDFBot.getScheduler().runTaskAsynchronouslyTimer(this::run, delay, period);
     }
 }

@@ -1,5 +1,5 @@
 package cn.ChengZhiYa.MHDFBot.api.manager;
 
 public interface CommandExecutor {
-    void run(String command, String[] args);
+    void onCommand(String command, String[] args);
 }

@@ -1,5 +1,6 @@
 package cn.ChengZhiYa.MHDFBot.api.builder;
 
+import cn.ChengZhiYa.MHDFBot.api.util.MessageUtil;
 import cn.ChengZhiYa.MHDFBot.entity.Music;
 
 public final class MessageBuilder {
@@ -59,14 +60,14 @@ public final class MessageBuilder {
         return this;
     }
 
-    public MessageBuilder music(String type,long musicId) {
+    public MessageBuilder music(String type, long musicId) {
         builder.append("[CQ:music,type=").append(type).append(",id=").append(musicId).append("]");
         return this;
     }
 
     public MessageBuilder customMusic(Music music) {
-        builder.append("[CQ:music,type=custom,url=").append(music.getUrl()).append(",title=").append(music.getTitle()).append(",content=")
-                .append(music.getContent()).append(",image=").append(music.getImage()).append(",audio=").append(music.getAudio()).append("]");
+        builder.append("[CQ:music,type=custom,url=").append(MessageUtil.escape(music.getUrl())).append(",title=").append(MessageUtil.escape(music.getTitle())).append(",content=")
+                .append(MessageUtil.escape(music.getContent())).append(",image=").append(MessageUtil.escape(music.getImage())).append(",audio=").append(MessageUtil.escape(music.getAudio())).append("]");
         return this;
     }
 
@@ -76,10 +77,6 @@ public final class MessageBuilder {
     }
 
     public String build() {
-        return builder.toString()
-                .replace("&", "&amp;")
-                .replace(",", "&#44;")
-                .replace("[", "&#91;")
-                .replace("]", "&#93;");
+        return builder.toString();
     }
 }

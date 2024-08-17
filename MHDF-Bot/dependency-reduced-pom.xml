@@ -32,14 +32,22 @@
               <goal>shade</goal>
             </goals>
             <configuration>
-              <minimizeJar>true</minimizeJar>
               <filters>
                 <filter>
                   <artifact>*:*</artifact>
                   <excludes>
+                    <exclude>AUTHORS</exclude>
+                    <exclude>.api_description</exclude>
+                    <exclude>LICENSE</exclude>
+                    <exclude>README</exclude>
+                    <exclude>INFO_SRC</exclude>
+                    <exclude>INFO_BIN</exclude>
                     <exclude>META-INF/*.SF</exclude>
                     <exclude>META-INF/*.DSA</exclude>
                     <exclude>META-INF/*.RSA</exclude>
+                    <exclude>*.txt</exclude>
+                    <exclude>*.md</exclude>
+                    <exclude>*.html</exclude>
                   </excludes>
                 </filter>
               </filters>

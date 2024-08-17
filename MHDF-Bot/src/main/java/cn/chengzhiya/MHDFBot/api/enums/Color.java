@@ -56,6 +56,6 @@ public enum Color {
                     .replace("&r", "\u001B[0m")
                     .replace("&" + color.getCode(), rgb(color.getColor().getRed(), color.getColor().getGreen(), color.getColor().getBlue()));
         }
-        return message + "\u001B[0m";
+        return message;
     }
 }

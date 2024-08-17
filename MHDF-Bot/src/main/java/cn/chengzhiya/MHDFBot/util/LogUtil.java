@@ -7,6 +7,6 @@ public final class LogUtil {
         for (Object var : vars) {
             message = message.replaceFirst("\\{}", var.toString());
         }
-        System.out.println(Color.colorMessage(message));
+        System.out.println(Color.colorMessage(message + "\u001B[0m"));
     }
 }

@@ -3,7 +3,6 @@ package cn.ChengZhiYa.MHDFBot.api;
 import cn.ChengZhiYa.MHDFBot.api.enums.message.MessageType;
 import cn.ChengZhiYa.MHDFBot.api.enums.request.RequestSubType;
 import cn.ChengZhiYa.MHDFBot.api.event.MessageEvent;
-import cn.ChengZhiYa.MHDFBot.api.manager.CommandExecutor;
 import cn.ChengZhiYa.MHDFBot.api.manager.Listener;
 import cn.ChengZhiYa.MHDFBot.client.WebSocket;
 import cn.ChengZhiYa.MHDFBot.entity.Bot;
@@ -16,6 +15,7 @@ import cn.ChengZhiYa.MHDFBot.entity.user.Stranger;
 import cn.ChengZhiYa.MHDFBot.event.message.GroupMessageEvent;
 import cn.ChengZhiYa.MHDFBot.util.CommandUtil;
 import cn.ChengZhiYa.MHDFBot.util.ListenerUtil;
+import cn.ChengZhiYa.MHDFBot.util.PluginUtil;
 import com.alibaba.fastjson2.JSONObject;
 import lombok.Getter;
 import lombok.Setter;
@@ -365,25 +365,18 @@ public final class MHDFBot {
         return memberList;
     }
 
-    public static void registerCommand(PluginInfo pluginInfo, CommandExecutor commandExecute, String... commands) {
-        for (String command : commands) {
-            CommandUtil.getCommandHashMap().put(command, new Command(pluginInfo, commandExecute));
-        }
+    public static Command getCommand(String command) {
+        return CommandUtil.getCommand(command).addAlias(command);
     }
 
-    public static void registerCommand(PluginInfo pluginInfo, String description, CommandExecutor commandExecute, String... commands) {
-        for (String command : commands) {
-            CommandUtil.getCommandHashMap().put(command, new Command(pluginInfo, commandExecute, description));
-        }
+    public static void registerListener(PluginInfo pluginInfo, Listener listener) {
+        ListenerUtil.registerListener(pluginInfo, listener);
     }
 
-    public static void registerCommand(PluginInfo pluginInfo, String description, String usage, CommandExecutor commandExecute, String... commands) {
-        for (String command : commands) {
-            CommandUtil.getCommandHashMap().put(command, new Command(pluginInfo, commandExecute, description, usage));
+    public static void exit() {
+        for (MHDFBotPlugin botPlugin : PluginUtil.getBotPluginList()) {
+            botPlugin.onDisable();
         }
-    }
-
-    public static void registerListener(Listener listener) {
-        ListenerUtil.registerListener(listener);
+        System.exit(0);
     }
 }
