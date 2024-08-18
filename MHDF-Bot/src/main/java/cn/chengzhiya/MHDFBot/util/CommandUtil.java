@@ -5,7 +5,6 @@ import cn.ChengZhiYa.MHDFBot.entity.plugin.Command;
 import lombok.Getter;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import static cn.ChengZhiYa.MHDFBot.util.LogUtil.colorLog;
 

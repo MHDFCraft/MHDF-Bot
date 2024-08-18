@@ -11,7 +11,7 @@ import static cn.ChengZhiYa.MHDFBot.util.LogUtil.colorLog;
 public final class Help implements CommandExecutor {
     @Override
     public void onCommand(String label, String[] args) {
-        StringBuilder helpMessage = new StringBuilder("&e==============&6命令帮助&e==============&r").append("\n");
+        StringBuilder helpMessage = new StringBuilder("&f==============&e命令帮助&f==============&r").append("\n");
         for (String commandString : CommandUtil.getCommandHashMap().keySet()) {
             Command command = CommandUtil.getCommandHashMap().get(commandString);
             PluginInfo pluginInfo = command.getPluginInfo() != null ? command.getPluginInfo() : MHDFBot.getBotInfo();
@@ -24,7 +24,7 @@ public final class Help implements CommandExecutor {
             }
             helpMessage.append("#FFBD88 来自:").append(pluginInfo.getName()).append("(").append(pluginInfo.getVersion()).append(")").append("\n");
         }
-        helpMessage.append("&e==============&6命令帮助&e==============");
+        helpMessage.append("&f==============&e命令帮助&f==============");
         colorLog(helpMessage.toString());
     }
 }

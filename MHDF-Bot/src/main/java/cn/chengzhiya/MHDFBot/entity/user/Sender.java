@@ -22,7 +22,7 @@ public final class Sender {
         this.nickName = senderData.getString("nickname");
         this.longNick = senderData.getString("longNick");
         this.sex = SexType.getType(senderData.getString("sex"));
-        this.age = senderData.getInteger("age");
+        this.age = senderData.getIntValue("age");
         this.area = senderData.getString("area");
         this.level = senderData.getString("level");
         this.role = RoleType.getType(senderData.getString("role"));

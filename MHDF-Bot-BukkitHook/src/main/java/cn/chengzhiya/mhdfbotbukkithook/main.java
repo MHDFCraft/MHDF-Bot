@@ -1,8 +1,6 @@
 package cn.ChengZhiYa.MHDFBotBukkitHook;
 
-import cn.ChengZhiYa.MHDFBotBukkitHook.listener.WebSocket;
 import cn.ChengZhiYa.MHDFBotBukkitHook.util.ConfigUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import static cn.ChengZhiYa.MHDFBotBukkitHook.client.WebSocket.connectWebSocketServer;
@@ -18,13 +16,10 @@ public final class main extends JavaPlugin {
         instance = this;
 
         createDir(getDataFolder());
-        ConfigUtil.saveResource("./", "config.yml", "config.yml", false);
+        ConfigUtil.saveResource(getDataFolder().getPath(), "config.yml", "config.yml", false);
 
         reloadConfig();
-
         connectWebSocketServer();
-
-        Bukkit.getPluginManager().registerEvents(new WebSocket(), this);
 
         colorLog("&f============&6梦之机器人-子服连接器&f============");
         colorLog("&e插件启动完成!");

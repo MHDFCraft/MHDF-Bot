@@ -13,7 +13,7 @@ public final class GroupInfo {
     public GroupInfo(JSONObject groupInfoData) {
         this.groupId = groupInfoData.getLong("group_id");
         this.groupName = groupInfoData.getString("group_name");
-        this.memberCount = groupInfoData.getInteger("member_count");
-        this.maxMemberCount = groupInfoData.getInteger("max_member_count");
+        this.memberCount = groupInfoData.getIntValue("member_count");
+        this.maxMemberCount = groupInfoData.getIntValue("max_member_count");
     }
 }

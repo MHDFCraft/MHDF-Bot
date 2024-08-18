@@ -56,6 +56,15 @@ public final class PluginUtil {
         return null;
     }
 
+    public static void reloadPlugin(String pluginName) {
+        MHDFBotPlugin plugin = getPlugin(pluginName);
+        if (plugin != null) {
+            File pluginFile = new File(plugin.getPluginJar().getName());
+            unloadPlugin(pluginName);
+            loadPlugin(pluginFile.toPath());
+        }
+    }
+
     public static void unloadPlugin(String pluginName) {
         MHDFBotPlugin plugin = getPlugin(pluginName);
         if (plugin != null) {
@@ -72,7 +81,7 @@ public final class PluginUtil {
             {
                 HashMap<String, Command> commandTempHashMap = (HashMap<String, Command>) CommandUtil.getCommandHashMap().clone();
                 for (String commandString : commandTempHashMap.keySet()) {
-                    if (CommandUtil.getCommandHashMap().get(commandString).getPluginInfo()!=null) {
+                    if (CommandUtil.getCommandHashMap().get(commandString).getPluginInfo() != null) {
                         if (CommandUtil.getCommandHashMap().get(commandString).getPluginInfo().getName().equals(pluginName)) {
                             CommandUtil.getCommandHashMap().remove(commandString);
                         }
@@ -81,6 +90,11 @@ public final class PluginUtil {
 
             }
             plugin.onDisable();
+            try {
+                plugin.getPluginJar().close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -118,15 +132,15 @@ public final class PluginUtil {
                 colorLog("加载插件{}({})中", pluginInfo.getName(), pluginInfo.getVersion());
                 try {
                     URL[] urls = {pluginPath.toUri().toURL()};
-                    try (URLClassLoader classLoader = new URLClassLoader(urls, MHDFBot.class.getClassLoader())) {
-                        Class<?> clazz = classLoader.loadClass(pluginInfo.getMain());
-                        MHDFBotPlugin mhdfBotPlugin = (MHDFBotPlugin) clazz.getDeclaredConstructor().newInstance();
-                        mhdfBotPlugin.setPluginInfo(pluginInfo);
-                        mhdfBotPlugin.setPluginJar(jarFile);
-                        mhdfBotPlugin.onEnable();
-                        botPluginList.add(mhdfBotPlugin);
-                        getPluginHashMap().put(pluginInfo, PluginStatus.Load_Done);
-                    }
+                    URLClassLoader classLoader = new URLClassLoader(urls, MHDFBot.class.getClassLoader());
+                    Thread.currentThread().setContextClassLoader(classLoader);
+                    Class<?> clazz = classLoader.loadClass(pluginInfo.getMain());
+                    MHDFBotPlugin mhdfBotPlugin = (MHDFBotPlugin) clazz.getDeclaredConstructor().newInstance();
+                    mhdfBotPlugin.setPluginInfo(pluginInfo);
+                    mhdfBotPlugin.setPluginJar(jarFile);
+                    mhdfBotPlugin.onEnable();
+                    botPluginList.add(mhdfBotPlugin);
+                    getPluginHashMap().put(pluginInfo, PluginStatus.Load_Done);
                 } catch (Exception e) {
                     getPluginHashMap().put(pluginInfo, PluginStatus.Load_Error);
                     e.printStackTrace();

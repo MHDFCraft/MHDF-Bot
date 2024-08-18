@@ -17,6 +17,6 @@ public final class Friend {
         this.nickName = friendData.getString("nickname");
         this.remark = friendData.getString("remark");
         this.sex = SexType.getType(friendData.getString("sex"));
-        this.level = friendData.getInteger("level");
+        this.level = friendData.getIntValue("level");
     }
 }

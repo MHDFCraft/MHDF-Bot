@@ -19,7 +19,7 @@ public abstract class MessageEvent extends BotEvent {
         this.messageType = MessageType.getType(eventData.getString("message_type"));
         this.subType = MessageSubType.getSubType(eventData.getString("sub_type"));
         this.message = eventData.getString("raw_message");
-        this.messageId = eventData.getInteger("message_id");
+        this.messageId = eventData.getIntValue("message_id");
         this.sender = new Sender(eventData.getJSONObject("sender"));
     }
 }

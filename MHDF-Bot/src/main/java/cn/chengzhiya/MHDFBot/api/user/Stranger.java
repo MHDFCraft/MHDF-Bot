@@ -26,16 +26,16 @@ public abstract class Stranger {
         this.nickName = strangerData.getString("nickname");
         this.card = strangerData.getString("longNick");
         this.birthday = new Birthday(
-                strangerData.getInteger("birthday_year"),
-                strangerData.getInteger("birthday_month"),
-                strangerData.getInteger("birthday_day")
+                strangerData.getIntValue("birthday_year"),
+                strangerData.getIntValue("birthday_month"),
+                strangerData.getIntValue("birthday_day")
         );
         this.sex = SexType.getType(strangerData.getString("sex"));
         this.country = strangerData.getString("country");
         this.province = strangerData.getString("province");
         this.city = strangerData.getString("city");
         this.regTime = strangerData.getLong("regTime");
-        this.labels = strangerData.getJSONArray("labels").toArray(String.class);
-        this.level = strangerData.getInteger("level");
+        this.labels = strangerData.get("labels") != null ? strangerData.getJSONArray("labels").toArray(String.class) : new String[0];
+        this.level = strangerData.getIntValue("level");
     }
 }

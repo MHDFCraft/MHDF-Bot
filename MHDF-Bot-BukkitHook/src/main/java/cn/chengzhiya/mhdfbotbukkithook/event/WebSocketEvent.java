@@ -12,6 +12,7 @@ public final class WebSocketEvent extends Event {
     JSONObject data;
 
     public WebSocketEvent(JSONObject data) {
+        super(true);
         this.data = data;
     }
 

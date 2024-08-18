@@ -9,6 +9,8 @@ import static cn.ChengZhiYa.MHDFBot.util.LogUtil.colorLog;
 public final class GroupMessage implements Listener {
     @EventHandler
     public void onGroupMessage(GroupMessageEvent event) {
-        colorLog("在QQ群({})收到了一个消息 {}({}) -> {}", event.getGroupId(), event.getSender().getNickName(), event.getSender().getUserId(), event.getMessage());
+        if (event.getGroupId() == 1005396066) {
+            colorLog("在QQ群({})收到了一个消息 {}({}) -> {}", event.getGroupId(), event.getSender().getNickName(), event.getSender().getUserId(), event.getMessage());
+        }
     }
 }

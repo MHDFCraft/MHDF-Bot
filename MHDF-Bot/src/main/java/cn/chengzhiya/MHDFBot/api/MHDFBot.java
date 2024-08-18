@@ -14,12 +14,19 @@ import cn.ChengZhiYa.MHDFBot.entity.user.Member;
 import cn.ChengZhiYa.MHDFBot.entity.user.Stranger;
 import cn.ChengZhiYa.MHDFBot.event.message.GroupMessageEvent;
 import cn.ChengZhiYa.MHDFBot.util.CommandUtil;
+import cn.ChengZhiYa.MHDFBot.util.ConfigUtil;
 import cn.ChengZhiYa.MHDFBot.util.ListenerUtil;
 import cn.ChengZhiYa.MHDFBot.util.PluginUtil;
+import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -270,28 +277,52 @@ public final class MHDFBot {
     }
 
     public static Stranger getStrangerInfo(Long targetId) {
-        updateStrangerInfo(targetId);
-        JSONObject data = WebSocket.getEchoHashMap().get("get_stranger_info|" + targetId);
-        for (int i = 0; i < 5; i++) {
-            if (data == null) {
-                updateStrangerInfo(targetId);
-                data = WebSocket.getEchoHashMap().get("get_stranger_info|" + targetId);
-            } else {
-                break;
+        JSONObject data;
+        if (!ConfigUtil.getConfig().getBoolean("OneBotSettings.HttpSettings.Enable")) {
+            updateStrangerInfo(targetId);
+            data = WebSocket.getEchoHashMap().get("get_stranger_info|" + targetId);
+        } else {
+            try {
+                URL url = new URL(ConfigUtil.getConfig().getString("OneBotSettings.HttpSettings.Host") + "get_stranger_info?user_id=" + targetId);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setConnectTimeout(1000);
+                conn.setReadTimeout(1000);
+
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    String response = in.readLine();
+                    data = JSON.parseObject(response);
+                } finally {
+                    conn.disconnect();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
         return new Stranger(data.getJSONObject("data"));
     }
 
     public static List<Friend> getFriendList() {
-        updateFriendList();
-        JSONObject data = WebSocket.getEchoHashMap().get("get_friend_list");
-        for (int i = 0; i < 5; i++) {
-            if (data == null) {
-                updateFriendList();
-                data = WebSocket.getEchoHashMap().get("get_friend_list");
-            } else {
-                break;
+        JSONObject data;
+        if (!ConfigUtil.getConfig().getBoolean("OneBotSettings.HttpSettings.Enable")) {
+            updateFriendList();
+            data = WebSocket.getEchoHashMap().get("get_friend_list");
+        } else {
+            try {
+                URL url = new URL(ConfigUtil.getConfig().getString("OneBotSettings.HttpSettings.Host") + "get_friend_list");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setConnectTimeout(1000);
+                conn.setReadTimeout(1000);
+
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    String response = in.readLine();
+                    data = JSON.parseObject(response);
+                } finally {
+                    conn.disconnect();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
         List<Friend> friendList = new ArrayList<>();
@@ -302,28 +333,52 @@ public final class MHDFBot {
     }
 
     public static GroupInfo getGroupInfo(Long targetId) {
-        updateGroupInfo(targetId);
-        JSONObject data = WebSocket.getEchoHashMap().get("get_group_info|" + targetId);
-        for (int i = 0; i < 5; i++) {
-            if (data == null) {
-                updateGroupInfo(targetId);
-                data = WebSocket.getEchoHashMap().get("get_group_info|" + targetId);
-            } else {
-                break;
+        JSONObject data;
+        if (!ConfigUtil.getConfig().getBoolean("OneBotSettings.HttpSettings.Enable")) {
+            updateGroupInfo(targetId);
+            data = WebSocket.getEchoHashMap().get("get_group_info|" + targetId);
+        } else {
+            try {
+                URL url = new URL(ConfigUtil.getConfig().getString("OneBotSettings.HttpSettings.Host") + "get_group_info?group_id=" + targetId);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setConnectTimeout(1000);
+                conn.setReadTimeout(1000);
+
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    String response = in.readLine();
+                    data = JSON.parseObject(response);
+                } finally {
+                    conn.disconnect();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
         return new GroupInfo(data.getJSONObject("data"));
     }
 
     public static List<GroupInfo> getGroupList() {
-        updateGroupList();
-        JSONObject data = WebSocket.getEchoHashMap().get("get_group_list");
-        for (int i = 0; i < 5; i++) {
-            if (data == null) {
-                updateGroupList();
-                data = WebSocket.getEchoHashMap().get("get_group_list");
-            } else {
-                break;
+        JSONObject data;
+        if (!ConfigUtil.getConfig().getBoolean("OneBotSettings.HttpSettings.Enable")) {
+            updateGroupList();
+            data = WebSocket.getEchoHashMap().get("get_group_list");
+        } else {
+            try {
+                URL url = new URL(ConfigUtil.getConfig().getString("OneBotSettings.HttpSettings.Host") + "get_group_list");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setConnectTimeout(1000);
+                conn.setReadTimeout(1000);
+
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    String response = in.readLine();
+                    data = JSON.parseObject(response);
+                } finally {
+                    conn.disconnect();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
         List<GroupInfo> groupList = new ArrayList<>();
@@ -334,28 +389,52 @@ public final class MHDFBot {
     }
 
     public static Member getGroupMemberInfo(Long groupId, Long targetId) {
-        updateGroupMemberInfo(groupId, targetId);
-        JSONObject data = WebSocket.getEchoHashMap().get("get_group_member_info|" + groupId + "|" + targetId);
-        for (int i = 0; i < 5; i++) {
-            if (data == null) {
-                updateGroupMemberInfo(groupId, targetId);
-                data = WebSocket.getEchoHashMap().get("get_group_member_info|" + groupId + "|" + targetId);
-            } else {
-                break;
+        JSONObject data;
+        if (!ConfigUtil.getConfig().getBoolean("OneBotSettings.HttpSettings.Enable")) {
+            updateGroupMemberInfo(groupId, targetId);
+            data = WebSocket.getEchoHashMap().get("get_group_member_info|" + groupId + "|" + targetId);
+        } else {
+            try {
+                URL url = new URL(ConfigUtil.getConfig().getString("OneBotSettings.HttpSettings.Host") + "get_group_member_info?group_id=" + groupId + "&user_id=" + targetId);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setConnectTimeout(1000);
+                conn.setReadTimeout(1000);
+
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    String response = in.readLine();
+                    data = JSON.parseObject(response);
+                } finally {
+                    conn.disconnect();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
         return new Member(data.getJSONObject("data"));
     }
 
     public static List<Member> getGroupMemberList(Long targetId) {
-        updateGroupMemberList(targetId);
-        JSONObject data = WebSocket.getEchoHashMap().get("get_group_member_list|" + targetId);
-        for (int i = 0; i < 5; i++) {
-            if (data == null) {
-                updateGroupMemberList(targetId);
-                data = WebSocket.getEchoHashMap().get("get_group_member_list|" + targetId);
-            } else {
-                break;
+        JSONObject data;
+        if (!ConfigUtil.getConfig().getBoolean("OneBotSettings.HttpSettings.Enable")) {
+            updateGroupMemberList(targetId);
+            data = WebSocket.getEchoHashMap().get("get_group_member_list|" + targetId);
+        } else {
+            try {
+                URL url = new URL(ConfigUtil.getConfig().getString("OneBotSettings.HttpSettings.Host") + "get_group_member_list?user_id=" + targetId);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setConnectTimeout(1000);
+                conn.setReadTimeout(1000);
+
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    String response = in.readLine();
+                    data = JSON.parseObject(response);
+                } finally {
+                    conn.disconnect();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
         List<Member> memberList = new ArrayList<>();

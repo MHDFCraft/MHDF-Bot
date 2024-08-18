@@ -1,3 +1,0 @@
-name: MHDF-Bot-BungeeCordHook
-version: '${project.version}'
-main: cn.ChengZhiYa.mhdfbotbungeecordhook.main

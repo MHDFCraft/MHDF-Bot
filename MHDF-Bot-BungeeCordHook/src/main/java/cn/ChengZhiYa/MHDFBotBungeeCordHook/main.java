@@ -1,6 +1,5 @@
 package cn.ChengZhiYa.MHDFBotBungeeCordHook;
 
-import cn.ChengZhiYa.MHDFBotBungeeCordHook.listener.WebSocket;
 import cn.ChengZhiYa.MHDFBotBungeeCordHook.util.ConfigUtil;
 import net.md_5.bungee.api.plugin.Plugin;
 
@@ -22,8 +21,6 @@ public final class main extends Plugin {
         reloadConfig();
 
         connectWebSocketServer();
-
-        getProxy().getPluginManager().registerListener(this, new WebSocket());
 
         getLogger().info("&f============&6梦之机器人-子服连接器&f============");
         getLogger().info("&e插件启动完成!");

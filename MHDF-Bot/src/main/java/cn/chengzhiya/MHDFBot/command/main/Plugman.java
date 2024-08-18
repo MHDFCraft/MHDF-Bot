@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static cn.ChengZhiYa.MHDFBot.util.LogUtil.colorLog;
+import static cn.ChengZhiYa.MHDFBot.util.PluginUtil.reloadPlugin;
 import static cn.ChengZhiYa.MHDFBot.util.PluginUtil.unloadPlugin;
 
 public final class Plugman implements TabExecutor {
@@ -19,16 +20,25 @@ public final class Plugman implements TabExecutor {
     public void onCommand(String command, String[] args) {
         if (args.length == 2) {
             switch (args[0]) {
+                case "reload" -> {
+                    if (PluginUtil.getPlugin(args[1]) != null) {
+                        reloadPlugin(args[1]);
+                    } else {
+                        colorLog("&c不存在{}这个插件!", args[1]);
+                    }
+                    return;
+                }
                 case "unload" -> {
                     if (PluginUtil.getPlugin(args[1]) != null) {
                         unloadPlugin(args[1]);
                     } else {
                         colorLog("&c不存在{}这个插件!", args[1]);
                     }
+                    return;
                 }
                 case "load" -> {
-                    File pluginFile = new File(PluginUtil.getPluginFolder().toFile(),args[1]);
-                    if (pluginFile.exists()) {
+                    File pluginFile = new File(PluginUtil.getPluginFolder().toFile(), args[1]);
+                    if (pluginFile.exists() && pluginFile.isFile()) {
                         PluginInfo info = PluginUtil.getPluginInfo(pluginFile.toPath());
                         if (PluginUtil.getPlugin(Objects.requireNonNull(info).getName()) == null) {
                             PluginUtil.loadPlugin(pluginFile.toPath());
@@ -38,24 +48,31 @@ public final class Plugman implements TabExecutor {
                     } else {
                         colorLog("&c不存在{}这个插件!", args[1]);
                     }
+                    return;
                 }
             }
         }
+        colorLog("""
+                &f=========&e插件管理&f=========
+                #88CDFFplugman reload <插件名字> &f| #FF888C重载指定插件
+                #88CDFFplugman unload <插件名字> &f| #FF888C卸载指定插件
+                #88CDFFplugman load <插件文件名字> &f| #FF888C加载指定插件
+                &f=========&e插件管理&f=========""");
     }
 
     @Override
     public List<String> onTabComplete(String command, String[] args) {
         if (args.length == 1) {
-            return List.of("unload", "load");
+            return List.of("reload", "unload", "load");
         }
         if (args.length == 2) {
             switch (args[0]) {
-                case "unload" -> {
+                case "reload", "unload" -> {
                     return PluginUtil.getPluginHashMap().keySet().stream().map(PluginInfo::getName).toList();
                 }
                 case "load" -> {
                     try {
-                        return PluginUtil.getNotLoadPlugins().stream().map(Path::toString).map(s -> s.replaceAll("\\\\","/").replaceAll("\\./plugins/","")).toList();
+                        return PluginUtil.getNotLoadPlugins().stream().map(Path::toString).map(s -> s.replaceAll("\\\\", "/").replaceAll("\\./plugins/", "")).toList();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
