@@ -90,6 +90,6 @@ public final class WebSocket {
     @OnMessage
     public void onMessage(Session session, String message) {
         JSONObject data = JSONObject.parseObject(message);
-        ListenerUtil.callEvent(new WebSocketEvent(ServerType.getSubType(data.getString("server_type")), data.getJSONObject("data")));
+        ListenerUtil.callEvent(new WebSocketEvent(ServerType.getSubType(data.getString("server_type")), data.getString("action"), data.getJSONObject("data")));
     }
 }

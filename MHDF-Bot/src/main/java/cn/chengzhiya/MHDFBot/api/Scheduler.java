@@ -38,7 +38,6 @@ public final class Scheduler {
 
     public void runTaskAsynchronouslyTimer(Runnable task, long delay, long period) {
         executorService.scheduleAtFixedRate(task, delay, period, TimeUnit.SECONDS);
-        executorService.shutdown();
     }
 
     public void shutdown() {

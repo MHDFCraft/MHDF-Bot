@@ -1,10 +1,8 @@
 package cn.ChengZhiYa.MHDFBotBukkitHook;
 
-import cn.ChengZhiYa.MHDFBotBukkitHook.util.ConfigUtil;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import static cn.ChengZhiYa.MHDFBotBukkitHook.client.WebSocket.connectWebSocketServer;
-import static cn.ChengZhiYa.MHDFBotBukkitHook.util.FileUtil.createDir;
 import static cn.ChengZhiYa.MHDFBotBukkitHook.util.MessageUtil.colorLog;
 
 public final class main extends JavaPlugin {
@@ -15,8 +13,8 @@ public final class main extends JavaPlugin {
         // Plugin startup logic
         instance = this;
 
-        createDir(getDataFolder());
-        ConfigUtil.saveResource(getDataFolder().getPath(), "config.yml", "config.yml", false);
+        saveDefaultConfig();
+        reloadConfig();
 
         reloadConfig();
         connectWebSocketServer();

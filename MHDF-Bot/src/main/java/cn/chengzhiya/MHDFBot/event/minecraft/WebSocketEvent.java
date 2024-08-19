@@ -8,10 +8,12 @@ import lombok.Getter;
 @Getter
 public final class WebSocketEvent extends MinecraftEvent {
     ServerType serverType;
+    String action;
     JSONObject data;
 
-    public WebSocketEvent(ServerType serverType, JSONObject eventData) {
+    public WebSocketEvent(ServerType serverType, String action, JSONObject eventData) {
         this.serverType = serverType;
+        this.action = action;
         this.data = eventData;
     }
 }

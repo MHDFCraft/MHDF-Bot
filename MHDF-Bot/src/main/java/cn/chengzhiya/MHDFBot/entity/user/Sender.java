@@ -9,6 +9,7 @@ import lombok.Data;
 public final class Sender {
     Long userId;
     String nickName;
+    String card;
     String longNick;
     SexType sex;
     Integer age;
@@ -20,6 +21,7 @@ public final class Sender {
     public Sender(JSONObject senderData) {
         this.userId = senderData.getLong("user_id");
         this.nickName = senderData.getString("nickname");
+        this.card = senderData.getString("card");
         this.longNick = senderData.getString("longNick");
         this.sex = SexType.getType(senderData.getString("sex"));
         this.age = senderData.getIntValue("age");

@@ -3,6 +3,7 @@ package cn.ChengZhiYa.MHDFBot;
 import cn.ChengZhiYa.MHDFBot.console.ConsoleCommandCompleter;
 import cn.ChengZhiYa.MHDFBot.entity.plugin.PluginInfo;
 import cn.ChengZhiYa.MHDFBot.server.WebSocket;
+import cn.ChengZhiYa.MHDFBot.task.HeartBeat;
 import cn.ChengZhiYa.MHDFBot.util.CommandUtil;
 import jline.console.ConsoleReader;
 import lombok.Getter;
@@ -28,6 +29,8 @@ public class MHDFBot {
 
         cn.ChengZhiYa.MHDFBot.api.MHDFBot.getScheduler().runTaskAsynchronously(WebSocket::startWebSocketServer);
         connectOneBotServer();
+
+        new HeartBeat().runTaskAsynchronouslyTimer(0L,1L);
 
         registerCommands();
         registerListeners();
