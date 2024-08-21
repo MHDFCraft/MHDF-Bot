@@ -117,6 +117,7 @@ public final class WebSocket {
     @OnClose
     public void onClose() {
         WebSocket.session = null;
+        connectOneBotServer();
     }
 
     @OnError
