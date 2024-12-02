@@ -4,29 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfb55dfe-83a9-449c-bfff-9d8a6235514a" name="更改" comment="修复readme一处错误">
-      <change afterPath="$PROJECT_DIR$/mhdf-bot-bukkithook/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhdf-bot-bukkithook/src/main/java/cn/chengzhiya/mhdfbotbukkithook/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhdf-bot-bukkithook/src/main/java/cn/chengzhiya/mhdfbotbukkithook/event/WebSocketEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhdf-bot-bukkithook/src/main/java/cn/chengzhiya/mhdfbotbukkithook/minecraft/WebSocketClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhdf-bot-bukkithook/src/main/resources/config.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhdf-bot-bukkithook/src/main/resources/plugin.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhdf-bot-bungeehook/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhdf-bot-bungeehook/src/main/java/cn/chengzhiya/mhdfbotbungeehook/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhdf-bot-bungeehook/src/main/java/cn/chengzhiya/mhdfbotbungeehook/event/WebSocketEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhdf-bot-bungeehook/src/main/java/cn/chengzhiya/mhdfbotbungeehook/minecraft/WebSocketClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhdf-bot-bungeehook/src/main/resources/bungee.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mhdf-bot-bungeehook/src/main/resources/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+    <list default="true" id="cfb55dfe-83a9-449c-bfff-9d8a6235514a" name="更改" comment="实现服务端Hook">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mhdf-bot-pluginexample/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mhdf-bot-pluginexample/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mhdf-bot/src/main/java/cn/chengzhiya/mhdfbot/minecraft/MinecraftWebSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhdf-bot/src/main/java/cn/chengzhiya/mhdfbot/minecraft/MinecraftWebSocketServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mhdf-bot/src/main/java/cn/chengzhiya/mhdfbot/onebot/OneBotWebSocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhdf-bot/src/main/java/cn/chengzhiya/mhdfbot/onebot/OneBotWebSocketClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhdf-bot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mhdf-bot/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +25,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -61,7 +42,11 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Maven.mhdf-bot [org.apache.maven.plugins:maven-javadoc-plugin:3.11.1:javadoc].executor": "Run",
+    "Maven.mhdf-bot [org.apache.maven.plugins:maven-site-plugin:3.12.1:attach-descriptor].executor": "Run",
+    "Maven.mhdf-bot [org.projectlombok:lombok-maven-plugin:1.18.20.0:delombok].executor": "Run",
     "Maven.mhdfbot [clean].executor": "Run",
+    "Maven.mhdfbot [org.apache.maven.plugins:maven-javadoc-plugin:3.11.1:javadoc].executor": "Run",
     "Maven.mhdfbot [package].executor": "Run",
     "Maven.mhdfbot [verify].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -75,6 +60,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "项目",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "vue.rearranger.settings.migration": "true",
     "应用程序.Main.executor": "Run"
@@ -95,7 +83,7 @@
       <recent name="D:\Projects\MHDF-Bot\mhdf-bot\src\main\java\cn\chengzhiya\mhdfbot\api\enums" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Main">
+  <component name="RunManager" selected="Maven.generate javadoc">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cn.chengzhiya.mhdfbot.Main" />
       <module name="mhdf-bot" />
@@ -109,7 +97,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="mhdf-bot-bukkithook package" type="MavenRunConfiguration" factoryName="Maven">
+    <configuration name="MHDF-Bot build" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings" />
@@ -121,6 +109,7 @@
             </option>
             <option name="goals">
               <list>
+                <option value="clean" />
                 <option value="package" />
               </list>
             </option>
@@ -133,13 +122,13 @@
               <list />
             </option>
             <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="D:\Projects\MHDF-Bot\mhdf-bot-bukkithook" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
           </MavenRunnerParameters>
         </option>
       </MavenSettings>
       <method v="2" />
     </configuration>
-    <configuration name="mhdf-bot-bungeehook package" type="MavenRunConfiguration" factoryName="Maven">
+    <configuration name="generate javadoc" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings" />
@@ -151,7 +140,8 @@
             </option>
             <option name="goals">
               <list>
-                <option value="package" />
+                <option value="clean" />
+                <option value="javadoc:javadoc" />
               </list>
             </option>
             <option name="multimoduleDir" />
@@ -163,12 +153,17 @@
               <list />
             </option>
             <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="D:\Projects\MHDF-Bot\mhdf-bot-bungeehook" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/mhdf-bot" />
           </MavenRunnerParameters>
         </option>
       </MavenSettings>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Maven.MHDF-Bot build" />
+      <item itemvalue="Maven.generate javadoc" />
+      <item itemvalue="应用程序.Main" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="应用程序.Main" />
@@ -192,7 +187,7 @@
       <option name="presentableId" value="Default" />
       <updated>1733137924119</updated>
       <workItem from="1733137925759" duration="8249000" />
-      <workItem from="1733146220797" duration="2114000" />
+      <workItem from="1733146220797" duration="3053000" />
     </task>
     <task id="LOCAL-00001" summary="提交V2.0.0框架本体">
       <option name="closed" value="true" />
@@ -218,7 +213,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733146334037</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="实现服务端Hook">
+      <option name="closed" value="true" />
+      <created>1733148378723</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733148378723</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,6 +242,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="提交V2.0.0框架本体" />
     <MESSAGE value="修复readme一处错误" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复readme一处错误" />
+    <MESSAGE value="实现服务端Hook" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现服务端Hook" />
   </component>
 </project>
