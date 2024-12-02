@@ -19,6 +19,7 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+        <finalName>[梦之机器人-子服连接器]${project.artifactId}-${project.version}</finalName>
     </build>
 
     <repositories>
