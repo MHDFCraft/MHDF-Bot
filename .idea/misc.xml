@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
-    <list size="1">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="cn.chengzhiya.mhdfbot.api.listener.EventHandler" />
+      <item index="1" class="java.lang.String" itemvalue="jakarta.websocket.OnClose" />
+      <item index="2" class="java.lang.String" itemvalue="jakarta.websocket.OnError" />
+      <item index="3" class="java.lang.String" itemvalue="jakarta.websocket.OnMessage" />
+      <item index="4" class="java.lang.String" itemvalue="jakarta.websocket.OnOpen" />
     </list>
     <pattern value="cn.chengzhiya.mhdfbotpluginexample.Main" />
     <pattern value="cn.chengzhiya.mhdfbotpluginexample.Main" method="onDisable" />

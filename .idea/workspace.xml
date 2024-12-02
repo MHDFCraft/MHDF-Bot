@@ -4,7 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfb55dfe-83a9-449c-bfff-9d8a6235514a" name="更改" comment="提交V2.0.0框架本体" />
+    <list default="true" id="cfb55dfe-83a9-449c-bfff-9d8a6235514a" name="更改" comment="修复readme一处错误">
+      <change afterPath="$PROJECT_DIR$/mhdf-bot-bukkithook/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mhdf-bot-bukkithook/src/main/java/cn/chengzhiya/mhdfbotbukkithook/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mhdf-bot-bukkithook/src/main/java/cn/chengzhiya/mhdfbotbukkithook/event/WebSocketEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mhdf-bot-bukkithook/src/main/java/cn/chengzhiya/mhdfbotbukkithook/minecraft/WebSocketClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mhdf-bot-bukkithook/src/main/resources/config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mhdf-bot-bukkithook/src/main/resources/plugin.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mhdf-bot-bungeehook/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mhdf-bot-bungeehook/src/main/java/cn/chengzhiya/mhdfbotbungeehook/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mhdf-bot-bungeehook/src/main/java/cn/chengzhiya/mhdfbotbungeehook/event/WebSocketEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mhdf-bot-bungeehook/src/main/java/cn/chengzhiya/mhdfbotbungeehook/minecraft/WebSocketClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mhdf-bot-bungeehook/src/main/resources/bungee.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mhdf-bot-bungeehook/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhdf-bot-pluginexample/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mhdf-bot-pluginexample/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhdf-bot/src/main/java/cn/chengzhiya/mhdfbot/minecraft/MinecraftWebSocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhdf-bot/src/main/java/cn/chengzhiya/mhdfbot/minecraft/MinecraftWebSocketServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhdf-bot/src/main/java/cn/chengzhiya/mhdfbot/onebot/OneBotWebSocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhdf-bot/src/main/java/cn/chengzhiya/mhdfbot/onebot/OneBotWebSocketClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,12 +46,12 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2pesYZVHgocyGi7TAbRHeV7ggiE" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -37,13 +60,16 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Maven.mhdfbot [clean].executor": "Run",
     "Maven.mhdfbot [package].executor": "Run",
     "Maven.mhdfbot [verify].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
+    "jdk.selected.com.intellij.ui.dsl.builder.impl.RowImpl.sdk": "azul-21",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Projects/MHDF-Bot/mhdf-bot-bungeehook/src/main/java/cn/chengzhiya/mhdfbotbungeehook",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -52,14 +78,24 @@
     "run.code.analysis.last.selected.profile": "pProject Default",
     "vue.rearranger.settings.migration": "true",
     "应用程序.Main.executor": "Run"
+  },
+  "keyToStringList": {
+    "jdk.preference.com.intellij.ui.dsl.builder.impl.RowImpl.sdk": [
+      "21=C:/Users/ChengZhiYa/.jdks/azul-21.0.3"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\MHDF-Bot\mhdf-bot-bungeehook\src\main\java\cn\chengzhiya\mhdfbotbungeehook" />
+      <recent name="D:\Projects\MHDF-Bot\mhdf-bot-bukkithook\src\main\java\cn\chengzhiya\mhdfbotbukkithook\minecraft" />
+      <recent name="D:\Projects\MHDF-Bot\mhdf-bot-bungeehook\src\main\resources" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Projects\MHDF-Bot\mhdf-bot\src\main\java\cn\chengzhiya\mhdfbot\api\enums" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="应用程序.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cn.chengzhiya.mhdfbot.Main" />
       <module name="mhdf-bot" />
@@ -72,6 +108,66 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="mhdf-bot-bukkithook package" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="package" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="D:\Projects\MHDF-Bot\mhdf-bot-bukkithook" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="mhdf-bot-bungeehook package" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="package" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="D:\Projects\MHDF-Bot\mhdf-bot-bungeehook" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
@@ -96,6 +192,7 @@
       <option name="presentableId" value="Default" />
       <updated>1733137924119</updated>
       <workItem from="1733137925759" duration="8249000" />
+      <workItem from="1733146220797" duration="2114000" />
     </task>
     <task id="LOCAL-00001" summary="提交V2.0.0框架本体">
       <option name="closed" value="true" />
@@ -105,7 +202,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733146065795</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="提交V2.0.0框架本体">
+      <option name="closed" value="true" />
+      <created>1733146283967</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1733146283967</updated>
+    </task>
+    <task id="LOCAL-00003" summary="修复readme一处错误">
+      <option name="closed" value="true" />
+      <created>1733146334037</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733146334037</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,7 +236,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="提交V2.0.0框架本体" />
-    <option name="LAST_COMMIT_MESSAGE" value="提交V2.0.0框架本体" />
+    <MESSAGE value="修复readme一处错误" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复readme一处错误" />
   </component>
 </project>

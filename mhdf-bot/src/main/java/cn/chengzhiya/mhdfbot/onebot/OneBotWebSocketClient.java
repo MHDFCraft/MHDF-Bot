@@ -29,7 +29,7 @@ public final class OneBotWebSocketClient extends Endpoint {
     public Session session;
 
     /**
-     * 连接websocket服务器
+     * 连接服务器
      */
     public void connectServer() {
         try {
@@ -52,7 +52,7 @@ public final class OneBotWebSocketClient extends Endpoint {
     }
 
     /**
-     * 向websocket服务器发送消息
+     * 向服务器发送消息
      *
      * @param message 消息
      */

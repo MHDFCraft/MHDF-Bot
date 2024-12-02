@@ -8,7 +8,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mhdf-bot-pluginexample" />
+        <module name="mhdf-bot-bungeehook" />
         <module name="mhdf-bot" />
+        <module name="mhdf-bot-bukkithook" />
       </profile>
     </annotationProcessing>
   </component>

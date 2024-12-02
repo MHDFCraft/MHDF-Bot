@@ -27,7 +27,7 @@ public final class MinecraftWebSocketServer {
     private final Set<Session> sessions = new CopyOnWriteArraySet<>();
 
     /**
-     * 启动websocket服务器
+     * 启动服务器
      */
     public void startServer() {
         try {
