@@ -1,0 +1,20 @@
+# OneBot设置
+oneBotSettings:
+  # WebSocket地址 (末尾必须为/)
+  websocketHost: "ws://127.0.0.1:3001/"
+  # HTTP地址 (末尾必须为/)
+  httpHost: "http://127.0.0.1:3000/"
+  # 鉴权
+  # accessToken: ""
+
+# WebSocket服务器设置
+webSocketServerSettings:
+  # 端口
+  port: 5835
+
+# 日志设置
+logSettings:
+  # 群聊消息
+  groupMessage: true
+  # 私聊消息
+  privateMessage: true

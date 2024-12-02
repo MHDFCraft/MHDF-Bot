@@ -1,0 +1,9 @@
+target/
+/plugins
+
+*.iml
+*.jar
+/config.yml
+/lang.yml
+/Old/
+/tomcat.5835/

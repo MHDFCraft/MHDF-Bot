@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="cn.chengzhiya.mhdfbot.api.listener.EventHandler" />
+    </list>
+    <pattern value="cn.chengzhiya.mhdfbotpluginexample.Main" />
+    <pattern value="cn.chengzhiya.mhdfbotpluginexample.Main" method="onDisable" />
+    <pattern value="cn.chengzhiya.mhdfbotpluginexample.Main" method="onEnable" />
+    <pattern value="cn.chengzhiya.mhdfbot.onebot.OneBotHttpClient" method="get" />
+    <pattern value="cn.chengzhiya.mhdfbot.onebot.OneBotHttpClient" />
+    <pattern value="cn.chengzhiya.mhdfbot.onebot.OneBotHttpClient" method="post" />
+    <pattern value="cn.chengzhiya.mhdfbot.api.enums.message.RecordFormat" method="get" />
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/MHDF-Bot-BukkitHook/pom.xml" />
+        <option value="$PROJECT_DIR$/Old/MHDF-Bot-BukkitHook/pom.xml" />
+        <option value="$PROJECT_DIR$/Old/MHDF-Bot/pom.xml" />
+        <option value="$PROJECT_DIR$/Old/MHDF-Bot-API/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/MHDF-Bot-BukkitHook/pom.xml" />
+        <option value="$PROJECT_DIR$/MHDF-Bot-BungeeCordHook/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="azul-21" project-jdk-type="JavaSDK" />
+</project>
