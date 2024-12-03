@@ -73,38 +73,35 @@ public abstract class JavaPlugin implements Plugin {
      * @param replace      替换文件
      */
     public void saveResource(String filePath, String resourcePath, boolean replace) {
-        File file = new File(this.getDataFolder(),filePath);
+        File file = new File(this.getDataFolder(), filePath);
         if (file.exists() && !replace) {
             return;
         }
 
-        URL url = getClass().getResource(resourcePath);
+        URL url = this.getClass().getClassLoader().getResource(resourcePath);
         if (url == null) {
             throw new RuntimeException("找不到资源: " + resourcePath);
         }
 
-        URLConnection connection;
         try {
-            connection = url.openConnection();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        connection.setUseCaches(false);
+            URLConnection connection = url.openConnection();
+            connection.setUseCaches(false);
 
-        try (InputStream in = url.openStream()) {
-            try (FileOutputStream out = new FileOutputStream(file)) {
-                if (in == null) {
-                    throw new RuntimeException("读取资源 " + resourcePath + " 的时候发生了错误");
-                }
+            try (InputStream in = url.openStream()) {
+                try (FileOutputStream out = new FileOutputStream(file)) {
+                    if (in == null) {
+                        throw new RuntimeException("读取资源 " + resourcePath + " 的时候发生了错误");
+                    }
 
-                byte[] buf = new byte[1024];
-                int len;
-                while ((len = in.read(buf)) > 0) {
-                    out.write(buf, 0, len);
+                    byte[] buf = new byte[1024];
+                    int len;
+                    while ((len = in.read(buf)) > 0) {
+                        out.write(buf, 0, len);
+                    }
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("无法保存资源", e);
+            throw new RuntimeException(e);
         }
     }
 
