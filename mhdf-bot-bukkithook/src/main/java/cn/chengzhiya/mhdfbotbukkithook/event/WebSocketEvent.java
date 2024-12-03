@@ -7,8 +7,9 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 @Getter
+@SuppressWarnings("unused")
 public final class WebSocketEvent extends Event {
-    private final HandlerList handlers = new HandlerList();
+    private static final HandlerList handlers = new HandlerList();
     private final JSONObject data;
 
     public WebSocketEvent(JSONObject data) {
@@ -18,6 +19,10 @@ public final class WebSocketEvent extends Event {
 
     @Override
     public @NotNull HandlerList getHandlers() {
-        return this.handlers;
+        return handlers;
+    }
+
+    public @NotNull static HandlerList getHandlerList() {
+        return handlers;
     }
 }

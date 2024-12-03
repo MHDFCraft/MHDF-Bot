@@ -11,6 +11,7 @@ import java.net.URISyntaxException;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+@ClientEndpoint
 @SuppressWarnings({"unused", "CallToPrintStackTrace"})
 public final class WebSocketClient {
     private final WebSocketContainer container = ContainerProvider.getWebSocketContainer();
