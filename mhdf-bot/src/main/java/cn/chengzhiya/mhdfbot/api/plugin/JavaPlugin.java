@@ -73,7 +73,7 @@ public abstract class JavaPlugin implements Plugin {
      * @param replace      替换文件
      */
     public void saveResource(String filePath, String resourcePath, boolean replace) {
-        File file = new File(filePath);
+        File file = new File(this.getDataFolder(),filePath);
         if (file.exists() && !replace) {
             return;
         }
