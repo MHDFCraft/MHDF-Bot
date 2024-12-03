@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
     @Getter
-    private static final WebSocketClient webSocketClient = new WebSocketClient();
+    private static WebSocketClient webSocketClient;
     public static Main instance;
 
     @Override
@@ -17,6 +17,7 @@ public final class Main extends JavaPlugin {
         saveDefaultConfig();
         reloadConfig();
 
+        webSocketClient = new WebSocketClient();
         getWebSocketClient().connectServer();
 
         getLogger().info("梦之机器人框架服务端Hook已启动!");

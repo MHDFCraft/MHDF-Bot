@@ -16,7 +16,7 @@ import java.net.URLConnection;
 
 public final class Main extends Plugin {
     @Getter
-    private static final WebSocketClient webSocketClient = new WebSocketClient();
+    private static WebSocketClient webSocketClient;
     public static Main instance;
     @Getter
     private Configuration config;
@@ -29,6 +29,7 @@ public final class Main extends Plugin {
         this.saveDefaultConfig();
         this.reloadConfig();
 
+        webSocketClient = new WebSocketClient();
         getWebSocketClient().connectServer();
 
         getLogger().info("梦之机器人框架服务端Hook已启动!");
