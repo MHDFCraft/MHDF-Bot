@@ -49,6 +49,7 @@ public abstract class JavaPlugin implements Plugin {
      * 保存默认配置文件
      */
     public void saveDefaultConfig() {
+        FileUtil.createFolder(this.getDataFolder());
         this.saveResource("config.yml", "config.yml", false);
     }
 
