@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfb55dfe-83a9-449c-bfff-9d8a6235514a" name="更改" comment="提交 workspace.xml">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="cfb55dfe-83a9-449c-bfff-9d8a6235514a" name="更改" comment="实现资源操作" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -188,7 +186,7 @@
       <option name="presentableId" value="Default" />
       <updated>1733137924119</updated>
       <workItem from="1733137925759" duration="8249000" />
-      <workItem from="1733146220797" duration="7940000" />
+      <workItem from="1733146220797" duration="11629000" />
     </task>
     <task id="LOCAL-00001" summary="提交V2.0.0框架本体">
       <option name="closed" value="true" />
@@ -254,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733201768046</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="实现资源操作">
+      <option name="closed" value="true" />
+      <created>1733203024119</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733203024119</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,6 +286,7 @@
     <MESSAGE value="调整构建名称" />
     <MESSAGE value="实现插件模块的注册" />
     <MESSAGE value="提交 workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="提交 workspace.xml" />
+    <MESSAGE value="实现资源操作" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现资源操作" />
   </component>
 </project>

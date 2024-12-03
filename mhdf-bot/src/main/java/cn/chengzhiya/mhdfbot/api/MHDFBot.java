@@ -584,8 +584,20 @@ public final class MHDFBot {
      * @return 群成员实例列表
      */
     public static List<Member> getGroupMemberList(Long groupId) {
+        return getGroupMemberList(groupId, true);
+    }
+
+    /**
+     * 获取指定群聊中的群成员实例列表
+     *
+     * @param groupId 目标群号
+     * @param cache   是否使用缓存
+     * @return 群成员实例列表
+     */
+    public static List<Member> getGroupMemberList(Long groupId, boolean cache) {
         JSONObject data = new JSONObject();
         data.put("group_id", groupId);
+        data.put("no_cache", !cache);
 
         JSONObject returnData = JSONObject.parseObject(getOneBotHttpClient().post("get_group_member_list", data.toString()));
 
