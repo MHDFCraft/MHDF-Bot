@@ -13,8 +13,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
+import java.util.jar.JarEntry;
 
 @Data
 @SuppressWarnings("unused")
@@ -78,16 +77,13 @@ public abstract class JavaPlugin implements Plugin {
             return;
         }
 
-        URL url = this.getClass().getClassLoader().getResource(resourcePath);
-        if (url == null) {
+        JarEntry jarEntry = this.getPluginInfo().getJarFile().getJarEntry(resourcePath);
+        if (jarEntry == null) {
             throw new RuntimeException("找不到资源: " + resourcePath);
         }
 
         try {
-            URLConnection connection = url.openConnection();
-            connection.setUseCaches(false);
-
-            try (InputStream in = url.openStream()) {
+            try (InputStream in = this.getPluginInfo().getJarFile().getInputStream(jarEntry)) {
                 try (FileOutputStream out = new FileOutputStream(file)) {
                     if (in == null) {
                         throw new RuntimeException("读取资源 " + resourcePath + " 的时候发生了错误");
