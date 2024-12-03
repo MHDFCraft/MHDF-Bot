@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings({"unused", "CallToPrintStackTrace"})
 public final class WebSocketClient {
-    private final String websocketHost = Main.instance.getConfig().getString("webSocketSettings.host");
     private final WebSocketContainer container = ContainerProvider.getWebSocketContainer();
     public Session session;
 
@@ -22,7 +21,7 @@ public final class WebSocketClient {
      */
     public void connectServer() {
         try {
-            this.container.connectToServer(this, new URI(Objects.requireNonNull(websocketHost)));
+            this.container.connectToServer(this, new URI(Objects.requireNonNull(Main.instance.getConfig().getString("webSocketSettings.host"))));
         } catch (DeploymentException | IOException | URISyntaxException e) {
             Main.instance.getLogger().info("无法正常连接至websocket服务端!");
             Main.instance.getProxy().getScheduler().schedule(Main.instance, this::connectServer, 5L, TimeUnit.SECONDS);
