@@ -10,6 +10,11 @@ import lombok.Data;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 @Data
 @SuppressWarnings("unused")
@@ -68,7 +73,39 @@ public abstract class JavaPlugin implements Plugin {
      * @param replace      替换文件
      */
     public void saveResource(String filePath, String resourcePath, boolean replace) {
-        FileUtil.saveResource(new File(this.getDataFolder(),filePath).getPath(), resourcePath, replace);
+        File file = new File(filePath);
+        if (file.exists() && !replace) {
+            return;
+        }
+
+        URL url = getClass().getResource(resourcePath);
+        if (url == null) {
+            throw new RuntimeException("找不到资源: " + resourcePath);
+        }
+
+        URLConnection connection;
+        try {
+            connection = url.openConnection();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        connection.setUseCaches(false);
+
+        try (InputStream in = url.openStream()) {
+            try (FileOutputStream out = new FileOutputStream(file)) {
+                if (in == null) {
+                    throw new RuntimeException("读取资源 " + resourcePath + " 的时候发生了错误");
+                }
+
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("无法保存资源", e);
+        }
     }
 
     /**
