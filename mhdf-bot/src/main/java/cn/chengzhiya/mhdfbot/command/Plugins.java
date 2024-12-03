@@ -33,7 +33,7 @@ public final class Plugins implements CommandExecutor {
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(prefix).append("(").append(filterPluginInfoList.size()).append(")").append(": ");
-        pluginInfoList.forEach(pluginInfo -> stringBuilder.append(pluginInfo.getName()).append(", "));
+        filterPluginInfoList.forEach(pluginInfo -> stringBuilder.append(pluginInfo.getName()).append(", "));
 
         MHDFBot.getLogger().info(stringBuilder.toString());
     }

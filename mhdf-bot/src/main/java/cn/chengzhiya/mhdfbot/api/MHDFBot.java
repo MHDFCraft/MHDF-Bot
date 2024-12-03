@@ -533,7 +533,9 @@ public final class MHDFBot {
     public static List<Friend> getFriendList() {
         JSONObject returnData = JSONObject.parseObject(getOneBotHttpClient().post("get_friend_list"));
 
-        return Objects.requireNonNull(returnData).getList("data", Friend.class);
+        return Objects.requireNonNull(returnData).getList("data", JSONObject.class).stream()
+                .map(Friend::new)
+                .toList();
     }
 
     /**
@@ -544,7 +546,9 @@ public final class MHDFBot {
     public static List<Group> getGroupList() {
         JSONObject returnData = JSONObject.parseObject(getOneBotHttpClient().post("get_group_list"));
 
-        return Objects.requireNonNull(returnData).getList("data", Group.class);
+        return Objects.requireNonNull(returnData).getList("data", JSONObject.class).stream()
+                .map(Group::new)
+                .toList();
     }
 
     /**
@@ -601,7 +605,9 @@ public final class MHDFBot {
 
         JSONObject returnData = JSONObject.parseObject(getOneBotHttpClient().post("get_group_member_list", data.toString()));
 
-        return Objects.requireNonNull(returnData).getList("data", Member.class);
+        return Objects.requireNonNull(returnData).getList("data", JSONObject.class).stream()
+                .map(Member::new)
+                .toList();
     }
 
     /**

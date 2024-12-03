@@ -85,7 +85,7 @@ public final class OneBotWebSocketClient extends Endpoint {
     public void onError(Throwable e) {
         this.session = null;
         this.connectServer();
-        e.printStackTrace();
+        MHDFBot.getLogger().error(e);
     }
 
     public void handlerMessage(String message) {

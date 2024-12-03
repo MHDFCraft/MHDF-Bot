@@ -11,7 +11,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Objects;
 
-@SuppressWarnings("CallToPrintStackTrace")
 public final class OneBotHttpClient {
     private final String httpHost = Main.getConfigManager().getConfig().getString("oneBotSettings.httpHost");
     private final String accessToken = Main.getConfigManager().getConfig().getString("oneBotSettings.accessToken");
@@ -36,7 +35,7 @@ public final class OneBotHttpClient {
 
             return connection;
         } catch (IOException e) {
-            e.printStackTrace();
+            MHDFBot.getLogger().error(e);
         }
         return null;
     }
@@ -63,7 +62,7 @@ public final class OneBotHttpClient {
                 );
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            MHDFBot.getLogger().error(e);
         }
         connection.disconnect();
         return null;
@@ -82,7 +81,7 @@ public final class OneBotHttpClient {
 
             return getData(connection);
         } catch (IOException e) {
-            e.printStackTrace();
+            MHDFBot.getLogger().error(e);
         }
         return null;
     }
@@ -100,7 +99,7 @@ public final class OneBotHttpClient {
 
             return getData(connection);
         } catch (IOException e) {
-            e.printStackTrace();
+            MHDFBot.getLogger().error(e);
         }
         return null;
     }
@@ -125,7 +124,7 @@ public final class OneBotHttpClient {
 
             return getData(connection);
         } catch (IOException e) {
-            e.printStackTrace();
+            MHDFBot.getLogger().error(e);
         }
         return null;
     }

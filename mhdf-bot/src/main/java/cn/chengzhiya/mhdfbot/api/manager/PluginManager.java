@@ -99,12 +99,12 @@ public final class PluginManager {
                 pluginInfo.setPluginStatus(PluginStatus.Load_Done);
             } catch (Exception e) {
                 pluginInfo.setPluginStatus(PluginStatus.Load_Error);
-                e.printStackTrace();
+                MHDFBot.getLogger().error(e);
             }
 
             getPluginHashMap().put(pluginInfo.getName(), pluginInfo);
         } catch (IOException e) {
-            e.printStackTrace();
+            MHDFBot.getLogger().error(e);
         }
     }
 
