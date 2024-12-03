@@ -25,7 +25,7 @@ public final class WebSocketClient {
             this.container.connectToServer(this, new URI(Objects.requireNonNull(websocketHost)));
         } catch (DeploymentException | IOException | URISyntaxException e) {
             Main.instance.getLogger().info("无法正常连接至websocket服务端!");
-            Bukkit.getScheduler().runTaskLaterAsynchronously(Main.instance, this::connectServer, 5L);
+            Bukkit.getScheduler().runTaskLaterAsynchronously(Main.instance, this::connectServer, 100L);
         }
     }
 
