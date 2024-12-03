@@ -27,6 +27,8 @@ public final class OneBotHttpClient {
             URL url = new URL(httpHost + urlString);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("Content-Type", "application/json");
+            connection.setConnectTimeout(7500);
+            connection.setReadTimeout(7500);
 
             if (accessToken != null) {
                 connection.setRequestProperty("Authorization", "Bearer " + accessToken);

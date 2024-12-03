@@ -15,9 +15,9 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public final class Main extends Plugin {
+    public static Main instance;
     @Getter
     private static WebSocketClient webSocketClient;
-    public static Main instance;
     @Getter
     private Configuration config;
 

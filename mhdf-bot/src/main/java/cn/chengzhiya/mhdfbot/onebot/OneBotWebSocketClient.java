@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings({"CallToPrintStackTrace", "unused"})
+@SuppressWarnings({"unused"})
 public final class OneBotWebSocketClient extends Endpoint {
     private final String websocketHost = Main.getConfigManager().getConfig().getString("oneBotSettings.websocketHost");
     private final String accessToken = Main.getConfigManager().getConfig().getString("oneBotSettings.accessToken");
