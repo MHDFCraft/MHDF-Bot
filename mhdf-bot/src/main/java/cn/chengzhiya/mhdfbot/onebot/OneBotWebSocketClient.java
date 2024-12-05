@@ -67,7 +67,7 @@ public final class OneBotWebSocketClient extends Endpoint {
         }
     }
 
-    @OnOpen
+    @Override
     public void onOpen(Session session, EndpointConfig config) {
         this.session = session;
 
@@ -75,14 +75,15 @@ public final class OneBotWebSocketClient extends Endpoint {
         MHDFBot.getLogger().info("websocket服务端连接成功!");
     }
 
-    @OnClose
-    public void onClose() {
+    @Override
+    public void onClose(Session session, CloseReason closeReason) {
         this.session = null;
+        MHDFBot.getLogger().info("websocket服务端已离线!");
         this.connectServer();
     }
 
     @OnError
-    public void onError(Throwable e) {
+    public void onError(Session session, Throwable e) {
         this.session = null;
         this.connectServer();
         MHDFBot.getLogger().error(e);

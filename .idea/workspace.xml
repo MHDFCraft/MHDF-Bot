@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfb55dfe-83a9-449c-bfff-9d8a6235514a" name="更改" comment="新增获取群成员实例列表的缓存开关设置" />
+    <list default="true" id="cfb55dfe-83a9-449c-bfff-9d8a6235514a" name="更改" comment="修复部分getList超时不处理的BUG&#10;修复plugins命令分类输出出错的BUG">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mhdf-bot/src/main/java/cn/chengzhiya/mhdfbot/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhdf-bot/src/main/java/cn/chengzhiya/mhdfbot/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -188,6 +192,10 @@
       <workItem from="1733137925759" duration="8249000" />
       <workItem from="1733146220797" duration="11629000" />
       <workItem from="1733227407460" duration="1856000" />
+      <workItem from="1733231380095" duration="7978000" />
+      <workItem from="1733315008851" duration="464000" />
+      <workItem from="1733315945540" duration="57000" />
+      <workItem from="1733400774530" duration="896000" />
     </task>
     <task id="LOCAL-00001" summary="提交V2.0.0框架本体">
       <option name="closed" value="true" />
@@ -269,7 +277,95 @@
       <option name="project" value="LOCAL" />
       <updated>1733227581734</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="修复saveDefaultConfig()不自动创建dataFolder的问题">
+      <option name="closed" value="true" />
+      <created>1733231473063</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1733231473063</updated>
+    </task>
+    <task id="LOCAL-00012" summary="修复插件saveResource()方法无法正常使用的BUG">
+      <option name="closed" value="true" />
+      <created>1733231717823</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1733231717823</updated>
+    </task>
+    <task id="LOCAL-00013" summary="修复插件saveResource()方法无法正常使用的BUG">
+      <option name="closed" value="true" />
+      <created>1733231993453</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1733231993453</updated>
+    </task>
+    <task id="LOCAL-00014" summary="修复插件saveResource()方法无法正常使用的BUG">
+      <option name="closed" value="true" />
+      <created>1733232378514</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1733232378514</updated>
+    </task>
+    <task id="LOCAL-00015" summary="修复插件saveResource()方法无法正常使用的BUG">
+      <option name="closed" value="true" />
+      <created>1733233374133</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1733233374133</updated>
+    </task>
+    <task id="LOCAL-00016" summary="调整子服连接器与群组连接器WS客户端的初始化实例代码位置防止instance为null的报错">
+      <option name="closed" value="true" />
+      <created>1733233558542</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733233558542</updated>
+    </task>
+    <task id="LOCAL-00017" summary="修复单位错误的问题">
+      <option name="closed" value="true" />
+      <created>1733234117991</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733234117991</updated>
+    </task>
+    <task id="LOCAL-00018" summary="修复ws地址获取失败的BUG">
+      <option name="closed" value="true" />
+      <created>1733234261101</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1733234261101</updated>
+    </task>
+    <task id="LOCAL-00019" summary="修复无法连接websocket服务器的问题&#10;修复Event报错的问题">
+      <option name="closed" value="true" />
+      <created>1733235075914</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1733235075914</updated>
+    </task>
+    <task id="LOCAL-00020" summary="格式化代码&#10;修复http API部分请求超时不处理的BUG">
+      <option name="closed" value="true" />
+      <created>1733236385450</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1733236385450</updated>
+    </task>
+    <task id="LOCAL-00021" summary="修复部分getList超时不处理的BUG&#10;修复plugins命令分类输出出错的BUG">
+      <option name="closed" value="true" />
+      <created>1733237385428</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1733237385428</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,6 +393,14 @@
     <MESSAGE value="提交 workspace.xml" />
     <MESSAGE value="实现资源操作" />
     <MESSAGE value="新增获取群成员实例列表的缓存开关设置" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增获取群成员实例列表的缓存开关设置" />
+    <MESSAGE value="修复saveDefaultConfig()不自动创建dataFolder的问题" />
+    <MESSAGE value="修复插件saveResource()方法无法正常使用的BUG" />
+    <MESSAGE value="调整子服连接器与群组连接器WS客户端的初始化实例代码位置防止instance为null的报错" />
+    <MESSAGE value="修复单位错误的问题" />
+    <MESSAGE value="修复ws地址获取失败的BUG" />
+    <MESSAGE value="修复无法连接websocket服务器的问题&#10;修复Event报错的问题" />
+    <MESSAGE value="格式化代码&#10;修复http API部分请求超时不处理的BUG" />
+    <MESSAGE value="修复部分getList超时不处理的BUG&#10;修复plugins命令分类输出出错的BUG" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复部分getList超时不处理的BUG&#10;修复plugins命令分类输出出错的BUG" />
   </component>
 </project>
