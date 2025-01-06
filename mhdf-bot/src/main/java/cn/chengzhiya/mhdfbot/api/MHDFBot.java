@@ -155,7 +155,7 @@ public final class MHDFBot {
         }
         if (messageType == MessageType.PRIVATE) {
             data.put("message_type", "private");
-            data.put("group_id", targetId);
+            data.put("user_id", targetId);
         }
         data.put("message", message);
         data.put("auto_escape", autoEscape);

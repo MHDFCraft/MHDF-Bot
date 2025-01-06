@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/mhdf-bot-bukkithook/mhdf-bot-bukkithook.iml" filepath="$PROJECT_DIR$/mhdf-bot-bukkithook/mhdf-bot-bukkithook.iml" />
       <module fileurl="file://$PROJECT_DIR$/mhdf-bot-bungeehook/mhdf-bot-bungeehook.iml" filepath="$PROJECT_DIR$/mhdf-bot-bungeehook/mhdf-bot-bungeehook.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mhdfbot.iml" filepath="$PROJECT_DIR$/mhdfbot.iml" />
     </modules>
   </component>
 </project>

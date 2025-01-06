@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfb55dfe-83a9-449c-bfff-9d8a6235514a" name="更改" comment="修复部分getList超时不处理的BUG&#10;修复plugins命令分类输出出错的BUG">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mhdf-bot/src/main/java/cn/chengzhiya/mhdfbot/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/mhdf-bot/src/main/java/cn/chengzhiya/mhdfbot/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +22,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
@@ -39,43 +40,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Maven.MHDF-Bot build.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.generate javadoc.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mhdf-bot [org.apache.maven.plugins:maven-javadoc-plugin:3.11.1:javadoc].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mhdf-bot [org.apache.maven.plugins:maven-site-plugin:3.12.1:attach-descriptor].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mhdf-bot [org.projectlombok:lombok-maven-plugin:1.18.20.0:delombok].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mhdfbot [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mhdfbot [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mhdfbot [org.apache.maven.plugins:maven-javadoc-plugin:3.11.1:javadoc].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mhdfbot [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mhdfbot [verify].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.com.intellij.ui.dsl.builder.impl.RowImpl.sdk&quot;: &quot;azul-21&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projects/MHDF-Bot/mhdf-bot-bungeehook/src/main/java/cn/chengzhiya/mhdfbotbungeehook&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
-    &quot;应用程序.Main.executor&quot;: &quot;Run&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Maven.MHDF-Bot build.executor": "Run",
+    "Maven.generate javadoc.executor": "Run",
+    "Maven.mhdf-bot [org.apache.maven.plugins:maven-javadoc-plugin:3.11.1:javadoc].executor": "Run",
+    "Maven.mhdf-bot [org.apache.maven.plugins:maven-site-plugin:3.12.1:attach-descriptor].executor": "Run",
+    "Maven.mhdf-bot [org.projectlombok:lombok-maven-plugin:1.18.20.0:delombok].executor": "Run",
+    "Maven.mhdfbot [clean].executor": "Run",
+    "Maven.mhdfbot [install].executor": "Run",
+    "Maven.mhdfbot [org.apache.maven.plugins:maven-javadoc-plugin:3.11.1:javadoc].executor": "Run",
+    "Maven.mhdfbot [package].executor": "Run",
+    "Maven.mhdfbot [verify].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "v2",
+    "jdk.selected.com.intellij.ui.dsl.builder.impl.RowImpl.sdk": "azul-21",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Projects/MHDF-Bot/mhdf-bot-bungeehook/src/main/java/cn/chengzhiya/mhdfbotbungeehook",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "vue.rearranger.settings.migration": "true",
+    "应用程序.Main.executor": "Run"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;jdk.preference.com.intellij.ui.dsl.builder.impl.RowImpl.sdk&quot;: [
-      &quot;21=C:/Users/ChengZhiYa/.jdks/azul-21.0.3&quot;
+  "keyToStringList": {
+    "jdk.preference.com.intellij.ui.dsl.builder.impl.RowImpl.sdk": [
+      "21=C:/Users/ChengZhiYa/.jdks/azul-21.0.3"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Projects\MHDF-Bot\mhdf-bot-bungeehook\src\main\java\cn\chengzhiya\mhdfbotbungeehook" />
@@ -163,21 +165,15 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.Main" />
       <item itemvalue="Maven.MHDF-Bot build" />
       <item itemvalue="Maven.generate javadoc" />
-      <item itemvalue="应用程序.Main" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="应用程序.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
       </set>
     </attachedChunks>
   </component>
@@ -196,6 +192,7 @@
       <workItem from="1733315008851" duration="464000" />
       <workItem from="1733315945540" duration="57000" />
       <workItem from="1733400774530" duration="896000" />
+      <workItem from="1736161461556" duration="55000" />
     </task>
     <task id="LOCAL-00001" summary="提交V2.0.0框架本体">
       <option name="closed" value="true" />
