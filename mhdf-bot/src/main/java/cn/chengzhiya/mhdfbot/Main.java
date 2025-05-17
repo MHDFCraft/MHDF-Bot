@@ -9,13 +9,8 @@ import cn.chengzhiya.mhdfbot.api.listener.EventHandler;
 import cn.chengzhiya.mhdfbot.api.listener.Listener;
 import cn.chengzhiya.mhdfbot.command.Help;
 import cn.chengzhiya.mhdfbot.command.Plugins;
-import cn.chengzhiya.mhdfbot.console.CommandCompleter;
 import cn.chengzhiya.mhdfbot.manager.ConfigManager;
-import cn.chengzhiya.mhdfbot.minecraft.MinecraftWebSocketServer;
 import lombok.Getter;
-import org.jline.reader.LineReader;
-import org.jline.reader.LineReaderBuilder;
-import org.jline.reader.UserInterruptException;
 
 import java.util.Collections;
 
@@ -27,36 +22,36 @@ public class Main {
             new PluginInfo("MHDF-Bot", "2.0.0", null, Collections.singletonList("ChengZhiYa"));
 
     public static void main(String[] args) throws Exception {
-        Long startTime = System.currentTimeMillis();
-
-        getConfigManager().saveDefaultConfig();
-        getConfigManager().reloadConfig();
-
-        new MinecraftWebSocketServer.HeartBeat().runTaskAsynchronouslyTimer(0L, 1L);
-
-        registerCommand();
-        registerListener();
-
-        MHDFBot.getPluginManager().loadPlugins();
-
-        MHDFBot.getScheduler().runTaskAsynchronously(() -> MHDFBot.getOneBotWebSocketClient().connectServer());
-        MHDFBot.getScheduler().runTaskAsynchronously(() -> MHDFBot.getMinecraftWebSocketServer().startServer());
-
-        Long endTime = System.currentTimeMillis();
-        MHDFBot.getLogger().info("启动成功,本次启动时长: {}ms", endTime - startTime);
-
-        try {
-            LineReader lineReader = LineReaderBuilder.builder()
-                    .completer(new CommandCompleter())
-                    .build();
-
-            String line;
-            while ((line = lineReader.readLine()) != null) {
-                MHDFBot.getCommandManager().executeCommand(line);
-            }
-        } catch (UserInterruptException e) {
-            System.exit(0);
-        }
+//        Long startTime = System.currentTimeMillis();
+//
+//        getConfigManager().saveDefaultConfig();
+//        getConfigManager().reloadConfig();
+//
+//        new MinecraftWebSocketServer.HeartBeat().runTaskAsynchronouslyTimer(0L, 1L);
+//
+//        registerCommand();
+//        registerListener();
+//
+//        MHDFBot.getPluginManager().loadPlugins();
+//
+//        MHDFBot.getScheduler().runTaskAsynchronously(() -> MHDFBot.getOneBotWebSocketClient().connectServer());
+//        MHDFBot.getScheduler().runTaskAsynchronously(() -> MHDFBot.getMinecraftWebSocketServer().startServer());
+//
+//        Long endTime = System.currentTimeMillis();
+//        MHDFBot.getLogger().info("启动成功,本次启动时长: {}ms", endTime - startTime);
+//
+//        try {
+//            LineReader lineReader = LineReaderBuilder.builder()
+//                    .completer(new CommandCompleter())
+//                    .build();
+//
+//            String line;
+//            while ((line = lineReader.readLine()) != null) {
+//                MHDFBot.getCommandManager().executeCommand(line);
+//            }
+//        } catch (UserInterruptException e) {
+//            System.exit(0);
+//        }
     }
 
     /**
